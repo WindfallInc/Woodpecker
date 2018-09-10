@@ -1,0 +1,1 @@
+<div class="featured"><img src="@if(isset($component->image)){{$component->image}}@endif" width="100%" style="display:flex; margin:auto; height:142px; object-fit:cover;" class="component-image"><h4 style="height: 56px;" class="input1"></h4><h5 class="input2"></h5><p class="input3"></p><div class="partner-more-btn"><a class="input5"></a></div></div>

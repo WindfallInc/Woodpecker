@@ -1,0 +1,100 @@
+// Import font files
+//google font import example
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+//Icons
+//@import url('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+@import url('https://use.fontawesome.com/0795663ba4.css');
+
+// Custom font example
+/*
+@font-face {
+        font-family: 'domaine';
+        src: url('/assets/css/DomaineDisplay-Regular.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+		    font-family: 'domaine-italic';
+		    src: url('/assets/css/DomaineDisplay-RegularItalic.ttf');
+		    font-weight: normal;
+		    font-style: italic;
+	 }
+@font-face {
+       font-family: 'domaine-bold';
+       src: url('/assets/css/DomaineDisplay-Semibold.ttf');
+   	   font-weight: normal;
+       font-style: italic;
+	 }
+*/
+
+// Flaw.less Colors:
+
+@teal: #25ada6;
+@dteal: #00898d;
+
+@lblue: #048BA8;
+@tblue: #2295A8;
+@blue: #47607C;
+@dblue: #2E4057;
+
+@purple: #2e358f;
+
+@red: #ee3124;
+
+@orange: #F18F01;
+@lorange: #E59E4A;
+
+@yellow: #f9ed32;
+
+@green: #99C24D;
+@forest: #7F9B42;
+
+@light: #e2e3e4;
+@dark: #333333;
+@white: #fff;
+@gray: #cecece;
+
+// CUSTOM THEME COLORS
+
+@green: #8faa4f;
+@red: #c24137;
+@plum: #4c3a70;
+@gold: #b99855;
+@blue: #015289;
+@dblue: #2d3e4f;
+@teal: #259f85;
+@dark: #333;
+
+// change these colors to update theme colors in other base.less files
+@theme-main: @dblue;
+@theme-secondary: @gold;
+@link: @teal;
+@hover: darken(@link, 20%);
+
+// FONT OPTIONS
+// Set fonts here:
+.main-font {font-family: 'open-sans', serif;}
+.secondary-font {font-family: 'Roboto', sans-serif;;}
+// set to true to choose font ratio
+@minor-second: false;
+@major-second: false;
+@minor-third: false;
+@major-third: false;
+@perfect-fourth: true;
+@augmented-fourth: false;
+@perect-fifth: false;
+@golden-ratio: false;
+// Set the row width here.
+@row-width: 1100px;
+// Choose mobile break for columns to go vertical
+@mobile-break:767px;
+// Animations
+.transition {transition:linear all .2s;}
+.shadow {box-shadow: 0px 0px 60px -3px rgba(0, 0, 0, 0.33);}
+
+
+.italic-font { font-family:"domaine-italic"; }
+.bold-font { font-family:"domaine-bold"; }
+.caps {text-transform: uppercase;}

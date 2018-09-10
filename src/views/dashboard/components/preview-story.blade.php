@@ -1,0 +1,1 @@
+<div class="story"><h4 style="height: 56px;" class="input1"></h4><img src="@if(isset($component->image)){{$component->image}}@endif" class="component-image"><p class="input2"></p></div>

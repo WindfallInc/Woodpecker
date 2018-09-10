@@ -1,0 +1,1 @@
+<a class="gallery-large" title="" href="" target="_blank"><img src="@if(isset($component->image)){{$component->image}}@endif" alt="" class="component-image"><h3 class="input2"></h3></a>

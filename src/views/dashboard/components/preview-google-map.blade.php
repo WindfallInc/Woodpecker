@@ -1,0 +1,1 @@
+<div class="map">No preview</div>

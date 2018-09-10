@@ -1,0 +1,116 @@
+// Navigation CSS Here
+header{
+  position: relative;
+  height:130px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 9;
+  .logo {
+    position: absolute;
+    left:8%;
+    top:10px;
+    height:230px;
+  }
+  .nav {
+    position: relative;
+    float:right;
+    display: flex;
+    z-index: 9;
+    width:auto;
+    .transition;
+    li {
+      color:@theme-secondary;
+      font-weight:700;
+      text-transform: uppercase;
+      margin-bottom:0px;
+      padding-bottom:0px;
+      padding-left:10px;
+      padding-right:10px;
+      line-height: 130px;
+      .transition;
+      ul {
+        display: none;
+      }
+    }
+    li:hover {
+      background-color:@theme-main;
+      color:#fff;
+      ul {
+        position: absolute;
+        display: flex;
+        flex-wrap:wrap;
+        top:130px;
+        left:0px;
+        margin-top:0px;
+        margin-left:0px;
+        width:100%;
+        display:flex;
+        display: block;
+        border-top: @theme-main 5px solid;
+        background-color: #fff;
+        background-color:#fff;
+        padding:50px;
+        li{
+          min-width:40%;
+          max-width:40%;
+          line-height: 40px;
+          color:@dark;
+          float:left;
+          .transition;
+        }
+        li:hover {
+          padding-left:12px;
+          background-color:transparent;
+        }
+      }
+    }
+		a {
+			display: block;
+			color:@theme-secondary;
+			height:100%;
+		}
+  }
+  .nav.search {
+    width:0px;
+    overflow:hidden;
+    .transition;
+  }
+  .search {
+    float:right;
+    margin-left:20px;
+    margin-right:80px;
+    font-size: 2em;
+    color:#ccc;
+  }
+  .true-logo {
+    float:right;
+    width:200px;
+    margin-right:20px;
+  }
+
+  form {
+    input{
+      width:0px;
+      opacity: 0;
+      overflow:hidden;
+      border:none;
+      border-bottom:@theme-secondary solid 1px;
+      padding-left:10px;
+      font-size:1.3em;
+      .transition;
+    }
+    input::placeholder{
+      .main-font;
+      font-size:1.3em;
+      color:@dark;
+    }
+    input.active {
+      opacity: 1;
+      width:500px;
+      height:50px;
+    }
+  }
+
+}
+

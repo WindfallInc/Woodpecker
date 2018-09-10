@@ -1,0 +1,31 @@
+{
+    "name": "windfallinc/woodpecker",
+    "description": "This is a package for things and stuff",
+    "type": "library",
+    "homepage": "https://github.com/WindfallInc/woodpecker",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew",
+            "email": "andrew@windfallstudio.com",
+            "homepage": "http://www.walshwebworks.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+      "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WindfallInc\\Woodpecker\\": "src/"
+        }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "WindfallInc\\Woodpecker\\WoodpeckerServiceProvider"
+        ]
+      }
+    }
+}
