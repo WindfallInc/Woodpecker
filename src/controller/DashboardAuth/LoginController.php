@@ -5,7 +5,7 @@ namespace App\Http\Controllers\DashboardAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use andrewwindfall\Quickstart\Traits\LogsoutGuard;
+use WindfallInc\Woodpecker\Traits\LogsoutGuard;
 
 class LoginController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace andrewwindfall\Quickstart\Traits;
+namespace WindfallInc\Woodpecker\Traits;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'andrewwindfall\\Quickstart\\' => array($baseDir . '/src'),
+    'WindfallInc\\Woodpecker\\' => array($baseDir . '/src'),
 );
