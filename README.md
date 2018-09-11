@@ -39,8 +39,9 @@ Boom! Good to go!
 Example templates included in views/examples.
 Optional Helper functions to include in composer.json:
 ```shell
+"autoload": {
 "files": [
-            "app/Http/jaunt-helpers.php"
+            "app/Http/Controllers/jaunt-helpers.php"
         ],
 ```
 
