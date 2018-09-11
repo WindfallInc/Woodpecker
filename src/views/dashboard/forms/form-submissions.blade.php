@@ -20,6 +20,7 @@
         <a href="/dashboard/export/form/{{$form->id}}" target="_blank"><h3 class="store">Export Submissions</h3></a>
       </div>
     </div>
+    <hr>
     @foreach($form->submissions as $submission)
     <div class="row submission">
         <div class="eight columns">

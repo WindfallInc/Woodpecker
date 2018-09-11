@@ -35,7 +35,7 @@ class WoodpeckerRouteServiceProvider extends RouteServiceProvider
             'as' => 'dashboard.',
             'namespace' => $this->namespace,
         ], function ($router) {
-            require base_path('/vendor/windfallInc/woodpecker/src/dashboard.php');
+            require base_path('/vendor/windfallinc/woodpecker/src/dashboard.php');
         });
     }
 }

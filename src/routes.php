@@ -171,7 +171,7 @@ Route::get('/template/{slug}','App\Http\Controllers\DashboardController@pages');
 
 Route::get('/','App\Http\Controllers\PageController@home');
 Route::get('/home','App\Http\Controllers\PageController@home');
-Route::get('/blog','App\Http\Controllers\ChamberController@blog');
+Route::get('/blog','App\Http\Controllers\PageController@blog');
 
 Route::get('/get/loop/{slug}','App\Http\Controllers\PageController@loopContent');
 

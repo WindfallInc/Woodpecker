@@ -51,8 +51,6 @@ class PageController extends Controller
       else{
         $template = Template::where('slug','home-page')->first();
       }
-      $summers = Content::with('type')->where('slug','itinerary')->with('categories')->where('slug','summer-itineraries')->get();
-      return $summers;
 
       return view('templates.'.$template->slug, compact('page','template'));
     }
@@ -63,20 +61,9 @@ class PageController extends Controller
       if(!isset($page)){
         return 'Page not found';
       }
-      if(isset($page->template)){
-        $template = Template::where('slug',$page->template)->first();
-      }
-      else{
-        $template = Template::where('slug','home-page')->first();
-      }
+      $template = Template::where('slug','home-page')->first();
 
-      $summers = Category::with('contents')->where('slug','summer-itineraries')->first();
-      $summers = $summers->contents;
-
-      $winters = Category::with('contents')->where('slug','winter-itineraries')->first();
-      $winters = $winters->contents;
-
-      return view('templates.'.$template->slug, compact('page','template','summers','winters'));
+      return view('templates.'.$template->slug, compact('page','template'));
     }
 
     public function page($slug){
@@ -106,9 +93,14 @@ class PageController extends Controller
         if(!isset($page)){
           return 'Page not found';
         }
-        $has_content = count($page->rows) + count($page->components);
+        if(isset($page->template->id)){
+          $template= $page->template;
+        }
+        else {
+          $template = $page->type->templates->sortByDesc('updated_at')->first();
+        }
 
-        $template = $page->type->templates->first();
+        $has_content = count($page->rows) + count($page->components);
 
         return view('templates.'.$template->slug, compact('page','template', 'has_content'));
     }
@@ -152,7 +144,6 @@ class PageController extends Controller
 
 
     }
-
     public function search() {
 
   	  $search        = Input::get('search');
@@ -167,6 +158,7 @@ class PageController extends Controller
   		}
   		else {
   			$results        = Content::inRandomOrder()->take(6)->get();
+        $success=false;
   		}
       $template = Template::find(1);
 
