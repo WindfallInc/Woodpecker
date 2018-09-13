@@ -1,1 +1,1 @@
-<div class="carousal" id="carousal"><h1 class="centering">Carousal Cannot Be Previewed.</h1></div>
+<div class="carousal" id="carousal"><h3 class="centering">Carousal Cannot Be Previewed.</h3></div>

@@ -11,7 +11,7 @@
   @if($row->order == $count)
 
     <div class="row component-row">
-      <div class="twelve columns box">
+      <div class="twelve columns">
         {!! $row->content !!}
       </div>
     </div>
@@ -48,7 +48,7 @@
         </div>
         @endif
         <div class="row component-row">
-        <div class="twelve columns box">
+        <div class="twelve columns">
           {!! $row->content !!}
         </div>
         </div>

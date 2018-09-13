@@ -1,1 +1,1 @@
-<div class="post-display"><h1 class="centering">Pulls in latest blog posts Dynamically</h1></div>
+<div class="post-display"><h3 class="centering">Pulls in latest blog posts Dynamically</h3></div>

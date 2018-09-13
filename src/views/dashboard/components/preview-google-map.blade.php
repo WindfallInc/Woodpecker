@@ -1,1 +1,1 @@
-<div class="map">No preview</div>
+<div class="map"><h3 class="centering">No preview</h3></div>

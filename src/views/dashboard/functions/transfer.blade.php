@@ -50,6 +50,20 @@
     });
 
     $( document ).ready(function() {
+      setTimeout(transfer, 200);
+    });
+
+    function transfer() {
+      $.each($('.transfer'), function() {
+        var code = $(this).children(".codearea");
+        var text = $(this).children(".textarea");
+        if($(text).hasClass("active")){
+          $(code).val($(text).html().replace(/<div/g, '<p').replace(/\/div/g, '/p'));
+        }
+        else{
+          $(text).html($(code).val());
+        }
+      });
       $.each($('.component-write'), function() {
         var forms = $(this).find(".forms");
         var preview = $(this).find(".preview");
@@ -60,7 +74,7 @@
           $(preview).find('.input5').html($(forms).find("input[name='input5[]']").val());
           $(preview).find('.input6').html($(forms).find("input[name='input6[]']").val());
       });
-    });
+    }
 
 
 </script>
