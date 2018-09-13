@@ -49,5 +49,18 @@
           });
     });
 
+    $( document ).ready(function() {
+      $.each($('.component-write'), function() {
+        var forms = $(this).find(".forms");
+        var preview = $(this).find(".preview");
+          $(preview).find('.input1').html($(forms).find("input[name='input1[]']").val());
+          $(preview).find('.input2').html($(forms).find("input[name='input2[]']").val());
+          $(preview).find('.input3').html($(forms).find("input[name='input3[]']").val());
+          $(preview).find('.input4').html($(forms).find("input[name='input4[]']").val());
+          $(preview).find('.input5').html($(forms).find("input[name='input5[]']").val());
+          $(preview).find('.input6').html($(forms).find("input[name='input6[]']").val());
+      });
+    });
+
 
 </script>

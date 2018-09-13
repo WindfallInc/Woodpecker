@@ -168,7 +168,7 @@
                     @endif
                   </div>
                 </div>
-                <div class="preview">
+                <div class="preview active">
                   @include("dashboard.components.preview-".$component->slug)
                 </div>
                 <i class="fa fa-minus-circle remove_field"></i>
