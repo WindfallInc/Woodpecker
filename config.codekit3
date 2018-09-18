@@ -327,7 +327,7 @@
 		"iI": 0,
 		"ma": 1,
 		"oA": 0,
-		"oAP": "\/src\/assets\/css\/quickstart\/admin.css",
+		"oAP": "\/src\/assets\/css\/woodpecker\/admin.css",
 		"oF": 2,
 		"oS": 0,
 		"rU": 0,
@@ -346,23 +346,6 @@
 		"oA": 1,
 		"oAP": "\/src\/less\/woodpecker\/animation.css",
 		"oF": 0,
-		"oS": 0,
-		"rU": 0,
-		"sI": 0,
-		"sM": 0,
-		"sU": 0
-		},
-	"\/src\/less\/woodpecker\/app.less": {
-		"aP": 0,
-		"bl": 0,
-		"dJ": 0,
-		"ft": 1,
-		"ie": 1,
-		"iI": 0,
-		"ma": 1,
-		"oA": 0,
-		"oAP": "\/src\/assets\/css\/quickstart\/app.css",
-		"oF": 2,
 		"oS": 0,
 		"rU": 0,
 		"sI": 0,
@@ -746,24 +729,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/Notifications\/DashboardResetPassword.php",
-		"oF": 0
-		},
-	"\/src\/QuickstartController.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/QuickstartController.php",
-		"oF": 0
-		},
-	"\/src\/QuickstartRouteServiceProvider.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/QuickstartRouteServiceProvider.php",
-		"oF": 0
-		},
-	"\/src\/QuickstartServiceProvider.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/QuickstartServiceProvider.php",
 		"oF": 0
 		},
 	"\/src\/routes.php": {
@@ -1198,22 +1163,16 @@
 		"oAP": "\/src\/views\/examples\/partials\/blog-banner.blade.php",
 		"oF": 0
 		},
-	"\/src\/views\/examples\/partials\/navigation-example.blade.php": {
+	"\/src\/views\/examples\/partials\/navigation.blade.php": {
 		"ft": 8192,
 		"oA": 2,
-		"oAP": "\/src\/views\/examples\/partials\/navigation-example.blade.php",
+		"oAP": "\/src\/views\/examples\/partials\/navigation.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/examples\/templates\/basic-page.blade.php": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/examples\/templates\/basic-page.blade.php",
-		"oF": 0
-		},
-	"\/src\/views\/examples\/templates\/dashboard.blade.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/views\/examples\/templates\/dashboard.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/examples\/templates\/home-page.blade.php": {
@@ -1238,6 +1197,24 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/welcome.blade.php",
+		"oF": 0
+		},
+	"\/src\/WoodpeckerController.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/WoodpeckerController.php",
+		"oF": 0
+		},
+	"\/src\/WoodpeckerRouteServiceProvider.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/WoodpeckerRouteServiceProvider.php",
+		"oF": 0
+		},
+	"\/src\/WoodpeckerServiceProvider.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/WoodpeckerServiceProvider.php",
 		"oF": 0
 		},
 	"\/vendor\/autoload.php": {
@@ -1303,7 +1280,7 @@
 	},
 "projectAttributes": {
 	"creationDate": 554749241,
-	"displayValue": "quickstart",
+	"displayValue": "Woodpecker",
 	"displayValueWasSetByUser": 0,
 	"iconImageName": "meme-ariel"
 	},

@@ -107,11 +107,10 @@ a:hover {
     }
 
     .navheader{
-      background-color:lighten(@dark,10%);
       text-align: center;
       opacity: 0;
-      background-color:#fff;
-      color: #4d4d4d;
+      background-color:lighten(@dark,10%);
+      color: #fff;
       font-size: 1.2em;
       padding: 8px;
       .transition;
@@ -427,6 +426,8 @@ a:hover {
     }
   }
   .row-editor {
+    display:flex;
+    flex-wrap: wrap;
     .remove_field{
       position: absolute;
       right: -23px;
@@ -915,4 +916,6 @@ a:hover {
   }
 
 }
+
+@import (optional) "component-theme.less";
 

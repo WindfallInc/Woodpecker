@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
 @import url('https://use.fontawesome.com/0795663ba4.css');
 /*
 @font-face {
@@ -2817,9 +2818,13 @@ header form input.active {
     width: 1100px;
     height: 1vh;
   }
-  100% {
+  99% {
     width: 1100px;
     height: 90vh;
+  }
+  100% {
+    width: 1100px;
+    height: auto;
   }
 }
 @keyframes expandout {
@@ -3718,11 +3723,10 @@ a:hover {
   margin-left: 10px;
 }
 .admin .side-nav .navheader {
-  background-color: #4d4d4d;
   text-align: center;
   opacity: 0;
-  background-color: #fff;
-  color: #4d4d4d;
+  background-color: #4d4d4d;
+  color: #fff;
   font-size: 1.2em;
   padding: 8px;
   transition: linear all .2s;
@@ -4038,6 +4042,10 @@ a:hover {
   list-style-type: disc;
   list-style: disc outside;
   padding-left: 20px;
+}
+.admin .row-editor {
+  display: flex;
+  flex-wrap: wrap;
 }
 .admin .row-editor .remove_field {
   position: absolute;
