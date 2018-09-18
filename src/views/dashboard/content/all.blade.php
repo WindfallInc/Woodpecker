@@ -40,7 +40,7 @@
         <p>You have no {{str_plural($type->title)}}. Try creating one!</p>
       @endif
       @foreach($contents as $content)
-      <span>
+      <span class="content-item">
       <div class="row">
         <div class="three push_one columns">
           <a href="/{{$content->type->slug}}/{{$content->slug}}" target="_blank"><p><thing data-unix="{{strtotime($content->updated_at)}}">{{$content->title}}</thing></p></a>
@@ -205,42 +205,47 @@
 
 
 
-var $divs = $("span");
-$('#alphBnt').on('click', function () {
-  console.log('sort alphabetically');
 
+// sort alphabetically
+$('#alphBnt').on('click', function () {
   // add selected effect
   $(this).addClass('active');
   $('#reversealphBnt').removeClass('active');
-
-  // sort html contents
-  var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
-      return $(a).find("thing").text() > $(b).find("thing").text();
-  });
-
-  //print html contents
-  $("#list").html(alphabeticallyOrderedDivs);
-
-  //prepend hr for style
-  $("#list").prepend( "<hr>" );
+    var $list = $('#list');
+    var $listLi = $('span',$list);
+    $listLi.sort(SortByName);
+    $.each($listLi, function(index, row){
+        $list.append(row);
+    });
 });
 
+// reverse alphabetical order
 $('#reversealphBnt').on('click', function () {
-  console.log('reverse alphabetically');
   $(this).addClass('active');
   $('#alphBnt').removeClass('active');
-  var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
-      return $(a).find("thing").text() < $(b).find("thing").text();
+  var $list = $('#list');
+  var $listLi = $('span',$list);
+  $listLi.sort(SortByName);
+  $listLi = $listLi.get().reverse();
+  $.each($listLi, function(index, row){
+      $list.append(row);
   });
-  $("#list").html(alphabeticallyOrderedDivs);
-  $("#list").prepend( "<hr>" );
 });
 
+//This will sort the names we pass it
+function SortByName(a, b){
+  var aName = $(a).find("thing").text().toLowerCase();
+  var bName = $(b).find("thing").text().toLowerCase();
+  return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+}
+
+var $divs = $("span.content-item");
+// sort by unix timestamps
 $('#unixSort').on('click', function () {
   $(this).addClass('active');
   $('#revunixSort').removeClass('active');
   var numericallyOrderedDivs = $divs.sort(function (a, b) {
-      return $(a).find("thing").data('unix') > $(b).find("thing").data('unix');
+      return $(a).find("thing").data('unix') - $(b).find("thing").data('unix');
   });
   $("#list").html(numericallyOrderedDivs);
   $("#list").prepend( "<hr>" );
@@ -250,7 +255,7 @@ $('#revunixSort').on('click', function () {
   $(this).addClass('active');
   $('#unixSort').removeClass('active');
   var numericallyOrderedDivs = $divs.sort(function (a, b) {
-      return $(a).find("thing").data('unix') < $(b).find("thing").data('unix');
+      return  $(b).find("thing").data('unix')- $(a).find("thing").data('unix');
   });
   $("#list").html(numericallyOrderedDivs);
   $("#list").prepend( "<hr>" );

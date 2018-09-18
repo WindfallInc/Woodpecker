@@ -168,7 +168,7 @@ Route::get('/template/{slug}','App\Http\Controllers\DashboardController@pages');
 |
 */
 
-
+Route::group(['middleware' => 'web'], function () {
 Route::get('/','App\Http\Controllers\PageController@home');
 Route::get('/home','App\Http\Controllers\PageController@home');
 Route::get('/blog','App\Http\Controllers\PageController@blog');
@@ -179,6 +179,8 @@ Route::get('/get/loop/{slug}','App\Http\Controllers\PageController@loopContent')
 Route::post('/form/{form}','App\Http\Controllers\PageController@form');
 
 // Go to Page
-Route::get('/{type}/{slug}','App\Http\Controllers\PageController@pageByType');
+Route::get('/{type}/{slug}','App\Http\Controllers\PageController@pageByType')->name('pageByType');
 Route::post('/search','App\Http\Controllers\PageController@search');
-Route::get('/{slug}','App\Http\Controllers\PageController@page');
+Route::get('/{slug}','App\Http\Controllers\PageController@page')->name('page');
+
+});

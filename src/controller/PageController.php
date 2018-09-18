@@ -7,6 +7,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Template;
 use App\Type;
@@ -61,12 +62,28 @@ class PageController extends Controller
       if(!isset($page)){
         return 'Page not found';
       }
-      $template = Template::where('slug','home-page')->first();
+      if(isset($page->template)){
+        $template = Template::where('slug',$page->template)->first();
+      }
+      else{
+        $template = Template::where('slug','home-page')->first();
+      }
 
       return view('templates.'.$template->slug, compact('page','template'));
     }
 
     public function page($slug){
+        $route = $slug;
+        $routes = Route::getRoutes();
+        foreach($routes as $r){
+          if($r->uri() == $route){
+            $name = $r->getActionName();
+            //return $name;
+            if(isset($name)){
+              return \App::call('\\'.$name);
+            }
+          }
+        }
 
         $page 	 = Content::where('slug',$slug)->where('published', 1)->with(['rows', 'components'])->first();
 
@@ -86,6 +103,17 @@ class PageController extends Controller
         return view('templates.'.$template->slug, compact('page','template', 'has_content'));
     }
     public function pageByType($type,$slug){
+        $route = $type.'/'.$slug;
+        $routes = Route::getRoutes();
+        foreach($routes as $r){
+          if($r->uri() == $route){
+            $name = $r->getActionName();
+            //return $name;
+            if(isset($name)){
+              return \App::call('\\'.$name);
+            }
+          }
+        }
 
         $type    = Type::where('slug',$type)->first();
         $page 	 = Content::where('slug',$slug)->where('type_id',$type->id)->where('published', 1)->with(['rows', 'components'])->first();
