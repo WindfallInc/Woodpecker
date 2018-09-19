@@ -62,7 +62,7 @@
           <div class="three columns img-container">
             <img src="{{$feat->thumbnail}}" alt="{{$feat->slug}}" class="media-img">
             @foreach($feat->contents as $page)
-              <a href="/dashboard/{{$page->type_id}}/{{$page->slug}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
+              <a href="/dashboard/{{$page->type_id}}/{{$page->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
             @endforeach
 
           </div>

@@ -65,6 +65,12 @@
         </ul>
       </div>
     </div>
+    <!--
+    <div class="nav-box mini">
+      <a href="/dashboard/admins">
+        <p><i class="fa fa-users" aria-hidden="true"></i>Admins</p>
+      </a>
+    </div>-->
   </div>
 
 

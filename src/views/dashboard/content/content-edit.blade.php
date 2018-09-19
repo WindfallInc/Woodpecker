@@ -66,8 +66,8 @@
           @if($custom->input == 'textbox')
             <textarea name="customfield{{$custom->id}}">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>
           @elseif($custom->input == 'checkbox')
-            <p>{{$custom->name}}
-            <input type="{{$custom->input}}" name="customfield{{$custom->id}}" @if($content->get_the($custom->name) == 'on')checked @endif></p>
+              <p>{{$custom->name}}
+              <p class="outside-link"><label class="switch"><input type="{{$custom->input}}" name="customfield{{$custom->id}}" @if($content->get_the($custom->name) == 'on')checked @endif value="on"><span class="slider round"></span></label></p>
           @else
             <p>{{$custom->name}}
             <input type="{{$custom->input}}" name="customfield{{$custom->id}}" value="{{$content->get_the($custom->name)}}"></p>

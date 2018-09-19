@@ -26,6 +26,15 @@ class WoodpeckerServiceProvider extends ServiceProvider
         __DIR__.'/assets' => base_path('public'),
         __DIR__.'/config' => base_path('config'),
     ]);
+        $this->publishes([
+       __DIR__.'/views/dasboard' => base_path('resources/views/dashboard'),
+       __DIR__.'/less' => base_path('resources/assets/less'),
+       __DIR__.'/controller' => base_path('app/Http/Controllers'),
+       __DIR__.'/Models' => base_path('app'),
+       __DIR__.'/migrations' => base_path('database/migrations'),
+       __DIR__.'/Middleware' => base_path('app/Http/Middleware'),
+       __DIR__.'/Notifications' => base_path('app/Notifications'),
+    ],'update');
         $router->aliasMiddleware('dashboard', \App\Http\Middleware\RedirectIfNotDashboard::class);
         $router->aliasMiddleware('dashboard.guest', \App\Http\Middleware\RedirectIfDashboard::class);
         $this->app->register('WindfallInc\Woodpecker\WoodpeckerRouteServiceProvider');
