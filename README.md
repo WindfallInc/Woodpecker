@@ -87,6 +87,11 @@ Views->dashboard->components house all backend component html.
 
 Within the database, add a new 'component' and set its 'type' to template.
 
+## Updating
+After your composer update, to finalize your upgrade 
+``` shell
+php artisan vendor:publish --tag=config
+```
 
 ## Supports
 Laravel 5.5 and up.
