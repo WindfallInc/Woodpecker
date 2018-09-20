@@ -90,7 +90,7 @@ Within the database, add a new 'component' and set its 'type' to template.
 ## Updating
 After your composer update, to finalize your upgrade 
 ``` shell
-php artisan vendor:publish --tag=update
+php artisan vendor:publish --tag=update --force
 ```
 
 ## Supports
