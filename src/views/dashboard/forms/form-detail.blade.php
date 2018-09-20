@@ -89,7 +89,7 @@
             <option value="text-area">Paragraph</option>
             <option value="date">Date</option>
             <option value="checkbox">Checkbox</option>
-            <option value="Radio">Radio</option>
+            <option value="radio">Radio</option>
           </select>
         </p>
         <p class="create add_question">ADD QUESTION</p>
@@ -123,17 +123,20 @@
                 $(wrapper).append('<div class="question row" data-id="'+id+'"><div class="eight columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="four columns question-input"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>'); //add
               } else if(type == 'radio'){
                 // start parent
-                $(wrapper).append('<div class="question row" data-id="'+id+'"><div class="four columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="eight columns question-input"><input type="hidden" name="columns'+id+'" value="twelve"><input type="hidden" name="type'+id+'" value="radio">'); //add
+                var start = '<div class="question row" data-id="'+id+'"><div class="four columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="eight columns question-input"><input type="hidden" name="columns'+id+'" value="twelve"><input type="hidden" name="type'+id+'" value="radio">';
                 // add first child
                 id++;
                 x++;
-                $(wrapper).append('<div class="row"><div class="six columns"><label for="title'+id+'">Option 1</label><input type="text" name="title'+id+'" value="'+title+'"><input type="hidden" name="type'+id+'" value="radio"></div><div class="six columns"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>');
+                var firstChild = '<div class="row"><div class="six columns"><label for="title'+id+'">Option 1</label><input type="text" name="title'+id+'" value="'+title+'"><input type="hidden" name="type'+id+'" value="radio"></div><div class="six columns"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>';
                 // add second child
                 id++;
                 x++;
-                $(wrapper).append('<div class="row"><div class="six columns"><label for="title'+id+'">Option 1</label><input type="text" name="title'+id+'" value="'+title+'"><input type="hidden" name="type'+id+'" value="radio"></div><div class="six columns"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>');
+                var secondChild = '<div class="row"><div class="six columns"><label for="title'+id+'">Option 1</label><input type="text" name="title'+id+'" value="'+title+'"><input type="hidden" name="type'+id+'" value="radio"></div><div class="six columns"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>';
                 // close parent
-                $(wrapper).append('</div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>');
+                var end = '</div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
+
+                // append
+                $(wrapper).append(start+firstChild+secondChild+end);
               }
               else {
                 $(wrapper).append('<div class="question row" data-id="'+id+'"><div class="four columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="four columns question-input"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="four columns question-input"><select id="type" name="type'+id+'"><option value="'+type+'" selected>'+type.replace(/^\w/, c => c.toUpperCase())+'</option><option value="text">Text</option><option value="number">Number</option><option value="email">Email</option><option value="text-area">Paragraph</option><option value="date">Date</option><option value="checkbox">Checkbox</option><option value="Radio">Radio</option></select></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>'); //add
