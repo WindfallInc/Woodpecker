@@ -90,6 +90,7 @@
             <option value="date">Date</option>
             <option value="checkbox">Checkbox</option>
             <option value="radio">Radio</option>
+            <option value="section">Section</option>
           </select>
         </p>
         <p class="create add_question">ADD QUESTION</p>
@@ -102,14 +103,17 @@
 
   @push('footer')
     <script>
+    var max_fields      = 69; //maximum additions allowed
+    var wrapper         = $(".form-creator"); //Fields wrapper
+    var add_nav         = $(".add_question"); //Add button ID
+    var add_child         = $(".add_child"); //Add button ID
+    var id              = {{$lastQuestion}};
+    var x = 0; //initlal text box count
     $(document).ready(function() {
-      var max_fields      = 69; //maximum additions allowed
-      var wrapper         = $(".form-creator"); //Fields wrapper
-      var add_nav         = $(".add_question"); //Add button ID
-      var id              = {{$lastQuestion}};
 
 
-      var x = 0; //initlal text box count
+
+
       $(add_nav).click(function(e){ //on add input button click
         var title           = $("#title").val();
         var type            = $("#question option:selected").val();
@@ -120,20 +124,23 @@
           if(x < max_fields){ //max input box allowed
               x++; //text box increment
               if(type == 'section'){
-                $(wrapper).append('<div class="question row" data-id="'+id+'"><div class="eight columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="four columns question-input"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>'); //add
+                $(wrapper).append('<div class="question row" data-id="'+id+'"><div class="eight columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="four columns question-input"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="remove_field">Delete section text<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>'); //add
               } else if(type == 'radio'){
+
+                var parent = id;
                 // start parent
                 var start = '<div class="question row" data-id="'+id+'"><div class="four columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="eight columns question-input"><input type="hidden" name="columns'+id+'" value="twelve"><input type="hidden" name="type'+id+'" value="radio">';
                 // add first child
                 id++;
                 x++;
-                var firstChild = '<div class="radiochildren"><div class="row"><div class="six columns"><label for="title'+id+'">Option 1</label><input type="text" name="title'+id+'" placeholder="yes"><input type="hidden" name="type'+id+'" value="radio"></div><div class="six columns"><label for="title'+id+'">Size</label><select name="columns'+id+'"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>';
+                var firstChild = '<div class="radiochildren"><div class="row"><div class="six columns"><label for="child'+parent+'">Option 1</label><input type="text" name="child'+parent+'[]" placeholder="yes"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>';
                 // add second child
                 id++;
                 x++;
-                var secondChild = '<div class="row"><div class="six columns"><label for="title'+id+'">Option 2</label><input type="text" name="title'+id+'" placeholder="no"><input type="hidden" name="type'+id+'" value="radio"></div><div class="six columns"><label for="title'+id+'">Size</label><select name="columns'+id+'"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true"></div>';
+                var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+id+'"></div>';
                 // close parent
                 var end = '</div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
+                // Make up for new question ids
 
                 // append
                 $(wrapper).append(start+firstChild+secondChild+end);
@@ -144,16 +151,19 @@
           }
       });
 
-      $('.addchild').click(function(e){
-        var childwrapper = $(this).siblings('.radiochildren');
-        id++;
-        x++;
-        $(childwrapper).append('<div class="row"><div class="six columns"><label for="title'+id+'">Option</label><input type="text" name="title'+id+'" placeholder="button value"><input type="hidden" name="type'+id+'" value="radio"></div><div class="six columns"><label for="title'+id+'">Size</label><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div></div>')
-      });
+
 
       $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
           $(this).parent('div').remove();
       });
+    });
+
+    $(document).on('click', '.addchild' , function(e){
+      parent = $(this).data('id');
+      var childwrapper = $(this).siblings('.radiochildren');
+      x++;
+      id++;
+      $(childwrapper).append('<div class="radiochildren"><div class="row"><div class="six columns"><label for="child'+parent+'">Option</label><input type="text" name="child'+parent+'[]" placeholder="button value"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>');
     });
 
     $(document).on('mousedown', '.store', function(){
