@@ -122,6 +122,8 @@ Route::get('/form/{slug}/delete','App\Http\Controllers\DashboardController@formD
 Route::get('/form/{slug}/submissions','App\Http\Controllers\DashboardController@formSubmissions')->name('submissions');
 // Export Form Submissions
 Route::get('/export/form/{id}','App\Http\Controllers\DashboardController@export')->name('export');
+// Delete Form Submissions
+Route::post('/submission/delete','App\Http\Controllers\DashboardController@submissionDelete');
 
 
 

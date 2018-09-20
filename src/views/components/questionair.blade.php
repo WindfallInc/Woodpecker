@@ -24,6 +24,17 @@
 				@if($q->type=='text-area')
 					<br>
 					<textarea name="{{$q->slug}}" id="" cols="30" rows="10"></textarea>
+				@elseif($q->type=='section')
+
+				@elseif($q->type=='radio')
+					<div class="row">
+						@foreach($q->children() as $child)
+							<div class="{{$child->columns}} columns">
+								<label for="{{$child->slug}}">{{$child->title}}</label>
+								<input type="radio" name="" value="{{$child->slug}}">
+							</div>
+						@endforeach
+					</div>
 				@else
 					<input type="{{$q->type}}" placeholder="{{$q->placeholder}}" name="{{$q->slug}}" id="{{$q->slug}}">
 				@endif

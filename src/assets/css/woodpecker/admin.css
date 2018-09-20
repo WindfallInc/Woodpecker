@@ -4333,6 +4333,7 @@ a:hover {
   height: 0px;
   opacity: 0;
   overflow: hidden;
+  margin-bottom: 5px;
   transition: linear all .2s;
 }
 .admin .submission .submission-details.active {

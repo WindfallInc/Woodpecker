@@ -160,11 +160,13 @@ class PageController extends Controller
         $submission->save();
 
         foreach($form->questions as $question){
-          $answer = new Answer;
-          $answer->content = Input::get($question->slug);
-          $answer->submission()->associate($submission);
-          $answer->question()->associate($question);
-          $answer->save();
+          if($question->type != 'section'){
+            $answer = new Answer;
+            $answer->content = Input::get($question->slug);
+            $answer->submission()->associate($submission);
+            $answer->question()->associate($question);
+            $answer->save();
+          }
         }
 
 

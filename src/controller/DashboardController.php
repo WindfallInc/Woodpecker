@@ -1032,8 +1032,14 @@ class DashboardController extends Controller
             $counter++;
 
             $question->id         = $q;
+            $question->type       = Input::get('type'.$q);
             $question->title      = Input::get('title'.$q);
-            $question->slug       = str_slug($question->title,"-");
+            if($question->type == 'section'){
+              $question->slug       = $question->id . '-section';
+            } else {
+              $question->slug       = str_slug($question->title,"-");
+            }
+
             $question->columns    = Input::get('columns'.$q);
             switch($question->columns) {
               case 'twelve':
@@ -1050,7 +1056,6 @@ class DashboardController extends Controller
                 break;
             }
             $question->columnInt  = $column;
-            $question->type       = Input::get('type'.$q);
             $question->order      = $counter;
 
             $question->form()->associate($form);
@@ -1072,6 +1077,14 @@ class DashboardController extends Controller
           $submissions   = $form->submissions;
 
           return view('dashboard.forms.form-submissions',compact('form','questions','submissions'));
+    }
+    public function submissionDelete(Request $request)
+    {
+          $submission_id = $request['postId'];
+          $delete = Submission::find($submission_id);
+          $delete->delete();
+
+          return 'true';
     }
     public function export($id)
     {
