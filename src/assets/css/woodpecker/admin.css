@@ -4323,6 +4323,9 @@ a:hover {
   color: #c24137;
   background-color: #fff;
 }
+.admin .question .addchild {
+  padding-bottom: 50px;
+}
 .admin .question:hover .remove_field {
   display: block;
 }
