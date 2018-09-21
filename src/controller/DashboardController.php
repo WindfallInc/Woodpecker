@@ -1073,7 +1073,8 @@ class DashboardController extends Controller
                 $q->title               = $child;
                 $question->slug         = str_slug($child,"-");
                 $q->type                = 'radio';
-                $q->columns      = = array_slice(Input::get('childcolumns'.$question->id), $count);
+                $columns                = array_slice(Input::get('childcolumns'.$question->id), $count);
+                $q->columns             = $columns[0];
 
                 $q->save();
 
