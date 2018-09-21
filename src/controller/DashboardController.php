@@ -1062,7 +1062,7 @@ class DashboardController extends Controller
             $question->save();
 
             if($question->type == 'radio'){
-              $question->children()->dissociate();
+              $question->child()->dissociate();
               $children = Input::get('child'.$question->id);
               $count = 0;
               foreach($children as $child){
@@ -1076,6 +1076,7 @@ class DashboardController extends Controller
                 $columns                = array_slice(Input::get('childcolumns'.$question->id), $count);
                 $q->columns             = $columns[0];
 
+                $q->parent()->associate($question);
                 $q->save();
 
                 $count++;

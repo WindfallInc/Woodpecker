@@ -163,7 +163,7 @@
       var childwrapper = $(this).siblings('.radiochildren');
       x++;
       id++;
-      $(childwrapper).append('<div class="radiochildren"><div class="row"><div class="six columns"><label for="child'+parent+'">Option</label><input type="text" name="child'+parent+'[]" placeholder="button value"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>');
+      $(childwrapper).append('<div class="radiochildren"><div class="row"><div class="six columns"><label for="child'+parent+'">Option</label><input type="text" name="child'+parent+'[]" placeholder="button value"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four" selected>Third Row</option><option value="three">Fourth Row</option></select></div></div>');
     });
 
     $(document).on('mousedown', '.store', function(){

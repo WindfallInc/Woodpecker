@@ -16,4 +16,7 @@ class Question extends Model
 	public function parent() {
         return $this->belongsTo('App\Question');
 	}
+	public function child() {
+        return $this->hasMany('App\Question');
+	}
 }
