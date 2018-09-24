@@ -31,7 +31,7 @@
 						@foreach($q->children() as $child)
 							<div class="{{$child->columns}} columns">
 								<label for="{{$child->slug}}">{{$child->title}}</label>
-								<input type="radio" name="" value="{{$child->slug}}">
+								<input type="radio" name="{{$q->slug}}" value="{{$child->slug}}">
 							</div>
 						@endforeach
 					</div>

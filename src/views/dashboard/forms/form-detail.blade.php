@@ -31,38 +31,71 @@
               <div id="counter"><input type="hidden" value="" name="order" id="order"></div>
           @if(count($form->questions)>0)
             @foreach($form->questions->sortBy('order') as $q)
-              <div class="question row" data-id="{{$q->id}}">
-                <div class="four columns question-input">
-                  <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
-                </div>
-                <div class="four columns question-input">
-                  <select name="columns{{$q->id}}">
-                    <option value="twelve" @if($q->columns == 'twelve')selected @endif>Full Row</option>
-                    <option value="six" @if($q->columns == 'six')selected @endif>Half Row</option>
-                    <option value="four"@if($q->columns == 'four')selected @endif>Third Row</option>
-                    <option value="three"@if($q->columns == 'three')selected @endif>Fourth Row</option>
-                  </select>
-                </div>
-                <div class="four columns question-input">
-                  <select id="type" name="type{{$q->id}}">
-                    <option value="{{$q->type}}" selected>{{ucfirst($q->type)}}</option>
-                    <option value="text">Text</option>
-                    <option value="number">Number</option>
-                    <option value="email">Email</option>
-                    <option value="text-area">Paragraph</option>
-                    <option value="date">Date</option>
-                    <option value="checkbox">Checkbox</option>
-                    <option value="Radio">Radio</option>
-                  </select>
-                </div>
-                <div class="remove_field">
-                  Delete Question
-                  <div class="warning">
-                    Warning: Removing this field may result in a loss of data to any prexsiting form submissions.
+              @if($q->type == 'radio')
+                <div class="question row" data-id="{{$q->id}}">
+                  <div class="four columns question-input">
+                    <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
                   </div>
+                  <div class="eight columns question-input">
+                    <input type="hidden" name="columns{{$q->id}}" value="twelve">
+                    <input type="hidden" name="type{{$q->id}}" value="radio">
+                    <div class="radiochildren">
+                      @foreach($q->children() as $child)
+                      <div class="row">
+                        <div class="six columns">
+                          <label for="child{{$q->id}}">Option 1</label>
+                          <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
+                          <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
+                        </div>
+                        <div class="six columns">
+                          <label for="childcolumns{{$q->id}}">Size</label>
+                          <select name="childcolumns{{$q->id}}[]">
+                            <option value="twelve" @if($child->columns == 'twelve')selected @endif>Full Row</option>
+                            <option value="six" @if($child->columns == 'six')selected @endif>Half Row</option>
+                            <option value="four" @if($child->columns == 'four')selected @endif>Third Row</option>
+                            <option value="three" @if($child->columns == 'three')selected @endif>Fourth Row</option>
+                          </select>
+                        </div>
+                      </div>
+                      @endforeach
+                    </div>
+                    <div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
+                  </div>
+                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>
+              @else
+                <div class="question row" data-id="{{$q->id}}">
+                  <div class="four columns question-input">
+                    <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
+                  </div>
+                  <div class="four columns question-input">
+                    <select name="columns{{$q->id}}">
+                      <option value="twelve" @if($q->columns == 'twelve')selected @endif>Full Row</option>
+                      <option value="six" @if($q->columns == 'six')selected @endif>Half Row</option>
+                      <option value="four"@if($q->columns == 'four')selected @endif>Third Row</option>
+                      <option value="three"@if($q->columns == 'three')selected @endif>Fourth Row</option>
+                    </select>
+                  </div>
+                  <div class="four columns question-input">
+                    <select id="type" name="type{{$q->id}}">
+                      <option value="{{$q->type}}" selected>{{ucfirst($q->type)}}</option>
+                      <option value="text">Text</option>
+                      <option value="number">Number</option>
+                      <option value="email">Email</option>
+                      <option value="text-area">Paragraph</option>
+                      <option value="date">Date</option>
+                      <option value="checkbox">Checkbox</option>
+                      <option value="Radio">Radio</option>
+                    </select>
+                  </div>
+                  <div class="remove_field">
+                    Delete Question
+                    <div class="warning">
+                      Warning: Removing this field may result in a loss of data to any prexsiting form submissions.
+                    </div>
+                  </div>
+                  <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </div>
-                <i class="fa fa-arrows-v" aria-hidden="true"></i>
-              </div>
+              @endif
 
             @endforeach
           @endif
@@ -137,7 +170,7 @@
                 // add second child
                 id++;
                 x++;
-                var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+id+'"></div>';
+                var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+parent+'"></div>';
                 // close parent
                 var end = '</div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
                 // Make up for new question ids

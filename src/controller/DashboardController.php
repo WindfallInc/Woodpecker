@@ -1061,17 +1061,25 @@ class DashboardController extends Controller
             $question->form()->associate($form);
             $question->save();
 
+
+
             if($question->type == 'radio'){
-              $question->child()->dissociate();
+              // reset radio options
+              foreach($question->children() as $kid){
+                $kid->parent()->dissociate();
+              }
               $children = Input::get('child'.$question->id);
               $count = 0;
+              // save new radio options
               foreach($children as $child){
-
-                $q                      = new Question;
                 $id                     = array_slice(Input::get('childid'.$question->id), $count);
+                $q                      = Question::find($id[0]);
+                if(!isset($q)){
+                  $q                    = new Question;
+                }
                 $q->id                  = $id[0];
                 $q->title               = $child;
-                $question->slug         = str_slug($child,"-");
+                $q->slug                = str_slug($child,"-");
                 $q->type                = 'radio';
                 $columns                = array_slice(Input::get('childcolumns'.$question->id), $count);
                 $q->columns             = $columns[0];
