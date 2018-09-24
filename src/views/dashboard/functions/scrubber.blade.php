@@ -3,6 +3,11 @@
 
 
 document.querySelector('.row-editor').addEventListener("paste", function(e) {
+      //document.querySelector('.transfer').addEventListener("paste", function(e) { doesn't work on dynamic elements
+      if(e.target.classList.contains('codearea')){
+
+      }
+      else {
         e.preventDefault();
 
         var html = e.clipboardData.getData('text/html');
@@ -23,6 +28,8 @@ document.querySelector('.row-editor').addEventListener("paste", function(e) {
 
 
         document.execCommand("insertHTML", false, text);
+      }
+
     });
     function replaceBreaksWithParagraphs(input) {
         input = filterEmpty(input.split('\n')).join('</p><p>');
