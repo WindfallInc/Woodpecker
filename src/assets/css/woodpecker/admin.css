@@ -4323,8 +4323,13 @@ a:hover {
   color: #c24137;
   background-color: #fff;
 }
-.admin .question .addchild {
+.admin .question .addchild,
+.admin .question .addselectchild {
   padding-bottom: 50px;
+}
+.admin .question .remove_option {
+  padding-bottom: 6px;
+  font-size: .6em;
 }
 .admin .question:hover .remove_field {
   display: block;

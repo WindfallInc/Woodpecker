@@ -56,6 +56,7 @@
                             <option value="three" @if($child->columns == 'three')selected @endif>Fourth Row</option>
                           </select>
                         </div>
+                        <div class="remove_option">Delete Option</div>
                       </div>
                       @endforeach
                     </div>
@@ -78,6 +79,7 @@
                           <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
                           <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
                         </div>
+                        <div class="remove_option">Delete Option</div>
                       </div>
                       @endforeach
                     </div>
@@ -189,11 +191,11 @@
                 // add first child
                 id++;
                 x++;
-                var firstChild = '<div class="radiochildren"><div class="row"><div class="six columns"><label for="child'+parent+'">Option 1</label><input type="text" name="child'+parent+'[]" placeholder="yes"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div>';
+                var firstChild = '<div class="radiochildren"><div class="row"><div class="six columns"><label for="child'+parent+'">Option 1</label><input type="text" name="child'+parent+'[]" placeholder="yes"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="remove_option">Delete Option</div></div>';
                 // add second child
                 id++;
                 x++;
-                var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+parent+'"></div>';
+                var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="remove_option">Delete Option</div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+parent+'"></div>';
                 // close parent
                 var end = '</div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
                 // Make up for new question ids
@@ -208,7 +210,7 @@
                  // add first child
                  id++;
                  x++;
-                 var firstChild = '<div class="selectchildren"><div class="row"><div class="twelve columns"><label for="child'+parent+'">Option 1</label><input type="text" name="child'+parent+'[]" placeholder="yes"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div></div>';
+                 var firstChild = '<div class="selectchildren"><div class="row"><div class="twelve columns"><label for="child'+parent+'">Option 1</label><input type="text" name="child'+parent+'[]" placeholder="yes"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="remove_option">Delete Option</div></div>';
                  // add second child
                  id++;
                  x++;
