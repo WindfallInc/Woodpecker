@@ -43,8 +43,6 @@
 							</option>
 						@endforeach
 					</select>
-
-					</div>
 				@else
 					<input type="{{$q->type}}" placeholder="{{$q->placeholder}}" name="{{$q->slug}}" id="{{$q->slug}}">
 				@endif

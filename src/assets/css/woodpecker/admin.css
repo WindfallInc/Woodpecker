@@ -4334,6 +4334,7 @@ a:hover {
   padding-bottom: 6px;
   font-size: .6em;
   color: #c24137;
+  cursor: pointer;
 }
 .admin .question:hover .remove_field {
   display: block;
