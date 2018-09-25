@@ -4328,13 +4328,20 @@ a:hover {
   padding-bottom: 50px;
 }
 .admin .question .remove_option {
+  position: absolute;
+  margin-left: -50px;
+  display: none;
   padding-bottom: 6px;
   font-size: .6em;
+  color: #c24137;
 }
 .admin .question:hover .remove_field {
   display: block;
 }
 .admin .question:hover .remove_field:hover .warning {
+  display: block;
+}
+.admin .question:hover .remove_option {
   display: block;
 }
 .admin .submission .submission-details {

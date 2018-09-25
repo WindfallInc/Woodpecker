@@ -712,8 +712,12 @@ a:hover {
       padding-bottom:50px;
     }
     .remove_option {
+      position: absolute;
+      margin-left: -50px;
+      display:none;
       padding-bottom:6px;
       font-size: .6em;
+      color:@red;
     }
   }
   .question:hover {
@@ -722,6 +726,9 @@ a:hover {
     }
     .remove_field:hover .warning {
       display: block;
+    }
+    .remove_option{
+      display:block;
     }
   }
   .submission {
