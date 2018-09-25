@@ -35,6 +35,16 @@
 							</div>
 						@endforeach
 					</div>
+				@elseif($q->type=='select')
+					<select name="{{$q->slug}}" id="{{$q->slug}}">
+						@foreach($q->children() as $child)
+							<option value="{{$child->slug}}">
+								{{$child->title}}
+							</option>
+						@endforeach
+					</select>
+
+					</div>
 				@else
 					<input type="{{$q->type}}" placeholder="{{$q->placeholder}}" name="{{$q->slug}}" id="{{$q->slug}}">
 				@endif
