@@ -55,6 +55,7 @@
     <script>
     $(document).on('click', '.delete', function(e){
       var postId = $(this).data("id");
+      console.log($(this).data("id"));
       $.ajaxSetup({
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -66,7 +67,7 @@
         data: {postId: postId},
       })
 
-      $(this).parents('span').remove();
+      $(this).parents('.submission').remove();
     });
     </script>
   @endpush
