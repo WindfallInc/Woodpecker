@@ -683,7 +683,8 @@ a:hover {
 
   .question {
     position: relative;
-    margin-bottom: 20px;
+    padding-bottom: 40px;
+    .transition;
     .fa-arrows-v {
       position: absolute;
       left:-40px;
@@ -694,10 +695,10 @@ a:hover {
     }
     .remove_field {
       display:none;
-      width: 100%;
+      width: 50%;
       background-color:#fff;
       position: absolute;
-      bottom:0px;
+      bottom:50px;
       cursor:pointer;
       .warning {
         display:none;
@@ -707,6 +708,13 @@ a:hover {
         color:@red;
         background-color:#fff;
       }
+    }
+    .required {
+      display: none;
+      width: 50%;
+      position: absolute;
+      bottom:30px;
+      right:0;
     }
     .addchild, .addselectchild {
       padding-bottom:50px;
@@ -722,6 +730,7 @@ a:hover {
     }
   }
   .question:hover {
+    padding-bottom:60px;
     .remove_field {
       display: block;
     }
@@ -730,6 +739,9 @@ a:hover {
     }
     .remove_option{
       display:block;
+    }
+    .required {
+      display: block;
     }
   }
   .submission {
@@ -879,6 +891,7 @@ a:hover {
       display: inline-block;
       width: 60px;
       height: 34px;
+      vertical-align: bottom;
     }
 
     .switch input {display:none;}

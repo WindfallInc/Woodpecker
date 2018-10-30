@@ -4297,7 +4297,8 @@ a:hover {
 }
 .admin .question {
   position: relative;
-  margin-bottom: 20px;
+  padding-bottom: 40px;
+  transition: linear all .2s;
 }
 .admin .question .fa-arrows-v {
   position: absolute;
@@ -4309,10 +4310,10 @@ a:hover {
 }
 .admin .question .remove_field {
   display: none;
-  width: 100%;
+  width: 50%;
   background-color: #fff;
   position: absolute;
-  bottom: 0px;
+  bottom: 50px;
   cursor: pointer;
 }
 .admin .question .remove_field .warning {
@@ -4322,6 +4323,13 @@ a:hover {
   font-size: .6em;
   color: #c24137;
   background-color: #fff;
+}
+.admin .question .required {
+  display: none;
+  width: 50%;
+  position: absolute;
+  bottom: 30px;
+  right: 0;
 }
 .admin .question .addchild,
 .admin .question .addselectchild {
@@ -4336,6 +4344,9 @@ a:hover {
   color: #c24137;
   cursor: pointer;
 }
+.admin .question:hover {
+  padding-bottom: 60px;
+}
 .admin .question:hover .remove_field {
   display: block;
 }
@@ -4343,6 +4354,9 @@ a:hover {
   display: block;
 }
 .admin .question:hover .remove_option {
+  display: block;
+}
+.admin .question:hover .required {
   display: block;
 }
 .admin .submission .submission-details {
@@ -4492,6 +4506,7 @@ a:hover {
   display: inline-block;
   width: 60px;
   height: 34px;
+  vertical-align: bottom;
 }
 .admin .outside-link .switch input {
   display: none;

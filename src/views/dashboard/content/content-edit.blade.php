@@ -80,7 +80,7 @@
       </div>
 
     </div>
-    <div id="linker" title="Enter Link URL"><input id="url" type="text" value="">Outside link?<input id="target" type="checkbox" value="_blank"><p id="error">Highlight what you want to link and click insert</p><input type="button" onclick="link()" value="Insert"></div>
+    <div id="linker" title="Enter Link URL"><input id="url" type="text" value=""><div class="outside-link">Outside link?<br><label class="switch"><input type="checkbox" id="target" value="_blank"><span class="slider round"></span></label></div><p id="error">Highlight what you want to link and click insert</p><input type="button" onclick="link()" value="Insert"></div>
     <div class="row">
       <div class="twelve columns">
         <div class="row-editor input_fields_wrap" id="sortable">

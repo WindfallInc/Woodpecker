@@ -1033,6 +1033,7 @@ class DashboardController extends Controller
 
             $question->id         = $q;
             $question->type       = Input::get('type'.$q);
+            $question->required       = Input::get('required'.$q);
             $question->title      = Input::get('title'.$q);
             if($question->type == 'section'){
               $question->slug       = $question->id . '-section';
@@ -1066,7 +1067,8 @@ class DashboardController extends Controller
             if($question->type == 'radio' || $question->type == 'select'){
               // reset radio options
               foreach($question->children() as $kid){
-                $kid->parent()->dissociate();
+                $kid->parent_id = NULL;
+                $kid->save();
               }
               $children = Input::get('child'.$question->id);
               $count = 0;

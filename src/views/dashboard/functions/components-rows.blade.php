@@ -49,8 +49,24 @@ $(document).on('click', '.add_carousal', function(e){
         $('.input_carousal_wrap').append('<div class="carousalimage"><input type="file" name="carousalimages[]"><i class="fa fa-minus-circle remove_carousalimage"></i></div>'); //add input box
 });
 
-$(document).on('click', '.remove_carousalimage', function(e){
+$(document).on('click', '.delete_carousalimage', function(e){
     $(this).parent('div').remove();
+
+
+      var mediaId = $(this).data("id");
+      $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+      });
+      $.ajax({
+        method: 'POST',
+        url: '/dashboard/media/delete',
+        data: {mediaId: mediaId},
+      })
+
+
+
 });
 
 

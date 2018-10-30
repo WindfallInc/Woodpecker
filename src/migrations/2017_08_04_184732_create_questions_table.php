@@ -24,6 +24,8 @@ class CreateQuestionsTable extends Migration
             $table->integer('columnInt')->nullable(); // Optional Placeholder Text
             $table->integer('order')->nullable(); // the form that this question belong to
             $table->integer('form_id')->nullable(); // the form that this question belong to
+            $table->integer('parent_id')->nullable(); // the question that this question belongs to
+            $table->integer('required')->nullable(); // is the question required
             $table->timestamps();
             $table->softDeletes();
         });

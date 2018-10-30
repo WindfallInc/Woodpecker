@@ -62,7 +62,14 @@
                     </div>
                     <div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
                   </div>
-                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>
+                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
+                  <div class="outside-link">
+                    <div class="required">
+                      Required &nbsp;
+                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on" @if($q->required == 1)checked @endif><span class="slider round"></span></label>
+                    </div>
+                  </div>
+                  <i class="fa fa-arrows-v" aria-hidden="true"></i></div>
               @elseif($q->type == 'select')
                 <div class="question row" data-id="{{$q->id}}">
                   <div class="four columns question-input">
@@ -85,7 +92,15 @@
                     </div>
                     <div class="addselectchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
                   </div>
-                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>
+                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
+                  <div class="outside-link">
+                    <div class="required">
+                      Required &nbsp;
+                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on"@if($q->required == 1)checked @endif><span class="slider round"></span></label>
+                    </div>
+                  </div>
+                  <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                </div>
               @else
                 <div class="question row" data-id="{{$q->id}}">
                   <div class="four columns question-input">
@@ -115,6 +130,12 @@
                     Delete Question
                     <div class="warning">
                       Warning: Removing this field may result in a loss of data to any prexsiting form submissions.
+                    </div>
+                  </div>
+                  <div class="outside-link">
+                    <div class="required">
+                      Required &nbsp;
+                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="1"@if($q->required == 1)checked @endif><span class="slider round"></span></label>
                     </div>
                   </div>
                   <i class="fa fa-arrows-v" aria-hidden="true"></i>
@@ -197,7 +218,7 @@
                 x++;
                 var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="remove_option">Remove</div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+parent+'"></div>';
                 // close parent
-                var end = '</div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
+                var end = '</div><div class="outside-link"><div class="required">Required &nbsp;<label class="switch"><input type="checkbox" name="required'+parent+'" id="target" value="1"><span class="slider round"></span></label></div></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
                 // Make up for new question ids
 
                 // append
@@ -216,14 +237,14 @@
                  x++;
                  var secondChild = '<div class="row"><div class="twelve columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="remove_option">Remove</div></div></div><div class="addselectchild fa fa-plus-circle" aria-hidden="true" data-id="'+parent+'"></div>';
                  // close parent
-                 var end = '</div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
+                 var end = '</div><div class="outside-link"><div class="required">Required &nbsp;<label class="switch"><input type="checkbox" name="required'+parent+'" id="target" value="1"><span class="slider round"></span></label></div></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
                  // Make up for new question ids
 
                  // append
                  $(wrapper).append(start+firstChild+secondChild+end);
                }
               else {
-                $(wrapper).append('<div class="question row" data-id="'+id+'"><div class="four columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="four columns question-input"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="four columns question-input"><select id="type" name="type'+id+'"><option value="'+type+'" selected>'+type.replace(/^\w/, c => c.toUpperCase())+'</option><option value="text">Text</option><option value="number">Number</option><option value="email">Email</option><option value="text-area">Paragraph</option><option value="date">Date</option><option value="checkbox">Checkbox</option><option value="Radio">Radio</option></select></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>'); //add
+                $(wrapper).append('<div class="question row" data-id="'+id+'"><div class="four columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="four columns question-input"><select name="columns'+id+'"><option value="'+columns+'">'+coltext+'</option><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="four columns question-input"><select id="type" name="type'+id+'"><option value="'+type+'" selected>'+type.replace(/^\w/, c => c.toUpperCase())+'</option><option value="text">Text</option><option value="number">Number</option><option value="email">Email</option><option value="text-area">Paragraph</option><option value="date">Date</option><option value="checkbox">Checkbox</option><option value="Radio">Radio</option></select></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><div class="outside-link"><div class="required">Required &nbsp;<label class="switch"><input type="checkbox" name="required'+parent+'" id="target" value="1"><span class="slider round"></span></label></div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>'); //add
               }
           }
       });

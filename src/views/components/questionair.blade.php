@@ -23,7 +23,7 @@
 				<label for="{{$q->slug}}">{{$q->title}}</label>
 				@if($q->type=='text-area')
 					<br>
-					<textarea name="{{$q->slug}}" id="" cols="30" rows="10"></textarea>
+					<textarea name="{{$q->slug}}" id="" cols="30" rows="10" @if($q->required == 1) required @endif></textarea>
 				@elseif($q->type=='section')
 
 				@elseif($q->type=='radio')
@@ -31,12 +31,12 @@
 						@foreach($q->children() as $child)
 							<div class="{{$child->columns}} columns">
 								<label for="{{$child->slug}}">{{$child->title}}</label>
-								<input type="radio" name="{{$q->slug}}" value="{{$child->slug}}">
+								<input type="radio" name="{{$q->slug}}" value="{{$child->slug}}" @if($q->required == 1) required @endif>
 							</div>
 						@endforeach
 					</div>
 				@elseif($q->type=='select')
-					<select name="{{$q->slug}}" id="{{$q->slug}}">
+					<select name="{{$q->slug}}" id="{{$q->slug}}" @if($q->required == 1) required @endif>
 						@foreach($q->children() as $child)
 							<option value="{{$child->slug}}">
 								{{$child->title}}
@@ -44,7 +44,7 @@
 						@endforeach
 					</select>
 				@else
-					<input type="{{$q->type}}" placeholder="{{$q->placeholder}}" name="{{$q->slug}}" id="{{$q->slug}}">
+					<input type="{{$q->type}}" placeholder="{{$q->placeholder}}" name="{{$q->slug}}" id="{{$q->slug}}" @if($q->required == 1) required @endif>
 				@endif
 			</div>
 
