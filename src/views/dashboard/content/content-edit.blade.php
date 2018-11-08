@@ -64,10 +64,15 @@
 
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
-            <div class="transfer">
+            <div class="transfer" id="customfield{{$custom->id}}">
               <div class="textarea active" contenteditable="true"></div>
               <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>
             </div>
+            <script>
+            $(document).ready(function(){
+              $('#customfield{{$custom->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$content->get_the($custom->name))!!}');
+            });
+            </script>
 
           @elseif($custom->input == 'checkbox')
               <p>{{$custom->name}}
