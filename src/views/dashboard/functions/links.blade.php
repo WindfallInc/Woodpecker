@@ -4,7 +4,7 @@
     var range;
     var newrange;
     $( "#linker" ).dialog({ autoOpen: false });
-    $( ".linker" ).on('mousedown', function() {
+    $( "body" ).on('mousedown', '.linker', function() {
       if (window.getSelection) {
         selection = window.getSelection();
         if (selection.getRangeAt) {
