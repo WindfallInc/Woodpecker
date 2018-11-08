@@ -64,7 +64,7 @@ function link() {
   var url = $('#url').val();
   var target = $('#target').prop("checked");
   if (window.getSelection) {
-
+        console.log('selection passed');
         if (range.startContainer.parentNode.tagName === 'A' || range.endContainer.parentNode.tagName === 'A') {
             range.startContainer.parentNode.setAttribute('href',url);
             range.startContainer.parentNode.setAttribute('target', target);
@@ -81,6 +81,25 @@ function link() {
         console.log('New link added');
         $( "#linker" ).dialog( "close" );
         }
+  }
+  else {
+    console.log('no pass');
+    if (range.startContainer.parentNode.tagName === 'A' || range.endContainer.parentNode.tagName === 'A') {
+        range.startContainer.parentNode.setAttribute('href',url);
+        range.startContainer.parentNode.setAttribute('target', target);
+        console.log('Link changed');
+        $( "#linker" ).dialog( "close" );
+    } else {
+
+    var selectedText = range.extractContents();
+    var span = document.createElement("a");
+    span.setAttribute('href', url);
+    span.setAttribute('target', target);
+    span.appendChild(selectedText);
+    range.insertNode(span);
+    console.log('New link added');
+    $( "#linker" ).dialog( "close" );
+    }
   }
 
 }

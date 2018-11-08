@@ -18,7 +18,6 @@
     </div>
     <div class="row">
       <div class="six columns">
-        <input type="text" name="name" placeholder="Client Name" required>
         <input type="email" name="email" placeholder="Email Address" required>
       </div>
       <div class="six columns">

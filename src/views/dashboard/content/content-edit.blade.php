@@ -64,7 +64,11 @@
 
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
-            <textarea name="customfield{{$custom->id}}">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>
+            <div class="transfer">
+              <div class="textarea active" contenteditable="true"></div>
+              <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>
+            </div>
+
           @elseif($custom->input == 'checkbox')
               <p>{{$custom->name}}
               <p class="outside-link"><label class="switch"><input type="{{$custom->input}}" name="customfield{{$custom->id}}" @if($content->get_the($custom->name) == 'on')checked @endif value="on"><span class="slider round"></span></label></p>
@@ -127,6 +131,8 @@
             @while($row->order != $count)
             @foreach($content->components->where('order', $count) as $component)
               @if($component->columns == 'twelve'|| $component->columns == 'eight')
+                @php $expected = 1; @endphp
+              @elseif($component->columns == 'ten')
                 @php $expected = 1; @endphp
               @elseif($component->columns == 'six')
                 @php $expected = 2; @endphp

@@ -59,7 +59,13 @@
 
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
-            <textarea name="customfield{{$custom->id}}">Enter {{$custom->name}}</textarea>
+            <div class="transfer">
+              <div class="textarea active" contenteditable="true"></div>
+              <textarea name="customfield{{$custom->id}}" class="codearea">Enter {{$custom->name}}</textarea>
+            </div>
+          @elseif($custom->input == 'checkbox')
+              <p>{{$custom->name}}
+              <p class="outside-link"><label class="switch"><input type="{{$custom->input}}" name="customfield{{$custom->id}}" value="on"><span class="slider round"></span></label></p>
           @else
             <p>{{$custom->name}}
             <input type="{{$custom->input}}" name="customfield{{$custom->id}}"></p>
