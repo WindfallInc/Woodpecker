@@ -64,6 +64,7 @@
 
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
+            <p>{{$custom->name}}</p>
             <div class="transfer" id="customfield{{$custom->id}}">
               <div class="textarea active" contenteditable="true"></div>
               <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>

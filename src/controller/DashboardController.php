@@ -644,16 +644,14 @@ class DashboardController extends Controller
 
 
         if(isset($custom_field)){
-          foreach(Input::get('custom_field') as $custom_field){
-            $custom = $type->custom_fields->where('name',$custom_field)->first();
+          $type->custom_fields()->detach();
+          foreach(Input::get('custom_field') as $custom_f){
+            $custom = $type->custom_fields->where('name',$custom_f)->first();
             if(!isset($custom)){
               $custom = new CustomField;
             }
-            else {
-              $type->custom_fields()->detach();
-            }
 
-            $custom->name = $custom_field;
+            $custom->name = $custom_f;
             $input = array_slice(Input::get('custom_type'), $count);
             $custom->input = $input[0];
             $custom->save();
