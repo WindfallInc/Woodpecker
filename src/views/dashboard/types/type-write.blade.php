@@ -63,8 +63,6 @@
       var add_button      = $(".more"); //Add button ID
       var x = 0;
 
-
-
       $(add_button).click(function(e){ //on add input button click
           e.preventDefault();
           if(x < max_fields){ //max input box allowed

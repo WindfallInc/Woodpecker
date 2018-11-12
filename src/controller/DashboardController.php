@@ -677,8 +677,10 @@ class DashboardController extends Controller
     {
           $type = Type::where('slug',$slug)->first();
           $templates = Template::all();
+          $lastcustom = CustomField::orderBy('id', 'DESC')->first();
+          $lastcustom = $lastcustom->id;
 
-          return view('dashboard.types.type-edit',compact('type','templates'));
+          return view('dashboard.types.type-edit',compact('type','templates','lastcustom'));
     }
 
     public function typeDelete($slug)
