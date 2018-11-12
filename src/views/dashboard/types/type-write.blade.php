@@ -81,6 +81,16 @@
 
 
     });
+    $('form').on('submit',function(e){
+      e.preventDefault();
+      var val = $('select').val();
+      if(val == 'Select Default Template'){
+        alert(val);
+      }
+      else {
+        form.submit();
+      }
+    });
 </script>
   @endpush
 

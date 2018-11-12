@@ -56,6 +56,7 @@
                 <i class="fa fa-minus-circle remove_field" data-id="{{$custom->id}}"></i></a>
                 <p>Custom Field Name
                   <input type="text" name="custom_field[]" value="{{$custom->name}}" required>
+                  <input type="hidden" name="custom_id[]" value="{{$custom->id}}" required>
                 </p>
                 <p class="select-box">Custom Field Type
                   <select name="custom_type[]" required>
@@ -82,10 +83,11 @@
 
 <script>
     $(document).ready(function() {
-      var max_fields      = 6; //maximum input boxes allowed
+      var max_fields      = 16; //maximum input boxes allowed
       var wrapper         = $(".input_fields_wrap"); //Fields wrapper
       var add_button      = $(".more"); //Add button ID
       var x = $('.input_fields_wrap').children().length;
+      var y = {{$lastcustom}};
 
 
 
@@ -93,7 +95,8 @@
           e.preventDefault();
           if(x < max_fields){ //max input box allowed
               x++; //text box increment
-              $(wrapper).append('<div class="custom_field row box"><i class="fa fa-minus-circle remove_field"></i> <p>Custom Field Name<input type="text" name="custom_field[]" placeholder="Featured, Has Sidebar, Advertisment" required></p><p class="select-box">Custom Field Type<select name="custom_type[]" required><option value="text">Text</option><option value="textbox">Textbox</option><option value="checkbox">Checkbox</option><option value="number">Number</option></select><i class="fa fa-sort-desc" aria-hidden="true"></i></p></div> '); //add input box
+              y++;
+              $(wrapper).append('<div class="custom_field row box"><i class="fa fa-minus-circle remove_field"></i> <p>Custom Field Name<input type="text" name="custom_field[]" placeholder="Featured, Has Sidebar, Advertisment" required><input type="hidden" name="custom_id[]" value="'+y+'" required></p><p class="select-box">Custom Field Type<select name="custom_type[]" required><option value="text">Text</option><option value="textbox">Textbox</option><option value="checkbox">Checkbox</option><option value="number">Number</option></select><i class="fa fa-sort-desc" aria-hidden="true"></i></p></div> '); //add input box
           }
       });
 

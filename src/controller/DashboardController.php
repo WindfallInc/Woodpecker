@@ -616,7 +616,9 @@ class DashboardController extends Controller
     public function typeCreate()
     {
           $templates = Template::all();
-          return view('dashboard.types.type-write', compact('templates'));
+          $lastcustom = CustomField::orderBy('id', 'DESC')->first();
+          $lastcustom = $lastcustom->id;
+          return view('dashboard.types.type-write', compact('templates','lastcustom'));
     }
 
     public function typeStore(Request $request)
@@ -640,18 +642,20 @@ class DashboardController extends Controller
 
         $custom_field = Input::get('custom_field');
         $custom_type = Input::get('custom_type');
+        $custom_id = Input::get('custom_id');
         $count = 0;
 
 
-        if(isset($custom_field)){
+        if(isset($custom_id)){
           $type->custom_fields()->detach();
-          foreach(Input::get('custom_field') as $custom_f){
-            $custom = $type->custom_fields->where('name',$custom_f)->first();
+          foreach(Input::get('custom_id') as $custom_id){
+            $custom = CustomField::find($custom_id)
             if(!isset($custom)){
               $custom = new CustomField;
             }
 
-            $custom->name = $custom_f;
+            $input = array_slice(Input::get('custom_field'), $count);
+            $custom->name = $input[0];
             $input = array_slice(Input::get('custom_type'), $count);
             $custom->input = $input[0];
             $custom->save();
