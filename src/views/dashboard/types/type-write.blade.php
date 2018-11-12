@@ -88,7 +88,7 @@
         alert(val);
       }
       else {
-        form.submit();
+        this.submit();
       }
     });
 </script>
