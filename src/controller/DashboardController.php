@@ -649,7 +649,7 @@ class DashboardController extends Controller
         if(isset($custom_id)){
           $type->custom_fields()->detach();
           foreach(Input::get('custom_id') as $custom_id){
-            $custom = CustomField::find($custom_id)
+            $custom = CustomField::find($custom_id);
             if(!isset($custom)){
               $custom = new CustomField;
             }
