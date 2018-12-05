@@ -211,6 +211,14 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"\/src\/assets\/slick\/ajax-loader.gif": {
+		"ft": 4194304,
+		"iS": 4178,
+		"oA": 0,
+		"oAP": "\/src\/assets\/slick\/ajax-loader.gif",
+		"oF": 0,
+		"opt": 0
+		},
 	"\/src\/assets\/slick\/fonts\/slick.eot": {
 		"ft": 8192,
 		"oA": 2,
@@ -513,6 +521,12 @@
 		"oAP": "\/src\/migrations\/2017_08_04_184732_create_forms_table.php",
 		"oF": 0
 		},
+	"\/src\/migrations\/2017_08_04_184732_create_htmls_table.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/migrations\/2017_08_04_184732_create_htmls_table.php",
+		"oF": 0
+		},
 	"\/src\/migrations\/2017_08_04_184732_create_media_table.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -607,6 +621,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/migrations\/2017_08_04_185939_create_template_type_table.php",
+		"oF": 0
+		},
+	"\/src\/migrations\/2017_10_02_191058_create_dashboardPermissions_table.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/migrations\/2017_10_02_191058_create_dashboardPermissions_table.php",
 		"oF": 0
 		},
 	"\/src\/migrations\/2017_10_02_191058_create_dashboards_table.php": {
@@ -1071,6 +1091,12 @@
 		"oAP": "\/src\/views\/dashboard\/layout\/auth.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/layout\/dashboard.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/layout\/dashboard.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/media\/media-write.blade.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -1195,12 +1221,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/includes\/content-loop.blade.php",
-		"oF": 0
-		},
-	"\/src\/views\/layouts\/dashboard.blade.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/views\/layouts\/dashboard.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/welcome.blade.php": {

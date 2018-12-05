@@ -361,3 +361,61 @@
     }
   }
 }
+
+.flex-full {
+	position: fixed;
+	display: flex;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.full-wrapper {
+	margin: auto;
+}
+
+.login input, input.line_under, .line_under {
+	display: block;
+	font-size: 21px;
+	border: none;
+	webkit-appearance: none;
+	border-radius: 0;
+	border-bottom: 1px solid @light;
+	width: 100%;
+	margin-bottom: 30px;
+	padding: 10px;
+	.transition;
+}
+
+.login input:focus, input.line_under:focus, .line_under {
+	outline: none;
+	border-bottom: 1px solid @theme-main;
+}
+
+.login button, button {
+	display: block;
+	color: @theme-main;
+	background: transparent;
+	font-size: 21px;
+	border: 1px solid @theme-main;
+	webkit-appearance: none;
+	border-radius: 0;
+	width: 100%;
+	padding: 20px;
+	font-size: 12px;
+	.caps;
+	font-weight: 500;
+	.transition;
+}
+
+.login button:hover, button:hover {
+	color: white;
+	background: @theme-main;
+}
+
+.login a {
+	display: block;
+	padding: 15px 0;
+	color: @dark;
+}

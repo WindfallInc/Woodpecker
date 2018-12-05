@@ -151,8 +151,6 @@ class DashboardController extends Controller
         $field->save();
       }
 
-      $content->save();
-
 
       $cats = Input::get('categories');
       if(isset($cats)){
@@ -330,6 +328,7 @@ class DashboardController extends Controller
       $input3                         = Input::get('input3');
       $input4                         = Input::get('input4');
       $input5                         = Input::get('input5');
+      $input6                         = Input::get('input6');
       $components                     = Input::get('component-slug');
       if(isset($components)){
       foreach($components as $slug){
@@ -352,6 +351,7 @@ class DashboardController extends Controller
         $component->input3            = $father->input3;
         $component->input4            = $father->input4;
         $component->input5            = $father->input5;
+        $component->input6            = $father->input6;
         $component->columns           = $father->columns;
         $component->link_target       = $father->link_target;
         $component->reqimg            = $father->reqimg;
@@ -389,6 +389,13 @@ class DashboardController extends Controller
             $thing                        = array_slice($input5, $count5);
             $component->content5          = $thing[0];
             $count5++;
+          }
+        }
+        if(isset($input6)){
+          if(isset($component->input6)){
+            $thing                        = array_slice($input6, $count6);
+            $component->content6          = $thing[0];
+            $count6++;
           }
         }
 
@@ -529,21 +536,20 @@ class DashboardController extends Controller
       }
 
       /*
-      Enable this to increase load speeds
-      and use the static site generator
-      $code = file_get_contents('http://chamber.windfall.studio/get/loop/'. $content->slug);
-      if(Html::where('slug',$content->slug)->first()){
-        $html = Html::where('slug',$content->slug)->first();
-      }else {
-        $html = new Html;
+      * If all goes well, save the html snapshot of the page.
+      * This will increase load times, and provide redundent
+      * copies of the code as failsafe.
+      */
+      $code     = file_get_contents('/get/loop/'. $content->id);
+      $snapshot = HTML::where('content_id',$content->id)->where('published',1)->first();
+      if(isset($snapshot)){
+        $snapshot->published = 0;
       }
-      $html->slug = $content->slug;
+      $html = new Html;
+      $html->published = 1;
       $html->code = $code;
       $html->content()->associate($content);
       $html->save();
-      */
-
-
 
       if(isset($fail)){
         return redirect('dashboard/'.$type.'/create')->withInput();

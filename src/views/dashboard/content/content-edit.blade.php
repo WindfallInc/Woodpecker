@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('dashboard.layout.dashboard')
 
 @section('content')
 
@@ -188,11 +188,11 @@
 
                 <script>
                 $(document).ready(function(){
-                  $('#component-row{{$component->id}}').find("input[name='input1[]']").val('{{str_replace("'",'&#39;',$component->content1)}}');
-                  $('#component-row{{$component->id}}').find("input[name='input2[]']").val('{{str_replace("'",'&#39;',$component->content2)}}');
-                  $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{{str_replace("'",'&#39;',$component->content3)}}');
-                  $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{{str_replace("'",'&#39;',$component->content4)}}');
-                  $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{{str_replace("'",'&#39;',$component->content5)}}');
+                  $('#component-row{{$component->id}}').find("input[name='input1[]']").val('{!!str_replace("'",'&#39;',$component->content1)!!}');
+                  $('#component-row{{$component->id}}').find("input[name='input2[]']").val('{!!str_replace("'",'&#39;',$component->content2)!!}');
+                  $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{!!str_replace("'",'&#39;',$component->content3)!!}');
+                  $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{!!str_replace("'",'&#39;',$component->content4)!!}');
+                  $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{!!str_replace("'",'&#39;',$component->content5)!!}');
                   @if($component->slug == 'featured')
                   $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
                   @elseif($component->slug == 'fancy-list' || $component->slug == 'story')
@@ -302,11 +302,11 @@
             <script>
             $(document).ready(function(){
 
-              $('#component-row{{$component->id}}').find("input[name='input1[]']").val('{{str_replace("'",'&#39;',$component->content1)}}');
-              $('#component-row{{$component->id}}').find("input[name='input2[]']").val('{{str_replace("'",'&#39;',$component->content2)}}');
-              $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{{str_replace("'",'&#39;',$component->content3)}}');
-              $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{{str_replace("'",'&#39;',$component->content4)}}');
-              $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{{str_replace("'",'&#39;',$component->content5)}}');
+              $('#component-row{{$component->id}}').find("input[name='input1[]']").val('{!!str_replace("'",'&#39;',$component->content1)!!}');
+              $('#component-row{{$component->id}}').find("input[name='input2[]']").val('{!!str_replace("'",'&#39;',$component->content2)!!}');
+              $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{!!str_replace("'",'&#39;',$component->content3)!!}');
+              $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{!!str_replace("'",'&#39;',$component->content4)!!}');
+              $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{!!str_replace("'",'&#39;',$component->content5)!!}');
               @if($component->slug == 'featured')
               $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
               @elseif($component->slug == 'fancy-list' || $component->slug == 'story')

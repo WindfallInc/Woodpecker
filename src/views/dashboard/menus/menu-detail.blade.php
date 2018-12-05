@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('dashboard.layout.dashboard')
 
 @section('content')
   @push('header')

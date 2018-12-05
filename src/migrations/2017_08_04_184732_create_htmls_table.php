@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDashboardsTable extends Migration
+class CreateContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +13,11 @@ class CreateDashboardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dashboards', function (Blueprint $table) {
+        Schema::defaultStringLength(191);
+        Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('admin');
-            $table->rememberToken();
+            $table->longText('code');
+            $table->integer('published')->default(0); // 0 is draft 1 is published
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateDashboardsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('dashboards');
+        Schema::dropIfExists('contents');
     }
 }

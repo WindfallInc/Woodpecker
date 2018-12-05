@@ -1,33 +1,8 @@
 // Import font files
-//google font import example
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
+@import url("https://use.typekit.net/tsl1rzl.css");
 //Icons
 @import url('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
 @import url('https://use.fontawesome.com/0795663ba4.css');
-
-// Custom font example
-/*
-@font-face {
-        font-family: 'domaine';
-        src: url('/assets/css/DomaineDisplay-Regular.ttf');
-        font-weight: normal;
-        font-style: normal;
-    }
-@font-face {
-		    font-family: 'domaine-italic';
-		    src: url('/assets/css/DomaineDisplay-RegularItalic.ttf');
-		    font-weight: normal;
-		    font-style: italic;
-	 }
-@font-face {
-       font-family: 'domaine-bold';
-       src: url('/assets/css/DomaineDisplay-Semibold.ttf');
-   	   font-weight: normal;
-       font-style: italic;
-	 }
-*/
 
 // Flaw.less Colors:
 
@@ -75,8 +50,13 @@
 
 // FONT OPTIONS
 // Set fonts here:
-.main-font {font-family: 'open-sans', serif;}
-.secondary-font {font-family: 'Roboto', sans-serif;;}
+.main-font {font-family: 'Oswald', sans-serif;}
+.secondary-font {font-family: "clarendon-text-pro",serif; font-weight: 400;}
+// alts
+.serif {font-family: "clarendon-text-pro",serif; font-weight: 400;}
+.italic-font { font-family: clarendon-text-pro, serif;font-weight: 400;font-style: italic; }
+.bold-italic-font {font-family: clarendon-text-pro, serif;font-weight: 700;font-style: italic;}
+.bold-font { font-family: 'Oswald', sans-serif;font-weight: 700; }
 // set to true to choose font ratio
 @minor-second: false;
 @major-second: false;
@@ -94,7 +74,4 @@
 .transition {transition:linear all .2s;}
 .shadow {box-shadow: 0px 0px 60px -3px rgba(0, 0, 0, 0.33);}
 
-
-.italic-font { font-family:"domaine-italic"; }
-.bold-font { font-family:"domaine-bold"; }
 .caps {text-transform: uppercase;}

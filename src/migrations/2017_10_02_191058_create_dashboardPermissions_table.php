@@ -12,14 +12,10 @@ class CreateDashboardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dashboards', function (Blueprint $table) {
+        Schema::create('dashboardPermissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('admin');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->integer('dashboard_id');
+            $table->integer('content_id');
         });
     }
 
@@ -30,6 +26,6 @@ class CreateDashboardsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('dashboards');
+        Schema::drop('dashboardPermissions');
     }
 }
