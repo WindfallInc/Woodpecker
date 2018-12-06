@@ -1,12 +1,10 @@
 @extends('dashboard.layout.auth')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
+  <div class="flex-full">
+
+      <div class="login row full-wrapper">
+          <div class="five columns centered">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/dashboard/register') }}">
                         {{ csrf_field() }}
 
@@ -74,8 +72,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>

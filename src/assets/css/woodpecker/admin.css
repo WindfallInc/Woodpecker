@@ -14,12 +14,12 @@
   font-weight: 400;
 }
 .italic-font {
-  font-family: clarendon-text-pro, serif;
+  font-family: "clarendon-text-pro", serif;
   font-weight: 400;
   font-style: italic;
 }
 .bold-italic-font {
-  font-family: clarendon-text-pro, serif;
+  font-family: "clarendon-text-pro", serif;
   font-weight: 700;
   font-style: italic;
 }
@@ -3674,6 +3674,17 @@ button:hover {
   padding: 15px 0;
   color: #333;
 }
+.big-submit {
+  background: #333;
+  color: white;
+  font-family: "clarendon-text-pro", serif;
+  font-weight: 400;
+  margin: 30px 0 0 0;
+  transition: linear all .2s;
+}
+.big-submit:hover {
+  background: #2d3e4f;
+}
 a {
   color: #048BA8;
 }
@@ -3689,9 +3700,8 @@ a:hover {
   padding-right: 0px;
 }
 .admin {
-  background-color: #fff;
+  background-color: #fcfaf7;
   padding-top: 0px;
-  font-family: "San Francisco";
 }
 .admin .side-nav {
   position: fixed;

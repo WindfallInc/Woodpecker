@@ -15,61 +15,57 @@
 
         @stack('header')
         <style>
-        .btn-primary {
-          width: 100%;
-          padding: 8px;
-          font-size: 1.3em;
-          background-color: #9CC054;
-          color: #fff;
-          text-transform: uppercase;
-          transition: linear .2s all;
+        body {
+            background-color: #fcfaf7;
+            padding-top: 90px;
         }
-        .btn-primary:hover{
-          background-color:#829B48;
+        header {
+          position: fixed;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 90px;
+        }
+        header img {
+          height:90px;
+          border-right: solid 4px #333;
+          margin-right:20px;
+          padding-right:20px;
+        }
+        label {
+            display: block;
+            font-size: 12px !important;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            margin-top: 20px;
+            text-transform: uppercase;
+            padding-left: 10px;
+            line-height: 1.625em;
+            cursor: pointer;
+            margin-bottom: 9px;
+        }
+        .admin input {
+          background-color:#fcfaf7;
+        }
+        .admin input[type="submit"] {
+          background-color:#333;
         }
         </style>
 
     </head>
 
 <body class="admin">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header centering">
-              <img src="/css/woodpecker/woodpecker-logo.png" width="300px">
-            </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right" style="position:absolute; right:60px; top:40px;">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/dashboard/login') }}">Login</a></li>
-                        <li><a href="{{ url('/dashboard/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+    <header>
+      <img src="/css/woodpecker/woodpecker-logo.png">
+  		<h3 class="serif">Login</h3>
+  	</header>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/dashboard/logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
 
-                                    <form id="logout-form" action="{{ url('/dashboard/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     @yield('content')
 

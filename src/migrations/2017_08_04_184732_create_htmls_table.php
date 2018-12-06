@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContentsTable extends Migration
+class CreateHtmlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateContentsTable extends Migration
     public function up()
     {
         Schema::defaultStringLength(191);
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('htmls', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('code');
             $table->integer('published')->default(0); // 0 is draft 1 is published
@@ -29,6 +29,6 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contents');
+        Schema::dropIfExists('htmls');
     }
 }
