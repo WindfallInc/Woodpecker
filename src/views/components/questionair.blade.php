@@ -60,6 +60,8 @@
 				</div>
 			@endif
 
+			{!! NoCaptcha::renderJs() !!}
+
 
 		@endforeach
 	</form>

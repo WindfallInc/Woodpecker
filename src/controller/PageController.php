@@ -44,7 +44,7 @@ class PageController extends Controller
     {
       $page 	 = Content::where('slug','home')->where('published', 1)->first();
       if(!isset($page)){
-        return 'Page not found';
+        abort(404);
       }
       if(isset($page->template)){
         $template = Template::where('slug',$page->template)->first();
@@ -60,7 +60,7 @@ class PageController extends Controller
     {
       $page 	 = Content::where('slug','home')->where('published', 1)->first();
       if(!isset($page)){
-        return 'Page not found';
+        abort(404);
       }
       if(isset($page->template)){
         $template = Template::where('slug',$page->template)->first();
@@ -88,7 +88,7 @@ class PageController extends Controller
         $page 	 = Content::where('slug',$slug)->where('published', 1)->with(['rows', 'components'])->first();
 
         if(!isset($page)){
-          return 'Page not found';
+          abort(404);
         }
         $has_content = count($page->rows) + count($page->components);
 
@@ -108,7 +108,6 @@ class PageController extends Controller
         foreach($routes as $r){
           if($r->uri() == $route){
             $name = $r->getActionName();
-            //return $name;
             if(isset($name)){
               return \App::call('\\'.$name);
             }
@@ -116,10 +115,17 @@ class PageController extends Controller
         }
 
         $type    = Type::where('slug',$type)->first();
-        $page 	 = Content::where('slug',$slug)->where('type_id',$type->id)->where('published', 1)->with(['rows', 'components'])->first();
+        if(isset($type))
+        {
+          $page 	 = Content::where('slug',$slug)->where('type_id',$type->id)->where('published', 1)->with(['rows', 'components'])->first();
+        }
+        else
+        {
+          abort(404);
+        }
 
         if(!isset($page)){
-          return 'Page not found';
+          abort(404);
         }
         if(isset($page->template->id)){
           $template= $page->template;
@@ -137,7 +143,7 @@ class PageController extends Controller
         $page 	 = Content::where('slug',$slug)->first();
 
         if(!isset($page)){
-          return 'Page not found';
+          abort(404);
         }
         $has_content = count($page->rows) + count($page->components);
 
@@ -200,7 +206,7 @@ class PageController extends Controller
         $page 	 = Content::where('slug',$slug)->where('published', 1)->with(['rows', 'components'])->first();
 
         if(!isset($page)){
-          return 'Page not found';
+          abort(404);
         }
 
 
