@@ -695,8 +695,8 @@ a:hover {
     .remove_field {
       display:none;
       width: 50%;
-      background-color:#fff;
       position: absolute;
+      color:@red;
       bottom:50px;
       cursor:pointer;
       .warning {
@@ -721,6 +721,7 @@ a:hover {
     .remove_option {
       position: absolute;
       margin-left: -50px;
+      margin-top: 40px;
       display:none;
       padding-bottom:6px;
       font-size: .6em;
@@ -941,6 +942,13 @@ a:hover {
     .slider.round:before {
       border-radius: 50%;
     }
+  }
+
+  .tutorial {
+    position: absolute;
+    left: 250px;
+    top:20px;
+    background-color:@gray;
   }
 
 }

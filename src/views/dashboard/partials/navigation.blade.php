@@ -3,6 +3,7 @@
   <div class="navheader">Website Content</div>
   <div class="main-items">
     @foreach($types as $type)
+      @if($user->canEditType($type->id))
       <div class="nav-box">
         <a href="/dashboard/{{$type->id}}/all"><p><i class="fa fa-cube" aria-hidden="true"></i>{{str_plural($type->title)}}</p></a>
         <div class="options">
@@ -14,12 +15,15 @@
           </ul>
         </div>
       </div>
+      @endif
     @endforeach
+    @if($user->canEditForms())
     <a href="/dashboard/forms">
       <div class="nav-box">
         <p><i class="fa fa-industry" aria-hidden="true"></i>Forms</p>
       </div>
     </a>
+    @endif
   </div>
 
 
@@ -39,6 +43,7 @@
 
   <div class="navheader">Administrative</div>
   <div class="main-items">
+    @if($user->canEditMenus())
     <div class="nav-box mini">
       <a href="/dashboard/menus">
         <p><i class="fa fa-bars" aria-hidden="true"></i>Menus</p>
@@ -52,6 +57,7 @@
         </ul>
       </div>
     </div>
+    @endif
     <div class="nav-box mini">
       <a href="/dashboard/types">
         <p><i class="fa fa-cubes" aria-hidden="true"></i>Datatypes</p>
@@ -60,17 +66,20 @@
         <a href="/dashboard/type/create">&#xf067;</a>
         <ul class="subitems">
           @foreach($types as $type)
-            <a href="/dashboard/type/{{$type->slug}}/edit"><li>{{$type->title}}</li></a>
+            @if($user->canEditType($type->id))
+              <a href="/dashboard/type/{{$type->slug}}/edit"><li>{{$type->title}}</li></a>
+            @endif
           @endforeach
         </ul>
       </div>
     </div>
-    <!--
+    @if($user->isAdmin())
     <div class="nav-box mini">
       <a href="/dashboard/admins">
-        <p><i class="fa fa-users" aria-hidden="true"></i>Admins</p>
+        <p><i class="fa fa-users" aria-hidden="true"></i>Users</p>
       </a>
-    </div>-->
+    </div>
+    @endif
   </div>
 
 

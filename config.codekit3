@@ -23,6 +23,12 @@
 		"oAP": "\/composer.lock",
 		"oF": 0
 		},
+	"\/README.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/README.html",
+		"oF": 0
+		},
 	"\/README.md": {
 		"cS": 0,
 		"eF": 1,
@@ -155,6 +161,16 @@
 		"opt": 0,
 		"oT": 1,
 		"q": 100
+		},
+	"\/src\/assets\/css\/woodpecker\/tutorial-1.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/assets\/css\/woodpecker\/tutorial-1.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"\/src\/assets\/css\/woodpecker\/woodpecker-logo.png": {
 		"ft": 32768,
@@ -635,6 +651,12 @@
 		"oAP": "\/src\/migrations\/2017_10_02_191058_create_dashboards_table.php",
 		"oF": 0
 		},
+	"\/src\/migrations\/2017_10_02_191058_create_permissions_table.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/migrations\/2017_10_02_191058_create_permissions_table.php",
+		"oF": 0
+		},
 	"\/src\/migrations\/2017_10_02_191059_create_dashboard_password_resets_table.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -695,12 +717,6 @@
 		"oAP": "\/src\/Models\/Media.php",
 		"oF": 0
 		},
-	"\/src\/Models\/Member.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/Models\/Member.php",
-		"oF": 0
-		},
 	"\/src\/Models\/Menu.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -713,6 +729,12 @@
 		"oAP": "\/src\/Models\/Nav.php",
 		"oF": 0
 		},
+	"\/src\/Models\/Permission.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/Models\/Permission.php",
+		"oF": 0
+		},
 	"\/src\/Models\/Question.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -723,6 +745,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/Models\/Row.php",
+		"oF": 0
+		},
+	"\/src\/Models\/Scopes\/CanEdit.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/Models\/Scopes\/CanEdit.php",
 		"oF": 0
 		},
 	"\/src\/Models\/Submission.php": {
@@ -747,12 +775,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/Models\/Type.php",
-		"oF": 0
-		},
-	"\/src\/Models\/User.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/Models\/User.php",
 		"oF": 0
 		},
 	"\/src\/Notifications\/DashboardResetPassword.php": {

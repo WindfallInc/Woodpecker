@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<p><img src="http://walshwebworks.com/woodpecker-logo.png" alt="alt text" /></p>
+
+<h1 id="woodpecker">Woodpecker</h1>
+
+<p>Content Management System for Windfall laravel applications.</p>
+
+<p>Automatically creates admin panel, databases, form logic (with invisible captcha), and page logic.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Require this package with composer:</p>
+
+<pre><code class="shell">composer require windfallinc/woodpecker
+</code></pre>
+
+<p>Package auto discovers.</p>
+
+<p>Publish woodpecker assets, and migrate databases:</p>
+
+<pre><code class="shell">php artisan vendor:publish --force
+
+php artisan migrate
+</code></pre>
+
+<p>If you have migration issues, see https://laravel-news.com/laravel&#8211;5&#8211;4-key-too-long-error.</p>
+
+<p>Boom! Good to go!</p>
+
+<p>Example templates included in views/examples.
+Optional Helper functions to include in composer.json:
+<code>shell
+&quot;autoload&quot;: {
+&quot;files&quot;: [
+            &quot;app/Http/Controllers/jaunt-helpers.php&quot;
+        ],
+</code></p>
+
+<h2 id="customization">Customization</h2>
+
+<p><strong>Creating a new template</strong></p>
+
+<p>Create template in views/templates/example-slug.blade.php</p>
+
+<p>Add the newly created template to the database table &#8216;templates&#8217;</p>
+
+<p>The template will now appear in the backend, becoming available for any datatypes, menus, or pages to use.</p>
+
+<p><strong>Featured Image</strong>
+<code>shell
+$page-&gt;featimg()
+</code>
+<strong>Title</strong>
+<code>shell
+$page-&gt;title
+</code>
+<strong>Content</strong>
+<code>shell
+@include('includes.content-loop')
+</code>
+<strong>Any Custom Fields</strong>
+<code>shell
+$page-&gt;get_the('field name')
+</code>
+<strong>Meta Desc</strong>
+<code>shell
+$page-&gt;metadesc
+</code>
+<strong>Meta Keywords</strong>
+<code>shell
+$page-&gt;keywords
+</code>
+<strong>Creating a new component</strong></p>
+
+<p>Views-&gt;components house all front end component code.</p>
+
+<p>Views-&gt;dashboard-&gt;components house all backend component code.</p>
+
+<p>Within the database, add a new &#8216;component&#8217; and set its &#8216;type&#8217; to template.</p>
+
+<h2 id="updating">Updating</h2>
+
+<p>After your composer update, to finalize your upgrade
+<code>shell
+php artisan vendor:publish --tag=update --force
+</code></p>
+
+<h2 id="supports">Supports</h2>
+
+<p>Laravel 5.5 and up.</p>
+
+</body>
+</html>

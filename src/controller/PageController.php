@@ -201,9 +201,9 @@ class PageController extends Controller
   	  return view('templates.results', compact('results','success','template'));
 	  }
 
-    public function loopContent($slug){
+    public function loopContent($id){
 
-        $page 	 = Content::where('slug',$slug)->where('published', 1)->with(['rows', 'components'])->first();
+        $page 	 = Content::find($id)->with(['rows', 'components'])->first();
 
         if(!isset($page)){
           abort(404);

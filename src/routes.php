@@ -175,7 +175,7 @@ Route::get('/','App\Http\Controllers\PageController@home');
 Route::get('/home','App\Http\Controllers\PageController@home');
 Route::get('/blog','App\Http\Controllers\PageController@blog');
 
-Route::get('/get/loop/{slug}','App\Http\Controllers\PageController@loopContent');
+Route::get('/get/loop/{id}','App\Http\Controllers\PageController@loopContent');
 
 // Save form data
 Route::post('/form/{form}','App\Http\Controllers\PageController@form');

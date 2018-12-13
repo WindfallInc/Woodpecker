@@ -3,9 +3,8 @@
 Content Management System for Windfall laravel applications.
 
 
-Automatically creates admin panel, databases, and page logic.
+Automatically creates admin panel, databases, form logic (with invisible captcha), and page logic.
 
-Running "php artisan migrate" will automatically create tables in your database for cms
 
 ## Installation
 
@@ -18,7 +17,7 @@ composer require windfallinc/woodpecker
 
 Package auto discovers.
 
-Publish vendor, and migrate databases:
+Publish woodpecker assets, and migrate databases:
 
 ```shell
 php artisan vendor:publish --force
@@ -27,12 +26,6 @@ php artisan migrate
 ```
 
 If you have migration issues, see https://laravel-news.com/laravel-5-4-key-too-long-error.
-
-Require intervention image for backend image handling:
-
-```shell
-composer require intervention/image
-```
 
 Boom! Good to go!
 
@@ -81,14 +74,14 @@ $page->keywords
 ```
 **Creating a new component**
 
-Views->components house all front end component html.
+Views->components house all front end component code.
 
-Views->dashboard->components house all backend component html.
+Views->dashboard->components house all backend component code.
 
 Within the database, add a new 'component' and set its 'type' to template.
 
 ## Updating
-After your composer update, to finalize your upgrade 
+After your composer update, to finalize your upgrade
 ``` shell
 php artisan vendor:publish --tag=update --force
 ```

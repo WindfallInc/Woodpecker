@@ -52,6 +52,7 @@ class DashboardController extends Controller
         $this->middleware('dashboard');
 
         // Sharing is caring
+          $this->user            = Auth::user();
           $this->types           = Type::all();
           $this->menus           = Menu::all();
           $this->categories      = Category::all();
@@ -66,7 +67,13 @@ class DashboardController extends Controller
     }
     public function index()
     {
-            return view('dashboard.dashboard');
+            $user = Auth::user();
+            if($user->tutorial_1 == 0){
+              $user->tutorial_1 = 1;
+              $user->save;
+              $tutorial = true;
+            }
+            return view('dashboard.dashboard', compact('tutorial'));
     }
 
     public function contents($type)
@@ -540,7 +547,8 @@ class DashboardController extends Controller
       * This will increase load times, and provide redundent
       * copies of the code as failsafe.
       */
-      $code     = file_get_contents('/get/loop/'. $content->id);
+      $url = url('/get/loop/'. $content->id)
+      $code     = file_get_contents($url);
       $snapshot = HTML::where('content_id',$content->id)->where('published',1)->first();
       if(isset($snapshot)){
         $snapshot->published = 0;

@@ -17,9 +17,12 @@ class CreateDashboardsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('admin')->default('0');
+            $table->integer('admin')->default('0');
+            $table->integer('forms')->default('0');
+            $table->integer('menus')->default('0');
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('tutorial_1',255)->default('0'); // tutorial toggle
         });
     }
 

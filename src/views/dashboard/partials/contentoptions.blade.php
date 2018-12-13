@@ -18,7 +18,11 @@
         @foreach($components->where('type', 'template') as $component)
           <li><p class="preview-title">{{$component->title}}</p>
             <div class="component-preview" id="{{$component->slug}}">
-              @include("components.".$component->slug)
+              @if($component->slug == 'carousal')
+                <img src="/component/carousal-component.jpg" alt="">
+              @else
+                @include("components.".$component->slug)
+              @endif
             </div>
           </li>
         @endforeach
