@@ -13,7 +13,7 @@
 
     </div>
 
-    <div class="intro topo">
+    <div class="intro">
         <div class="row">
             <div class="eight columns push_two">
                 {!! $page->get_the('Introduction Text') !!}

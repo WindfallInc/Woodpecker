@@ -5,7 +5,7 @@
 
 	<div class="row post-content">
 
-	  @include('includes.content-loop')
+	  @include('dashboard.includes.body')
 
 	</div>
 

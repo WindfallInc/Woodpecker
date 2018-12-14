@@ -1221,10 +1221,10 @@
 		"oAP": "\/src\/views\/examples\/includes\/header.blade.php",
 		"oF": 0
 		},
-	"\/src\/views\/examples\/layout\/app.blade.php": {
+	"\/src\/views\/examples\/layouts\/app.blade.php": {
 		"ft": 8192,
 		"oA": 2,
-		"oAP": "\/src\/views\/examples\/layout\/app.blade.php",
+		"oAP": "\/src\/views\/examples\/layouts\/app.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/examples\/partials\/blog-banner.blade.php": {

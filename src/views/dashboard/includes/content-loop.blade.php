@@ -1,8 +1,9 @@
 <!-- Begin Content Loop.php -->
 {{--
+*
 * THIS FILE SHOULD NOT BE EDITED
 * This file will be overwritten if the cms updates
-* to make changes to this file, duplicate it
+*
 --}}
 @php $count=0; @endphp
 @php $ad = 0; @endphp

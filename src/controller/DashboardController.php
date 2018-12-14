@@ -502,6 +502,8 @@ class DashboardController extends Controller
           $form     = Form::find($formId);
           $component->form()->associate($form);
           $component->save();
+          // do not create a snapshot of any page with a Form
+          $hasform = true;
         }
         $count++;
 
@@ -562,18 +564,30 @@ class DashboardController extends Controller
       * This will increase load times, and provide redundent
       * copies of the code as failsafe.
       */
-      $url = url('/get/loop/'. $content->id);
-      $code     = file_get_contents($url);
-      $snapshot = HTML::where('content_id',$content->id)->where('published',1)->first();
-      if(isset($snapshot)){
-        $snapshot->published = 0;
-        $snapshot->save();
+      if(!isset($hasform))
+      {
+        $url = url('/get/loop/'. $content->id);
+        $code     = file_get_contents($url);
+        $snapshot = Html::where('content_id',$content->id)->where('published',1)->first();
+        if(isset($snapshot)){
+          $snapshot->published = 0;
+          $snapshot->save();
+        }
+        $html = new Html;
+        $html->published = 1;
+        $html->code = $code;
+        $html->content()->associate($content);
+        $html->save();
       }
-      $html = new Html;
-      $html->published = 1;
-      $html->code = $code;
-      $html->content()->associate($content);
-      $html->save();
+      else
+      {
+        $snapshots = Html::where('content_id',$content->id)->where('published',1)->get();
+        foreach($snapshots as $snapshot)
+        {
+          $snapshot->published = 0;
+          $snapshot->save();
+        }
+      }
 
       if(isset($fail)){
         return redirect('dashboard/'.$type.'/create')->withInput();

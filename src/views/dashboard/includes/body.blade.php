@@ -5,7 +5,7 @@
 * to make changes to this file, duplicate it
 --}}
 @if(isset($body))
-  {!!$body!!}
+  {!! $body->code !!}
 @else
   @include('dashboard.includes.content-loop')
 @endif

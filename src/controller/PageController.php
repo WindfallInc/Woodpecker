@@ -7,6 +7,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Template;
@@ -22,6 +23,7 @@ use App\Form;
 use App\Question;
 use App\Submission;
 use App\Answer;
+use App\Html;
 
 
 use Auth;
@@ -157,6 +159,10 @@ class PageController extends Controller
 
     public function form($id){
 
+      $validate = Validator::make(Input::all(), [
+      	'g-recaptcha-response' => 'required|captcha'
+      ]);
+
         $form = Form::find($id);
 
         if(!isset($form)){
@@ -212,7 +218,7 @@ class PageController extends Controller
         }
 
 
-        return view('includes.content-loop', compact('page'));
+        return view('dashboard.includes.content-loop', compact('page'));
     }
 
 

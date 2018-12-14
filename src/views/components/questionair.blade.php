@@ -5,7 +5,7 @@
 
 	<h3>{{$form->title}}</h3>
 	<form action="/form/{{$form->id}}" method="post">
-		{{ csrf_field() }}
+		@csrf
 		@foreach($form->questions->sortBy('order') as $q)
 			@php $count = $count + $q->columnInt; @endphp
 			@if($count > 12)
