@@ -711,6 +711,12 @@
 		"oAP": "\/src\/Models\/Form.php",
 		"oF": 0
 		},
+	"\/src\/Models\/Html.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/Models\/Html.php",
+		"oF": 0
+		},
 	"\/src\/Models\/Media.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -745,12 +751,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/Models\/Row.php",
-		"oF": 0
-		},
-	"\/src\/Models\/Scopes\/CanEdit.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/Models\/Scopes\/CanEdit.php",
 		"oF": 0
 		},
 	"\/src\/Models\/Submission.php": {
@@ -1095,6 +1095,18 @@
 		"oAP": "\/src\/views\/dashboard\/home.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/includes\/body.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/includes\/body.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/includes\/content-loop.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/includes\/content-loop.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/includes\/footer.blade.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -1237,12 +1249,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/examples\/templates\/home-page.blade.php",
-		"oF": 0
-		},
-	"\/src\/views\/includes\/content-loop.blade.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/views\/includes\/content-loop.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/welcome.blade.php": {

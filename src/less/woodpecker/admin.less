@@ -745,6 +745,7 @@ a:hover {
     }
   }
   .submission {
+    margin-top:8px;
     .submission-details{
       height:0px;
       opacity: 0;
@@ -804,6 +805,18 @@ a:hover {
     }
     .store:hover {
       background-color:lighten(@blue,10%);
+      color:#fff;
+      padding:15px;
+    }
+    .delete {
+      margin-left:50.2%;
+      margin-top:0px;
+      padding:15px;
+      background-color:@red;
+      text-transform: capitalize;
+    }
+    .delete:hover {
+      background-color:lighten(@red,10%);
       color:#fff;
       padding:15px;
     }
@@ -946,7 +959,8 @@ a:hover {
 
   .tutorial {
     position: absolute;
-    left: 250px;
+    left: 150px;
+    width:500px;
     top:20px;
     background-color:@gray;
   }

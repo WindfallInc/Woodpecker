@@ -2,19 +2,11 @@
 
 namespace App;
 
-use App\Scopes\CanEdit;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Content extends Model
 {
-	protected static function boot()
-  {
-      parent::boot();
-
-      static::addGlobalScope(new CanEdit);
-  }
 	use SoftDeletes;
 	public function categories() {
         return $this->belongsToMany('App\Category');
@@ -24,6 +16,9 @@ class Content extends Model
 	}
 	public function customFieldContent() {
         return $this->hasMany('App\CustomFieldContent');
+	}
+	public function htmls() {
+        return $this->hasMany('App\Html');
 	}
 	public function type() {
         return $this->belongsTo('App\Type');

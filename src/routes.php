@@ -120,6 +120,8 @@ Route::get('/form/{slug}/edit','App\Http\Controllers\DashboardController@formEdi
 Route::get('/form/{slug}/delete','App\Http\Controllers\DashboardController@formDelete');
 // View Submission
 Route::get('/form/{slug}/submissions','App\Http\Controllers\DashboardController@formSubmissions')->name('submissions');
+// Delete Submission
+Route::get('/form/{slug}/massdelete','App\Http\Controllers\DashboardController@submissionMassDelete')->name('submissionsMassDelete');
 // Export Form Submissions
 Route::get('/export/form/{id}','App\Http\Controllers\DashboardController@export')->name('export');
 // Delete Form Submissions

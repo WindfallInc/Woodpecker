@@ -26,6 +26,7 @@ use App\Submission;
 use App\CustomField;
 use App\CustomFieldContent;
 use App\Ticket;
+use App\Html;
 use Image;
 
 use Auth;
@@ -50,30 +51,39 @@ class DashboardController extends Controller
      public function __construct()
     {
         $this->middleware('dashboard');
+        $this->middleware(function ($request, $next) {
+            $this->user            = Auth::guard('dashboard')->user();
+            $this->types           = Type::all();
+            $this->menus           = Menu::all();
+            $this->categories      = Category::all();
+            $this->components      = Component::all();
+            $this->templates       = Template::all();
 
-        // Sharing is caring
-          $this->user            = Auth::user();
-          $this->types           = Type::all();
-          $this->menus           = Menu::all();
-          $this->categories      = Category::all();
-          $this->components      = Component::all();
-          $this->templates       = Template::all();
+            view()->share('user', $this->user);
+            view()->share('types', $this->types);
+            view()->share('menus', $this->menus);
+            view()->share('categories', $this->categories);
+            view()->share('components', $this->components);
+            view()->share('templates', $this->templates);
 
-          view()->share('types', $this->types);
-          view()->share('menus', $this->menus);
-          view()->share('categories', $this->categories);
-          view()->share('components', $this->components);
-          view()->share('templates', $this->templates);
+            return $next($request);
+        });
+
     }
+
     public function index()
     {
-            $user = Auth::user();
-            if($user->tutorial_1 == 0){
-              $user->tutorial_1 = 1;
-              $user->save;
-              $tutorial = true;
-            }
-            return view('dashboard.dashboard', compact('tutorial'));
+
+      	  $user = Auth::guard('dashboard')->user();
+
+          if($user->tutorial_1 == 0)
+          {
+            $user->tutorial_1 = 1;
+            $user->save();
+            $tutorial = true;
+          }
+
+          return view('dashboard.dashboard', compact('tutorial'));
     }
 
     public function contents($type)
@@ -120,7 +130,12 @@ class DashboardController extends Controller
     {
       $content = Content::find($id);
 
+      $user = Auth::guard('dashboard')->user();
+
       if(isset($content)){
+        if(!$user->canEdit($content->id)){
+          abort(403);
+        }
 
         foreach($content->rows as $row){
           $row->content()->dissociate();
@@ -547,11 +562,12 @@ class DashboardController extends Controller
       * This will increase load times, and provide redundent
       * copies of the code as failsafe.
       */
-      $url = url('/get/loop/'. $content->id)
+      $url = url('/get/loop/'. $content->id);
       $code     = file_get_contents($url);
       $snapshot = HTML::where('content_id',$content->id)->where('published',1)->first();
       if(isset($snapshot)){
         $snapshot->published = 0;
+        $snapshot->save();
       }
       $html = new Html;
       $html->published = 1;
@@ -639,6 +655,10 @@ class DashboardController extends Controller
     {
       if(Type::where('slug', Input::get('slug'))->first()){
         $type           = Type::where('slug', Input::get('slug'))->first();
+        $user = Auth::guard('dashboard')->user();
+        if(!$user->canEdit($type->id)){
+          abort(403);
+        }
         $type->templates()->detach();
       }
       else {
@@ -729,7 +749,10 @@ class DashboardController extends Controller
 
     public function menuStore(Request $request)
     {
-
+      $user = Auth::guard('dashboard')->user();
+      if(!$user->canEditMenus()){
+        abort(403);
+      }
       if(Menu::where('slug', Input::get('slug'))->first()){
         $menu           = Menu::where('slug', Input::get('slug'))->first();
         $menu->templates()->detach();
@@ -997,6 +1020,10 @@ class DashboardController extends Controller
     }
     public function formStore()
     {
+          $user = Auth::guard('dashboard')->user();
+          if(!$user->canEditForms()){
+            abort(403);
+          }
           $old            = Form::where('slug', Input::get('slug'))->first();
           if(isset($old)){
             $form         = Form::where('slug', Input::get('slug'))->first();
@@ -1032,6 +1059,10 @@ class DashboardController extends Controller
     }
     public function formUpdate($slug)
     {
+          $user = Auth::guard('dashboard')->user();
+          if(!$user->canEditForms()){
+            abort(403);
+          }
           $form  = Form::where('slug', $slug)->first();
           $order = Input::get('order');
           $orders = explode(",", $order );
@@ -1142,6 +1173,16 @@ class DashboardController extends Controller
 
           return 'true';
     }
+    public function submissionMassDelete($form)
+    {
+          $form = Form::find($form);
+          foreach($form->submissions as $submission)
+          {
+            $submission->delete();
+          }
+
+          return redirect()->route('submissions', ['slug'=>$form->slug]);
+    }
     public function export($id)
     {
           $form          = Form::find($id);
@@ -1194,18 +1235,16 @@ class DashboardController extends Controller
       $senderEmail 						= Input::get('email');
       $subject 								= "Jaunt CMS Service Ticket";
       $problem 								= Input::get('problem');
-      $recreation 					  = Input::get('recreation');
 
       $service = New Ticket;
       $service->name = $sender;
       $service->return_email = $senderEmail;
       $service->problem = $problem;
-      $service->details = $recreation;
       $service->save();
 
       $recipient 							= 'andrew@windfallstudio.com';
 
-      $mailBody="Client: $sender\nContact Email: $senderEmail \n problem: $problem \n Recreate by: $recreation";
+      $mailBody="Client: $sender\nContact Email: $senderEmail \n problem: $problem \n";
 
       mail($recipient, $subject, $mailBody, "From: Jaunt CMS");
 

@@ -4421,6 +4421,9 @@ a:hover {
 .admin .question:hover .required {
   display: block;
 }
+.admin .submission {
+  margin-top: 8px;
+}
 .admin .submission .submission-details {
   height: 0px;
   opacity: 0;
@@ -4482,6 +4485,18 @@ a:hover {
 }
 .admin .heading .store:hover {
   background-color: #0170bc;
+  color: #fff;
+  padding: 15px;
+}
+.admin .heading .delete {
+  margin-left: 50.2%;
+  margin-top: 0px;
+  padding: 15px;
+  background-color: #c24137;
+  text-transform: capitalize;
+}
+.admin .heading .delete:hover {
+  background-color: #d1645b;
   color: #fff;
   padding: 15px;
 }
@@ -4614,7 +4629,8 @@ a:hover {
 }
 .admin .tutorial {
   position: absolute;
-  left: 250px;
+  left: 150px;
+  width: 500px;
   top: 20px;
   background-color: #fcfaf7;
 }

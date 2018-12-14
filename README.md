@@ -58,7 +58,7 @@ $page->title
 ```
 **Content**
 ```shell
-@include('includes.content-loop')
+@include('dashboard.includes.body')
 ```
 **Any Custom Fields**
 ```shell

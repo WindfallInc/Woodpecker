@@ -85,12 +85,14 @@ class PageController extends Controller
           }
         }
 
-        $page 	 = Content::where('slug',$slug)->where('published', 1)->with(['rows', 'components'])->first();
+        $page 	 = Content::where('slug',$slug)->where('published', 1)->first();
 
         if(!isset($page)){
           abort(404);
         }
-        $has_content = count($page->rows) + count($page->components);
+
+        $body = Html::where('content_id', $page->id)->where('published',1)->first();
+
 
         if(isset($page->template->id)){
           $template= $page->template;
@@ -100,7 +102,7 @@ class PageController extends Controller
         }
 
 
-        return view('templates.'.$template->slug, compact('page','template', 'has_content'));
+        return view('templates.'.$template->slug, compact('page','template','body'));
     }
     public function pageByType($type,$slug){
         $route = $type.'/'.$slug;
@@ -134,9 +136,9 @@ class PageController extends Controller
           $template = $page->type->templates->sortByDesc('updated_at')->first();
         }
 
-        $has_content = count($page->rows) + count($page->components);
+        $body = Html::where('content_id', $page->id)->where('published',1)->first();
 
-        return view('templates.'.$template->slug, compact('page','template', 'has_content'));
+        return view('templates.'.$template->slug, compact('page','template', 'body'));
     }
     public function preview($slug){
 
@@ -145,11 +147,11 @@ class PageController extends Controller
         if(!isset($page)){
           abort(404);
         }
-        $has_content = count($page->rows) + count($page->components);
+        $body = Html::where('content_id', $page->id)->where('published',1)->first();
 
         $template = $page->type->templates->first();
 
-        return view('templates.'.$template->slug, compact('page','template', 'has_content'));
+        return view('templates.'.$template->slug, compact('page','template', 'body'));
 
     }
 
@@ -203,14 +205,14 @@ class PageController extends Controller
 
     public function loopContent($id){
 
-        $page 	 = Content::find($id)->with(['rows', 'components'])->first();
+        $page 	 = Content::find($id);
 
         if(!isset($page)){
           abort(404);
         }
 
 
-        return view('includes.content-loop', compact('page','template','events', 'has_content'));
+        return view('includes.content-loop', compact('page'));
     }
 
 

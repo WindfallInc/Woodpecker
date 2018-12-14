@@ -46,7 +46,7 @@ class Dashboard extends Authenticatable
             return true;
           }
   				else {
-            $permission = Permission::where('user_id',$this->id)->where('type_id',$id)->first();
+            $permission = Permission::where('dashboard_id',$this->id)->where('type_id',$id)->first();
             if(isset($permission))
             {
               return true;

@@ -3,7 +3,7 @@
   <div class="navheader">Website Content</div>
   <div class="main-items">
     @foreach($types as $type)
-      @if($user->canEditType($type->id))
+      {{--@if($user->canEditType($type->id))
       <div class="nav-box">
         <a href="/dashboard/{{$type->id}}/all"><p><i class="fa fa-cube" aria-hidden="true"></i>{{str_plural($type->title)}}</p></a>
         <div class="options">
@@ -15,7 +15,7 @@
           </ul>
         </div>
       </div>
-      @endif
+    @endif --}}
     @endforeach
     @if($user->canEditForms())
     <a href="/dashboard/forms">

@@ -24,11 +24,6 @@
         <textarea name="problem" required>Describe what you need serviced</textarea>
       </div>
     </div>
-    <div class="row">
-      <div class="twelve columns">
-        <textarea name="recreation">If you believe this to be a bug, please describe the steps to reproduce this error.</textarea>
-      </div>
-    </div>
 
     </form>
 
