@@ -28,6 +28,7 @@ use App\Html;
 
 use Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class PageController extends Controller
 {
@@ -157,11 +158,12 @@ class PageController extends Controller
 
     }
 
-    public function form($id){
+    public function form(Request $request, $id){
 
       $validate = Validator::make(Input::all(), [
       	'g-recaptcha-response' => 'required|captcha'
       ]);
+
 
         $form = Form::find($id);
 

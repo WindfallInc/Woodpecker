@@ -15,7 +15,7 @@
         <h3>{{$form->title}}</h3>
       </div>
       <div class="four columns">
-        <a href="/dashboard/form/{{$form->id}}/massdelete" target="_blank"><h3 class="delete">Delete All</h3></a>
+        <a href="/dashboard/form/{{$form->id}}/massdelete"><h3 class="delete">Delete All</h3></a>
       </div>
       <div class="four columns">
         <a href="/dashboard/export/form/{{$form->id}}" target="_blank"><h3 class="store">Export</h3></a>
