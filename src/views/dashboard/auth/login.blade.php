@@ -4,6 +4,15 @@
 
   <div class="flex-full">
 
+    @if(session()->has('success'))
+
+    	<div class="row full-wrapper">
+        <div class="six columns centered">
+          <h3>{!! session()->get('success') !!}</h3>
+        </div>
+    	</div>
+
+    @else
       <div class="login row full-wrapper">
           <div class="five columns centered">
 
@@ -33,7 +42,10 @@
 
           </div>
       </div>
+    @endif
 
   </div>
+
+
 
   @endsection

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Component extends Model
 {
 	use SoftDeletes;
-	public function contents() {
-        return $this->belongsTo('App\Content');
+	public function content() {
+        return $this->hasOne('App\Content');
 	}
 	public function loop($slug) {
         $type =  Type::where('slug', $slug)->first();

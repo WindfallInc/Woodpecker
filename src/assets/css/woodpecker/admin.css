@@ -4224,8 +4224,8 @@ a:hover {
 .admin .component-write {
   position: relative;
   margin-bottom: 30px;
-  margin-right: 100px;
-  margin-left: 0px;
+  margin-right: 25px;
+  margin-left: 25px;
 }
 .admin .component-write .forms {
   display: block;
@@ -4283,11 +4283,20 @@ a:hover {
 .admin .component-write .preview.active {
   display: block;
 }
+.admin .component-write.three.columns {
+  width: calc(25% - 50px);
+}
 .admin .component-write.four.columns {
-  width: 23.87489%;
+  width: calc(33.333% - 50px);
 }
 .admin .component-write.six.columns {
-  width: 39.93617%;
+  width: calc(50% - 50px);
+}
+.admin .component-write.eight.columns {
+  width: calc(64.95745% - 50px);
+}
+.admin .component-write.twelve.columns {
+  margin-right: 0px;
 }
 .admin .fa-eye {
   margin: auto;

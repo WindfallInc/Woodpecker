@@ -142,7 +142,11 @@ class DashboardController extends Controller
           $row->save();
         }
 
-        $content->components()->detach();
+        foreach($content->components as $component){
+          $component->content()->dissociate();
+          $row->save();
+        }
+
         $content->categories()->detach();
       }
       else {
@@ -460,8 +464,9 @@ class DashboardController extends Controller
 
         }
 
+
+        $component->content()->associate($content);
         $component->save();
-        $content->components()->associate($component);
         if($component->slug == 'carousal'){
           $imagecount = 0;
           if(Input::hasFile('carousalimages'))
@@ -518,29 +523,21 @@ class DashboardController extends Controller
       $count = 1;
       foreach($orders as $order){
         $row = Row::where('id', $order)->where('content_id', $content->id)->first();
-        $component = $content->components->where('id', $order)->first();
+        $component = Component::where('id', $order)->where('content_id', $content->id)->first();
         if(isset($skip) && $skip==1){
-          if(isset($component->id) && isset($row)){
-            $skip--;
-            $count++;
-            // to avoid future conflicts, change the component id.
-            $lastComponent = Component::orderBy('id', 'DESC')->first();
-            $lastComponent = $lastComponent->id;
-            $lastComponent++;
-            $content->components()->dissociate($component);
-            $component->id = $lastComponent;
-            $component->save();
-            $content->components()->associate($component);
-            continue;
-          }
+          continue;
         }
-        if(isset($component->id) && isset($row))
+        if(isset($component->id) && isset($row->id))
         {
           $row->order = $count;
           $row->save();
 
           $count++;
 
+          $lastComponent = Component::orderBy('id', 'DESC')->first();
+          $lastComponent = $lastComponent->id;
+          $lastComponent++;
+          $component->id = $lastComponent;
           $component->order = $count;
           $component->save();
           $count++;
@@ -730,7 +727,14 @@ class DashboardController extends Controller
           $type = Type::where('slug',$slug)->first();
           $templates = Template::all();
           $lastcustom = CustomField::orderBy('id', 'DESC')->first();
-          $lastcustom = $lastcustom->id;
+          if(isset($lastcustom)){
+            $newid = $lastcustom->id;
+            $newid = $newid++;
+          }
+          else {
+            $newid = 1;
+          }
+          $lastcustom = $newid;
 
           return view('dashboard.types.type-edit',compact('type','templates','lastcustom'));
     }

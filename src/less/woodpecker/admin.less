@@ -541,8 +541,8 @@ a:hover {
   .component-write {
     position: relative;
     margin-bottom: 30px;
-    margin-right:100px;
-    margin-left: 0px;
+    margin-right:25px;
+    margin-left: 25px;
     .forms{
       display:block;
       overflow:scroll;
@@ -601,11 +601,22 @@ a:hover {
       display:block;
     }
   }
+  .component-write.three.columns {
+    //width: calc(~"23.40426% - 50px");2.12766%
+    width: calc(~"25% - 50px");
+  }
   .component-write.four.columns {
-    width: 23.87489%;
+    //width: calc(~"31.91489% - 50px");
+    width: calc(~"33.333% - 50px");
   }
   .component-write.six.columns {
-    width: 39.93617%;
+    width: calc(~"50% - 50px");
+  }
+  .component-write.eight.columns {
+    width: calc(~"64.95745% - 50px");
+  }
+  .component-write.twelve.columns {
+    margin-right:0px;
   }
   .fa-eye {
         margin: auto;

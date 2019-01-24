@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use WindfallInc\Woodpecker\Traits\LogsoutGuard;
+use Illuminate\Http\Request;
+use App\Dashboard;
 
 class LoginController extends Controller
 {
@@ -59,6 +61,13 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('dashboard');
+    }
+
+    public function field(Request $request)
+    {
+        $email = $this->username();
+
+        return filter_var($request->get($email), FILTER_VALIDATE_EMAIL) ? $email : 'username';
     }
 
     protected function credentials(Request $request)
