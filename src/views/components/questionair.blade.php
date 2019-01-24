@@ -4,7 +4,7 @@
 	@if(isset($form))
 
 	<h3>{{$form->title}}</h3>
-	<form action="/form/{{$form->id}}" method="post">
+	<form action="/form/{{$form->id}}" method="post" id="{{$form->id}}">
 		@csrf
 		@foreach($form->questions->sortBy('order') as $q)
 			@php $count = $count + $q->columnInt; @endphp
@@ -55,12 +55,11 @@
 				@endif
 				<div class="row">
 					<div class="twelve columns">
-						<input type="submit" value="{{$form->cta}}">
+						{!! NoCaptcha::renderJs() !!}
+						{!! NoCaptcha::displaySubmit($form->id, $form->cta) !!}
 					</div>
 				</div>
 			@endif
-
-			{!! NoCaptcha::renderJs() !!}
 
 
 		@endforeach
