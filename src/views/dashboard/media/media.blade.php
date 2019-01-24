@@ -6,7 +6,7 @@
   @endpush
 
 
-    <div class="row no-gutter">
+    <div class="row">
       <p></p>
     </div>
     <div class="row heading">

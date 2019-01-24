@@ -461,7 +461,7 @@ class DashboardController extends Controller
         }
 
         $component->save();
-        $content->components()->attach($component);
+        $content->components()->associate($component);
         if($component->slug == 'carousal'){
           $imagecount = 0;
           if(Input::hasFile('carousalimages'))
@@ -503,7 +503,7 @@ class DashboardController extends Controller
           $component->form()->associate($form);
           $component->save();
           // do not create a snapshot of any page with a Form
-          $hasform = true;
+          $dynamic = true;
         }
         $count++;
 
@@ -527,10 +527,10 @@ class DashboardController extends Controller
             $lastComponent = Component::orderBy('id', 'DESC')->first();
             $lastComponent = $lastComponent->id;
             $lastComponent++;
-            $content->components()->detach($component);
+            $content->components()->dissociate($component);
             $component->id = $lastComponent;
             $component->save();
-            $content->components()->attach($component);
+            $content->components()->associate($component);
             continue;
           }
         }
@@ -564,7 +564,7 @@ class DashboardController extends Controller
       * This will increase load times, and provide redundent
       * copies of the code as failsafe.
       */
-      if(!isset($hasform))
+      if(!isset($dynamic))
       {
         $url = url('/get/loop/'. $content->id);
         $code     = file_get_contents($url);
@@ -661,6 +661,10 @@ class DashboardController extends Controller
     {
           $templates = Template::all();
           $lastcustom = CustomField::orderBy('id', 'DESC')->first();
+          if(!isset($lastcustom))
+          {
+            $lastcustom = 1;
+          }
           $lastcustom = $lastcustom->id;
           return view('dashboard.types.type-write', compact('templates','lastcustom'));
     }

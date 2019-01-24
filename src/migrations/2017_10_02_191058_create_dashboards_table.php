@@ -22,6 +22,7 @@ class CreateDashboardsTable extends Migration
             $table->integer('menus')->default('0');
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('confirmed')->default('0');
             $table->integer('tutorial_1')->default('0'); // tutorial toggle
         });
     }

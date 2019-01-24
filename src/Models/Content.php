@@ -27,7 +27,7 @@ class Content extends Model
         return $this->belongsTo('App\Template');
 	}
 	public function components() {
-        return $this->belongsToMany('App\Component');
+        return $this->hasMany('App\Component');
 	}
 	public function media() {
         return $this->belongsToMany('App\Media');

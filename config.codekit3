@@ -140,17 +140,6 @@
 		"oAP": "\/src\/assets\/css\/woodpecker\/app.css.map",
 		"oF": 0
 		},
-	"\/src\/assets\/css\/woodpecker\/jaunt-logo.bak.png": {
-		"ft": 32768,
-		"iS": 4546,
-		"oA": 0,
-		"oAP": "\/src\/assets\/css\/woodpecker\/jaunt-logo.bak.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
 	"\/src\/assets\/css\/woodpecker\/simple-woodpecker.png": {
 		"ft": 32768,
 		"iS": 4546,
@@ -183,10 +172,10 @@
 		"oT": 1,
 		"q": 100
 		},
-	"\/src\/assets\/docs\/uploaded-2018\/a-freaking-pdf.pdf": {
+	"\/src\/assets\/docs\/uploaded-2019\/a-freaking-pdf.pdf": {
 		"ft": 8192,
 		"oA": 2,
-		"oAP": "\/src\/assets\/docs\/uploaded-2018\/a-freaking-pdf.pdf",
+		"oAP": "\/src\/assets\/docs\/uploaded-2019\/a-freaking-pdf.pdf",
 		"oF": 0
 		},
 	"\/src\/assets\/featured\/default.jpg": {
@@ -613,12 +602,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/migrations\/2017_08_04_185939_create_category_media_table.php",
-		"oF": 0
-		},
-	"\/src\/migrations\/2017_08_04_185939_create_component_content_table.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/migrations\/2017_08_04_185939_create_component_content_table.php",
 		"oF": 0
 		},
 	"\/src\/migrations\/2017_08_04_185939_create_content_media_table.php": {

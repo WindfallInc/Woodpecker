@@ -70,6 +70,16 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return redirect()->route('login')
+            ->with(['success' => 'Success! An admin will still need to activate your account before you can go any further.']);
+    }
+
     /**
      * Show the application registration form.
      *

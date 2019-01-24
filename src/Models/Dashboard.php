@@ -10,13 +10,16 @@ class Dashboard extends Authenticatable
 {
     use Notifiable;
 
+    const confirmed = 1;
+    const UNCONFIRMED = 0;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','confirmed'
     ];
 
     /**

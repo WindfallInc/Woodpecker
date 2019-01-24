@@ -17,11 +17,11 @@
       <div class="four columns">
       </div>
       <div class="four columns">
-        <button class="nope"><h3 class="store">Save Catagory</h3></button>
+        <button class="nope"><h3 class="store">Save Category</h3></button>
       </div>
     </div>
 
-    <div class="row no-gutter">
+    <div class="row">
       <hr>
 
       <div class="four columns">

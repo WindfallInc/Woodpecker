@@ -38,6 +38,7 @@ class CreateComponentsTable extends Migration
             $table->integer('order')->nullable(); // control the order in which components are loaded ->  content->components->orderBy('order')->get();
             $table->string('link_target')->nullable(); // Specify if component will have a link that needs to be targeted
             $table->string('outside')->nullable(); // If on - link target="_blank" set
+            $table->integer('content_id')->nullable(); // content relation
             $table->timestamps();
             $table->softDeletes();
         });

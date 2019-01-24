@@ -60,4 +60,15 @@ class LoginController extends Controller
     {
         return Auth::guard('dashboard');
     }
+
+    protected function credentials(Request $request)
+    {
+        $field = $this->field($request);
+
+        return [
+            $field => $request->get($this->username()),
+            'password' => $request->get('password'),
+            'confirmed' => User::CONFIRMED,
+        ];
+    }
 }
