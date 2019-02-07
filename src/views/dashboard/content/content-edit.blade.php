@@ -333,11 +333,11 @@
   <div class="expand-tab advanced" id="advanced">
     <div class="row">
       <div class="six columns">
-        <p>Meta Keywords (separate with commas)
-        <input type="text" name="keywords" value="{{$content->keywords}}"></p>
+        <p>Meta Keywords (separate with commas) &nbsp; <span class="tiny" id="keywordcounter"></span>
+        <input type="text" name="keywords" value="{{$content->keywords}}" id="keywords">></p>
         <p>&nbsp;</p>
-        <p>Meta Description
-        <input type="text" name="metadesc" value="{{$content->metadesc}}"></p>
+        <p>Meta Description &nbsp; <span class="tiny" id="metacounter"></span>
+        <input type="text" name="metadesc" value="{{$content->metadesc}}" id="meta"></p>
         <p>&nbsp;</p>
       </div>
       <div class="six columns">
@@ -395,6 +395,8 @@ $('#contentsubmission').submit( function(event) {
 
     </script>
     @include('dashboard.functions.scrubber')
+    @include('dashboard.functions.meta')
+    @include('dashboard.functions.prevent')
     @include('dashboard.functions.basic')
     @include('dashboard.functions.components-rows')
     @include('dashboard.functions.toggle-view')
@@ -405,21 +407,7 @@ $('#contentsubmission').submit( function(event) {
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @include('dashboard.functions.draggable')
     @include('dashboard.functions.links')
-    <script>
-      $(document).on('click', '.tab', function(e){
-        $('.expand-tab').removeClass('active');
-        $('.tab').removeClass('active');
-        $(this).addClass('active');
-        var expand = $(this).data('expand');
-        $('#'+expand).addClass('active');
-      });
-      $(document).on('click', '.component-write a', function(e){
-        e.preventDefault();
-      });
-      $(document).on('click', '.component-preview a', function(e){
-        e.preventDefault();
-      });
-    </script>
+
   @endpush
 
 @endsection

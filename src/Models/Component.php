@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Component extends Model
 {
 	use SoftDeletes;
+
+	protected $touches = ['content'];
+
 	public function content() {
         return $this->hasOne('App\Content');
 	}

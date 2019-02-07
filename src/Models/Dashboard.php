@@ -10,7 +10,7 @@ class Dashboard extends Authenticatable
 {
     use Notifiable;
 
-    const confirmed = 1;
+    const CONFIRMED = 1;
     const UNCONFIRMED = 0;
 
     /**

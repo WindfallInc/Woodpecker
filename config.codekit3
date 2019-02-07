@@ -1048,6 +1048,18 @@
 		"oAP": "\/src\/views\/dashboard\/functions\/links.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/functions\/meta.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/meta.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/functions\/prevent.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/prevent.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/functions\/scrubber.blade.php": {
 		"ft": 8192,
 		"oA": 2,

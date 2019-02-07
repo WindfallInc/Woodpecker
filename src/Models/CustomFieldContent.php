@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomFieldContent extends Model
 {
+
+	protected $touches = ['content'];
+	
 	public function customField() {
         return $this->belongsTo('App\CustomField');
 	}

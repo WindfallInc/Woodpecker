@@ -136,11 +136,11 @@
   <div class="expand-tab advanced" id="advanced">
     <div class="row">
       <div class="six columns">
-        <p>Meta Keywords (separate with commas)
-        <input type="text" name="keywords"></p>
+        <p>Meta Keywords (separate with commas) &nbsp; <span class="tiny" id="keywordcounter"></span>
+        <input type="text" name="keywords" id="keywords"></p>
         <p>&nbsp;</p>
-        <p>Meta Description
-        <input type="text" name="metadesc"></p>
+        <p>Meta Description &nbsp; <span class="tiny" id="metacounter"></span>
+        <input type="text" name="metadesc" id="meta"></p>
         <p>&nbsp;</p>
       </div>
       <div class="six columns">
@@ -177,6 +177,8 @@ $(document).on('mouseover', '.store', function(){
 
 </script>
 @include('dashboard.functions.scrubber')
+@include('dashboard.functions.meta')
+@include('dashboard.functions.prevent')
 @include('dashboard.functions.basic')
 @include('dashboard.functions.components-rows')
 @include('dashboard.functions.toggle-view')
@@ -188,21 +190,6 @@ $(document).on('mouseover', '.store', function(){
 @include('dashboard.functions.draggable')
 @include('dashboard.functions.links')
 
-<script>
-  $(document).on('click', '.tab', function(e){
-    $('.expand-tab').removeClass('active');
-    $('.tab').removeClass('active');
-    $(this).addClass('active');
-    var expand = $(this).data('expand');
-    $('#'+expand).addClass('active');
-  });
-  $(document).on('click', '.component-write a', function(e){
-    e.preventDefault();
-  });
-  $(document).on('click', '.component-preview a', function(e){
-    e.preventDefault();
-  });
-</script>
 
 
 

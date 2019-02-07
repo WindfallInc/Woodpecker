@@ -77,7 +77,7 @@ class LoginController extends Controller
         return [
             $field => $request->get($this->username()),
             'password' => $request->get('password'),
-            'confirmed' => User::CONFIRMED,
+            'confirmed' => Dashboard::CONFIRMED,
         ];
     }
 }
