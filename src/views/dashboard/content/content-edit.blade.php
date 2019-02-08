@@ -334,7 +334,7 @@
     <div class="row">
       <div class="six columns">
         <p>Meta Keywords (separate with commas) &nbsp; <span class="tiny" id="keywordcounter"></span>
-        <input type="text" name="keywords" value="{{$content->keywords}}" id="keywords">></p>
+        <input type="text" name="keywords" value="{{$content->keywords}}" id="keywords"></p>
         <p>&nbsp;</p>
         <p>Meta Description &nbsp; <span class="tiny" id="metacounter"></span>
         <input type="text" name="metadesc" value="{{$content->metadesc}}" id="meta"></p>
