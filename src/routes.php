@@ -25,6 +25,7 @@ Route::group(['prefix' => 'dashboard','middleware' => 'web'], function () {
   Route::get('/password/reset/{token}', 'App\Http\Controllers\DashboardAuth\ResetPasswordController@showResetForm');
 
 Route::get('/','App\Http\Controllers\DashboardController@index');
+Route::get('/home','App\Http\Controllers\DashboardController@index');
 
 
 
