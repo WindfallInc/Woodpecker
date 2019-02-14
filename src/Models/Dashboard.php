@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Woodpecker;
 
 use App\Notifications\DashboardResetPassword;
 use Illuminate\Notifications\Notifiable;

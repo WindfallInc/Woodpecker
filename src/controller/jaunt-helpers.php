@@ -1,11 +1,11 @@
 <?php
-use App\Template;
-use App\Type;
-use App\Content;
-use App\Category;
-use App\Component;
-use App\Menu;
-use App\Nav;
+use App\Woodpecker\Template;
+use App\Woodpecker\Type;
+use App\Woodpecker\Content;
+use App\Woodpecker\Category;
+use App\Woodpecker\Component;
+use App\Woodpecker\Menu;
+use App\Woodpecker\Nav;
 
 function loop($type)
 {

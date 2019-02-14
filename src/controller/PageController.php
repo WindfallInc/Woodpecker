@@ -10,20 +10,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Facades\Route;
 use App\User;
-use App\Template;
-use App\Type;
-use App\Content;
-use App\Category;
-use App\Row;
-use App\Component;
-use App\Menu;
-use App\Nav;
-use App\Event;
-use App\Form;
-use App\Question;
-use App\Submission;
-use App\Answer;
-use App\Html;
+use App\Woodpecker\Template;
+use App\Woodpecker\Type;
+use App\Woodpecker\Content;
+use App\Woodpecker\Category;
+use App\Woodpecker\Row;
+use App\Woodpecker\Component;
+use App\Woodpecker\Menu;
+use App\Woodpecker\Nav;
+use App\Woodpecker\Form;
+use App\Woodpecker\Question;
+use App\Woodpecker\Submission;
+use App\Woodpecker\Answer;
+use App\Woodpecker\Html;
 
 
 use Auth;
@@ -43,21 +42,6 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-      $page 	 = Content::where('slug','home')->where('published', 1)->first();
-      if(!isset($page)){
-        abort(404);
-      }
-      if(isset($page->template)){
-        $template = Template::where('slug',$page->template)->first();
-      }
-      else{
-        $template = Template::where('slug','home-page')->first();
-      }
-
-      return view('templates.'.$template->slug, compact('page','template'));
-    }
 
     public function home()
     {
@@ -66,7 +50,7 @@ class PageController extends Controller
         abort(404);
       }
       if(isset($page->template)){
-        $template = Template::where('slug',$page->template)->first();
+        $template = $page->template
       }
       else{
         $template = Template::where('slug','home-page')->first();
@@ -152,7 +136,12 @@ class PageController extends Controller
         }
         $body = Html::where('content_id', $page->id)->where('published',1)->first();
 
-        $template = $page->type->templates->first();
+        if(isset($page->template->id)){
+          $template= $page->template;
+        }
+        else {
+          $template = $page->type->templates->sortByDesc('updated_at')->first();
+        }
 
         return view('templates.'.$template->slug, compact('page','template', 'body'));
 
@@ -214,11 +203,9 @@ class PageController extends Controller
     public function loopContent($id){
 
         $page 	 = Content::find($id);
-
         if(!isset($page)){
           abort(404);
         }
-
 
         return view('dashboard.includes.content-loop', compact('page'));
     }
