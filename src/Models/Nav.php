@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Nav extends Model
 {
 	public function menu() {
-        return $this->belongsTo('App\Menu');
+        return $this->belongsTo('App\Woodpecker\Menu');
 	}
 	public function parent() {
-        return $this->belongsTo('App\Nav');
+        return $this->belongsTo('App\Woodpecker\Nav');
 	}
 	public function children() {
 				$children = Nav::where('parent_id', $this->id)->get();

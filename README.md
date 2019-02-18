@@ -38,6 +38,27 @@ Optional Helper functions to include in composer.json:
         ],
 ```
 
+If you are using Orca and Woodpecker, ensure your laravel mix file looks similar to:
+
+```js
+const mix = require('laravel-mix');
+
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
+
+mix.js('resources/js/app.js', 'public/js')
+   .less('resources/assets/less/app.less', 'public/css')
+   .less('resources/assets/less//woodpecker/admin.less', 'public/css/woodpecker');
+```
+
 ## Customization
 
 **Creating a new template**

@@ -72,7 +72,7 @@ return [
     'providers' => [
         'dashboards' => [
             'driver' => 'eloquent',
-            'model' => App\Dashboard::class,
+            'model' => App\Woodpecker\Dashboard::class,
         ],
 
         'users' => [

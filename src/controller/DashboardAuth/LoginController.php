@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use WindfallInc\Woodpecker\Traits\LogsoutGuard;
 use Illuminate\Http\Request;
-use App\Dashboard;
+use App\Woodpecker\Dashboard;
 
 class LoginController extends Controller
 {

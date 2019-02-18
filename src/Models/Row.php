@@ -12,10 +12,10 @@ class Row extends Model
 	protected $touches = ['content'];
 
 	public function content() {
-        return $this->belongsTo('App\Content');
+        return $this->belongsTo('App\Woodpecker\Content');
 	}
 	public function components() {
-        return $this->belongsToMany('App\Component');
+        return $this->belongsToMany('App\Woodpecker\Component');
 	}
 
 }

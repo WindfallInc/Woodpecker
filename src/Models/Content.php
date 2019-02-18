@@ -9,31 +9,31 @@ class Content extends Model
 {
 	use SoftDeletes;
 	public function categories() {
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany('App\Woodpecker\Category');
 	}
 	public function rows() {
-        return $this->hasMany('App\Row');
+        return $this->hasMany('App\Woodpecker\Row');
 	}
 	public function customFieldContent() {
-        return $this->hasMany('App\CustomFieldContent');
+        return $this->hasMany('App\Woodpecker\CustomFieldContent');
 	}
 	public function htmls() {
-        return $this->hasMany('App\Html');
+        return $this->hasMany('App\Woodpecker\Html');
 	}
 	public function type() {
-        return $this->belongsTo('App\Type');
+        return $this->belongsTo('App\Woodpecker\Type');
 	}
 	public function template() {
-        return $this->belongsTo('App\Template');
+        return $this->belongsTo('App\Woodpecker\Template');
 	}
 	public function components() {
-        return $this->hasMany('App\Component');
+        return $this->hasMany('App\Woodpecker\Component');
 	}
 	public function media() {
-        return $this->belongsToMany('App\Media');
+        return $this->belongsToMany('App\Woodpecker\Media');
 	}
 	public function images() {
-        return $this->belongsToMany('App\Media');
+        return $this->belongsToMany('App\Woodpecker\Media');
 	}
 	public function featimg() {
         $featured = $this->images()->where('featured', 1)->first();

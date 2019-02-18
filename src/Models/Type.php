@@ -9,12 +9,12 @@ class Type extends Model
 {
 	use SoftDeletes;
 	public function contents() {
-        return $this->hasMany('App\Content');
+        return $this->hasMany('App\Woodpecker\Content');
 	}
 	public function templates() {
-        return $this->belongsToMany('App\Template');
+        return $this->belongsToMany('App\Woodpecker\Template');
 	}
 	public function custom_fields() {
-        return $this->belongsToMany('App\CustomField');
+        return $this->belongsToMany('App\Woodpecker\CustomField');
 	}
 }

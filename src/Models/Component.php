@@ -12,7 +12,7 @@ class Component extends Model
 	protected $touches = ['content'];
 
 	public function content() {
-        return $this->hasOne('App\Content');
+        return $this->belongsTo('App\Woodpecker\Content');
 	}
 	public function loop($slug) {
         $type =  Type::where('slug', $slug)->first();
@@ -27,10 +27,10 @@ class Component extends Model
 				return $forms;
 	}
 	public function form() {
-        return $this->belongsTo('App\Form');
+        return $this->belongsTo('App\Woodpecker\Form');
 	}
 	public function images() {
-        return $this->hasMany('App\Media');
+        return $this->hasMany('App\Woodpecker\Media');
 	}
 
 }

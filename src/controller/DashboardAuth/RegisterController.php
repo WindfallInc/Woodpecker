@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DashboardAuth;
 
-use App\Dashboard;
+use App\Woodpecker\Dashboard;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
