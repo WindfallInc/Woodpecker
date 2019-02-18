@@ -50,7 +50,7 @@ class PageController extends Controller
         abort(404);
       }
       if(isset($page->template)){
-        $template = $page->template
+        $template = $page->template;
       }
       else{
         $template = Template::where('slug','home-page')->first();
