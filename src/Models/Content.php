@@ -91,10 +91,31 @@ class Content extends Model
 
 	public function loop($slug) {
         $type =  Type::where('slug', $slug)->first();
-				return $type->contents->where('published', 1);
+				if(isset($type)){
+					return $type->contents->where('published', 1);
+				}
+				else {
+					return false;
+				}
 	}
 	public function loop3($slug) {
         $type =  Type::where('slug', $slug)->first();
-				return $type->contents->where('published', 1)->sortByDesc('updated_at')->take(3);
+				if(isset($type)){
+					return $type->contents->where('published', 1)->sortByDesc('updated_at')->take(3);
+				}
+				else {
+					return false;
+				}
+	}
+	public function loopByCat($slug, $cat) {
+        $type =  Type::where('slug', $slug)->first();
+				if(isset($type)){
+					return $type->contents->where('published', 1)->whereHas('category', function ($query) {
+    				$query->where('slug', $cat);
+					})->sortByDesc('updated_at')->take(10);
+				}
+				else {
+					return false;
+				}
 	}
 }

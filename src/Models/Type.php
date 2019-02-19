@@ -17,4 +17,7 @@ class Type extends Model
 	public function custom_fields() {
         return $this->belongsToMany('App\Woodpecker\CustomField');
 	}
+	public function components() {
+        return $this->hasMany('App\Woodpecker\Component');
+	}
 }

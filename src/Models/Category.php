@@ -12,4 +12,7 @@ class Category extends Model
 	public function images() {
         return $this->belongsToMany('App\Woodpecker\Media');
 	}
+	public function components() {
+        return $this->hasMany('App\Woodpecker\Component');
+	}
 }

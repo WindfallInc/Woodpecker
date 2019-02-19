@@ -144,7 +144,7 @@ class DashboardController extends Controller
 
         foreach($content->components as $component){
           $component->content()->dissociate();
-          $row->save();
+          $component->save();
         }
 
         $content->categories()->detach();
@@ -683,6 +683,7 @@ class DashboardController extends Controller
         $type->title      = Input::get('title');
         $type->slug       = str_slug(Input::get('title'),"-");
         $type->categories = Input::get('categories');
+        $type->editor     = Input::get('editor');
         $slug             = Input::get('template');
         $template         = Template::where('slug',$slug)->first();
         $type->save();

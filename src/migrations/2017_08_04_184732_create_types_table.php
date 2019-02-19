@@ -17,8 +17,9 @@ class CreateTypesTable extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title'); // Page, Post, Event, Etc
-            $table->string('slug',255); // slug for sorting
-            $table->string('categories',255)->nullable(); // Allow Categories?
+            $table->string('slug'); // slug for sorting
+            $table->integer('categories')->nullable(); // Allow Categories?
+            $table->integer('editor')->nullable(); // Allow editor?
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +27,7 @@ class CreateTypesTable extends Migration
         array(
             'title'    => 'Page',
             'slug'     => 'page',
+            'editor'     => '1',
         )
         );
         /*

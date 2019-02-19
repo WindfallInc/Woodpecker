@@ -19,26 +19,30 @@ class CreateComponentsTable extends Migration
             $table->text('title');
             $table->string('slug',255); // slug for sorting
             $table->string('image')->nullable(); // image
-            $table->longText('input1')->nullable(); // content in component section1
             $table->longText('content1')->nullable(); // content in component section1
-            $table->longText('input2')->nullable(); // content in component section2
             $table->longText('content2')->nullable(); // content in component section2
-            $table->longText('input3')->nullable(); // content in component section3
             $table->longText('content3')->nullable(); // content in component section3
-            $table->longText('input4')->nullable(); // content in component section4
             $table->longText('content4')->nullable(); // content in component section4
-            $table->longText('input5')->nullable(); // content in component section5
             $table->longText('content5')->nullable(); // content in component section5
-            $table->longText('input6')->nullable(); // content in component section6
             $table->longText('content6')->nullable(); // content in component section6
-            $table->integer('reqimg')->nullable(); // Does this type of component require an image?
             $table->integer('form_id')->nullable(); // Does this type of component require a form?
-            $table->string('columns')->nullable(); // How many columns will this component take up - three, four, twelve, etc
-            $table->string('type')->nullable(); // loop, insert, static
-            $table->integer('order')->nullable(); // control the order in which components are loaded ->  content->components->orderBy('order')->get();
-            $table->string('link_target')->nullable(); // Specify if component will have a link that needs to be targeted
             $table->string('outside')->nullable(); // If on - link target="_blank" set
             $table->integer('content_id')->nullable(); // content relation
+            $table->integer('order')->nullable(); // control the order in which components are loaded ->  content->components->orderBy('order')->get();
+            $table->integer('type_id')->nullable(); // content relation
+            $table->integer('category_id')->nullable(); // content relation
+            $table->longText('input1')->nullable(); // content in component section1
+            $table->longText('input2')->nullable(); // content in component section2
+            $table->longText('input3')->nullable(); // content in component section3
+            $table->longText('input4')->nullable(); // content in component section4
+            $table->longText('input5')->nullable(); // content in component section5
+            $table->longText('input6')->nullable(); // content in component section6
+            $table->integer('reqimg')->nullable(); // Does this type of component require an image?
+            $table->string('columns')->nullable(); // How many columns will this component take up - three, four, twelve, etc
+            $table->string('type')->nullable(); // loop, insert, static
+            $table->string('link_target')->nullable(); // Specify if component will have a link that needs to be targeted
+            $table->integer('type_selection')->nullable(); // content relation
+            $table->integer('category_selection')->nullable(); // content relation
             $table->timestamps();
             $table->softDeletes();
         });

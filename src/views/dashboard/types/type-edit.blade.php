@@ -31,6 +31,8 @@
         <p class="mini">Note that all slugs update automatically with their corresponding titles</p>
         <p>Enable Categories
         <input type="checkbox" name="categories" value='1' @if($type->categories=='1')checked @endif></p>
+        <p>Enable Advanced Content Editor
+        <input type="checkbox" name="editor" value='1' @if($type->editor=='1')checked @endif></p>
       </div>
       <div class="four push_two columns">
         <p class="select-box">Default Template
@@ -65,6 +67,7 @@
                     <option value="textbox">Textbox</option>
                     <option value="checkbox">Checkbox</option>
                     <option value="number">Number</option>
+                    <option value="date">Date</option>
                   </select>
                   <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 </p>
@@ -96,7 +99,7 @@
           if(x < max_fields){ //max input box allowed
               x++; //text box increment
               y++;
-              $(wrapper).append('<div class="custom_field row box"><i class="fa fa-minus-circle remove_field"></i> <p>Custom Field Name<input type="text" name="custom_field[]" placeholder="Featured, Has Sidebar, Advertisment" required><input type="hidden" name="custom_id[]" value="'+y+'" required></p><p class="select-box">Custom Field Type<select name="custom_type[]" required><option value="text">Text</option><option value="textbox">Textbox</option><option value="checkbox">Checkbox</option><option value="number">Number</option></select><i class="fa fa-sort-desc" aria-hidden="true"></i></p></div> '); //add input box
+              $(wrapper).append('<div class="custom_field row box"><i class="fa fa-minus-circle remove_field"></i> <p>Custom Field Name<input type="text" name="custom_field[]" placeholder="Featured, Has Sidebar, Advertisment" required><input type="hidden" name="custom_id[]" value="'+y+'" required></p><p class="select-box">Custom Field Type<select name="custom_type[]" required><option value="text">Text</option><option value="textbox">Textbox</option><option value="checkbox">Checkbox</option><option value="number">Number</option><option value="date">Date</option></select><i class="fa fa-sort-desc" aria-hidden="true"></i></p></div> '); //add input box
           }
       });
 

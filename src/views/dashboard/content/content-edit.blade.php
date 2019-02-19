@@ -91,6 +91,7 @@
 
     </div>
     <div id="linker" title="Enter Link URL"><input id="url" type="text" value=""><div class="outside-link">Outside link?<br><label class="switch"><input type="checkbox" id="target" value="_blank"><span class="slider round"></span></label></div><p id="error">Highlight what you want to link and click insert</p><input type="button" onclick="link()" value="Insert"></div>
+    @if($type->editor=='1')
     <div class="row">
       <div class="twelve columns">
         <div class="row-editor input_fields_wrap" id="sortable">
@@ -328,6 +329,7 @@
         <div class="more fa fa-plus-circle"></div>
       </div>
     </div>
+    @endif
 
   </div>
   <div class="expand-tab advanced" id="advanced">

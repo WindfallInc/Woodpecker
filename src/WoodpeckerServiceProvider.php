@@ -25,11 +25,17 @@ class WoodpeckerServiceProvider extends ServiceProvider
         __DIR__.'/Notifications' => base_path('app/Notifications'),
         __DIR__.'/assets' => base_path('public'),
         __DIR__.'/config' => base_path('config'),
-    ]);
+    ], 'woodpecker');
         $this->publishes([
        __DIR__.'/views/dashboard' => base_path('resources/views/dashboard'),
        __DIR__.'/assets/css/woodpecker' => base_path('public/css/woodpecker'),
-       __DIR__.'/less/woodpecker' => base_path('resources/assets/less/woodpecker'),
+       __DIR__.'/less/woodpecker/adminstyle.less' => base_path('resources/assets/less/woodpecker/adminstyle.less'),
+       __DIR__.'/less/woodpecker/animation.less' => base_path('resources/assets/less/woodpecker/animation.less'),
+       __DIR__.'/less/woodpecker/base.less' => base_path('resources/assets/less/woodpecker/base.less'),
+       __DIR__.'/less/woodpecker/component.less' => base_path('resources/assets/less/woodpecker/component.less'),
+       __DIR__.'/less/woodpecker/navigation.less' => base_path('resources/assets/less/woodpecker/navigation.less'),
+       __DIR__.'/less/woodpecker/options.less' => base_path('resources/assets/less/woodpecker/options.less'),
+       __DIR__.'/less/woodpecker/style.less' => base_path('resources/assets/less/woodpecker/style.less'),
        __DIR__.'/controller' => base_path('app/Http/Controllers'),
        __DIR__.'/Models' => base_path('app/Woodpecker'),
        __DIR__.'/migrations' => base_path('database/migrations'),

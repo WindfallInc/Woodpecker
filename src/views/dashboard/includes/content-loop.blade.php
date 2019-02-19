@@ -7,6 +7,7 @@
 --}}
 @php $count=0; @endphp
 @php $ad = 0; @endphp
+@php $columncount = 0; @endphp;
 @foreach($page->rows->sortBy('order') as $row)
   @php $count++; $columncount = 0; $columns = 0; $closed=true; @endphp
   @if($row->order == $count)

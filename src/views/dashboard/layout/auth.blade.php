@@ -62,7 +62,7 @@
 
     <header>
       <img src="/css/woodpecker/woodpecker-logo.png">
-  		<h3 class="serif">Login</h3>
+  		<h3 class="secondary-font">Login</h3>
   	</header>
 
 
