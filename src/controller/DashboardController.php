@@ -380,6 +380,8 @@ class DashboardController extends Controller
         $component->input6            = $father->input6;
         $component->columns           = $father->columns;
         $component->link_target       = $father->link_target;
+        $component->cat_selection     = $father->cat_selection;
+        $component->type_selection    = $father->type_selection;
         $component->reqimg            = $father->reqimg;
 
         if(isset($input1)){
