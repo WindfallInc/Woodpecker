@@ -20,7 +20,7 @@ Package auto discovers.
 Publish woodpecker assets, and migrate databases:
 
 ```shell
-php artisan vendor:publish --force
+php artisan vendor:publish --tag=woodpecker --force
 
 php artisan migrate
 ```
