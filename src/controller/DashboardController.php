@@ -430,6 +430,12 @@ class DashboardController extends Controller
           $component->outside  = Input::get('link_target'.$component->id);
           if(!isset($component->outside)){$component->outside = 'off';}
         }
+        if(isset($component->cat_selection)){
+          $component->category_id  = Input::get('catid'.$component->id);
+        }
+        if(isset($component->type_selection)){
+          $component->type_id  = Input::get('typeid'.$component->id);
+        }
 
         $image                      = Input::file('component'.$component->id.'-img');
 

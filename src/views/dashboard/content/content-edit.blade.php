@@ -194,12 +194,23 @@
                   $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{!!str_replace("'",'&#39;',$component->content3)!!}');
                   $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{!!str_replace("'",'&#39;',$component->content4)!!}');
                   $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{!!str_replace("'",'&#39;',$component->content5)!!}');
-                  @if($component->slug == 'featured')
-                  $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
-                  @elseif($component->slug == 'fancy-list' || $component->slug == 'story')
-                  $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content2)!!}');
-                  @elseif($component->slug == 'fancy-link')
-                  $('#component-row{{$component->id}}').find("input[name='input3[]']").prop('checked', true);
+                  @if(substr($component->input1, 0, 25)  == '<div class="content-bar">')
+                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content1)!!}');
+                  @endif
+                  @if(substr($component->input2, 0, 25)  == '<div class="content-bar">')
+                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content2)!!}');
+                  @endif
+                  @if(substr($component->input3, 0, 25)  == '<div class="content-bar">')
+                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
+                  @endif
+                  @if(substr($component->input4, 0, 25)  == '<div class="content-bar">')
+                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content4)!!}');
+                  @endif
+                  @if(substr($component->input5, 0, 25)  == '<div class="content-bar">')
+                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content5)!!}');
+                  @endif
+                  @if(substr($component->input6, 0, 25)  == '<div class="content-bar">')
+                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content6)!!}');
                   @endif
                 });
                 </script>
@@ -308,12 +319,23 @@
               $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{!!str_replace("'",'&#39;',$component->content3)!!}');
               $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{!!str_replace("'",'&#39;',$component->content4)!!}');
               $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{!!str_replace("'",'&#39;',$component->content5)!!}');
-              @if($component->slug == 'featured')
-              $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
-              @elseif($component->slug == 'fancy-list' || $component->slug == 'story')
-              $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content2)!!}');
-              @elseif($component->slug == 'fancy-link')
-              $('#component-row{{$component->id}}').find("input[name='input3[]']").prop('checked', true);
+              @if(substr($component->input1, 0, 25)  == '<div class="content-bar">')
+                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content1)!!}');
+              @endif
+              @if(substr($component->input2, 0, 25)  == '<div class="content-bar">')
+                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content2)!!}');
+              @endif
+              @if(substr($component->input3, 0, 25)  == '<div class="content-bar">')
+                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
+              @endif
+              @if(substr($component->input4, 0, 25)  == '<div class="content-bar">')
+                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content4)!!}');
+              @endif
+              @if(substr($component->input5, 0, 25)  == '<div class="content-bar">')
+                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content5)!!}');
+              @endif
+              @if(substr($component->input6, 0, 25)  == '<div class="content-bar">')
+                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content6)!!}');
               @endif
 
             });
