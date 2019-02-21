@@ -101,6 +101,13 @@ Views->dashboard->components house all backend component code.
 
 Within the database, add a new 'component' and set its 'type' to template.
 
+**Custom Routes**
+
+Any route in the web.php file can override Woodpeckers routes. Ensure they are named and lead to your own custom controller
+```php
+Route::get('/anything', 'WebsiteController@index')->name('anything');
+```
+
 ## Updating
 After your composer update, to finalize your upgrade
 ``` shell
