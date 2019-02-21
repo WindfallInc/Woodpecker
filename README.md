@@ -70,27 +70,27 @@ Add the newly created template to the database table 'templates'
 The template will now appear in the backend, becoming available for any datatypes, menus, or pages to use.
 
 **Featured Image**
-```shell
+```php
 $page->featimg()
 ```
 **Title**
-```shell
+```php
 $page->title
 ```
 **Content**
-```shell
+```php
 @include('dashboard.includes.body')
 ```
 **Any Custom Fields**
-```shell
+```php
 $page->get_the('field name')
 ```
 **Meta Desc**
-```shell
+```php
 $page->metadesc
 ```
 **Meta Keywords**
-```shell
+```php
 $page->keywords
 ```
 **Creating a new component**
