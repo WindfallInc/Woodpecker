@@ -20,6 +20,7 @@ class CreateTypesTable extends Migration
             $table->string('slug'); // slug for sorting
             $table->integer('categories')->nullable(); // Allow Categories?
             $table->integer('editor')->nullable(); // Allow editor?
+            $table->integer('time')->nullable(); // Time sensitive content? (events, announcements, news, classes, exhibits)
             $table->timestamps();
             $table->softDeletes();
         });

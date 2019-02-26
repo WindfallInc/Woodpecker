@@ -157,6 +157,8 @@ class DashboardController extends Controller
       $content->keywords                    = Input::get('keywords');
       $content->metadesc                    = Input::get('metadesc');
       $content->slug                        = str_slug(Input::get('title'),"-");
+      $content->start_date                  = strtotime(Input::get('start_date'));
+      $content->end_date                    = strtotime(Input::get('end_date'));
       $template                             = Template::find(Input::get('template'));
       if(isset($template)){
         $content->template()->associate($template);
@@ -380,7 +382,7 @@ class DashboardController extends Controller
         $component->input6            = $father->input6;
         $component->columns           = $father->columns;
         $component->link_target       = $father->link_target;
-        $component->cat_selection     = $father->cat_selection;
+        $component->category_selection     = $father->category_selection;
         $component->type_selection    = $father->type_selection;
         $component->reqimg            = $father->reqimg;
 
@@ -432,7 +434,7 @@ class DashboardController extends Controller
           $component->outside  = Input::get('link_target'.$component->id);
           if(!isset($component->outside)){$component->outside = 'off';}
         }
-        if(isset($component->cat_selection)){
+        if(isset($component->category_selection)){
           $component->category_id  = Input::get('catid'.$component->id);
         }
         if(isset($component->type_selection)){
@@ -516,6 +518,10 @@ class DashboardController extends Controller
           $component->form()->associate($form);
           $component->save();
           // do not create a snapshot of any page with a Form
+          $dynamic = true;
+        }
+        if($component->dynamic == 1)
+        {
           $dynamic = true;
         }
         $count++;
@@ -692,6 +698,7 @@ class DashboardController extends Controller
         $type->slug       = str_slug(Input::get('title'),"-");
         $type->categories = Input::get('categories');
         $type->editor     = Input::get('editor');
+        $type->time     = Input::get('time');
         $slug             = Input::get('template');
         $template         = Template::where('slug',$slug)->first();
         $type->save();

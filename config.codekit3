@@ -124,22 +124,6 @@
 		"oAP": "\/src\/assets\/css\/woodpecker\/admin.css.map",
 		"oF": 0
 		},
-	"\/src\/assets\/css\/woodpecker\/app.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/src\/assets\/css\/woodpecker\/app-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"\/src\/assets\/css\/woodpecker\/app.css.map": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/assets\/css\/woodpecker\/app.css.map",
-		"oF": 0
-		},
 	"\/src\/assets\/css\/woodpecker\/simple-woodpecker.png": {
 		"ft": 32768,
 		"iS": 4546,
@@ -1084,6 +1068,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/functions\/basic.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/functions\/categories.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/categories.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/functions\/columns.blade.php": {

@@ -47,19 +47,26 @@
         <p>&nbsp;</p>
         <p>Featured Image
         <input type="file" name="featimage" id="images"></p>
+      @if($type->time=='1')
+        <p>Start Date
+        <input type="date" name="start_date" value="{{date('d/m/Y',$start_date)}}"></p>
+        <p>End Date
+        <input type="date" name="end_date" value="{{date('d/m/Y',$end_date)}}"></p>
+      @endif
       @if($type->categories=='1')
         <p>&nbsp;</p>
 
-        <p class="select-box">Categories
-        <select name="categories[]">
-            <option value="">- Choose a Category -</option>
-          @foreach($categories as $cat)
-            <option value="{{$cat->slug}}" @if(isset($content->categories->first()->slug) && $content->categories->first()->slug == $cat->slug) selected @endif>{{$cat->title}}</option>
-          @endforeach
+        <p class="round-button" id="category-select">Select Categories</p>
 
-
-        </select>
-        <i class="fa fa-sort-desc" aria-hidden="true"></i></p>
+        <div class="modal-backdrop" id="category-selection">
+          <div class="x"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
+            <div class="categories">
+              @foreach($categories as $cat)
+                <p>{{$cat->title}}
+                <input type="checkbox" value="{{$cat->slug}}" @if($content->categories->contains($cat->id)) checked @endif></p>
+              @endforeach
+            </div>
+        </div>
       @endif
 
         @foreach($type->custom_fields as $custom)
@@ -426,6 +433,7 @@ $('#contentsubmission').submit( function(event) {
     @include('dashboard.functions.toggle-view')
     @include('dashboard.functions.transfer')
     @include('dashboard.functions.image')
+    @include('dashboard.functions.categories')
     @include('dashboard.functions.columns')
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

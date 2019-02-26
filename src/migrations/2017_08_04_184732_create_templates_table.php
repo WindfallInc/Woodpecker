@@ -18,24 +18,28 @@ class CreateTemplatesTable extends Migration
             $table->increments('id');
             $table->text('title');
             $table->string('slug',255); // slug for sorting
+            $table->string('loopsize',255); // slug for sorting
             $table->timestamps();
         });
         DB::table('templates')->insert(
         array(
             'title'    => 'Basic Page',
             'slug'     => 'basic-page',
+            'loopsize'     => 'twelve',
         )
         );
         DB::table('templates')->insert(
         array(
             'title'    => 'Home Page',
             'slug'     => 'home-page',
+            'loopsize'     => 'twelve',
         )
         );
         DB::table('templates')->insert(
         array(
             'title'    => 'Blog',
             'slug'     => 'blog',
+            'loopsize'     => 'twelve',
         )
         );
     }

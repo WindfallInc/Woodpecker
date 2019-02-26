@@ -24,6 +24,8 @@ class CreateContentsTable extends Migration
             $table->integer('template_id')->nullable(); // template type override
             $table->integer('type_id'); // post, page, etc
             $table->integer('published')->default(0); // 0 is draft 1 is published
+            $table->integer('start_date')->nullable(); // template type override
+            $table->integer('end_date')->nullable(); // template type override
             $table->timestamps();
             $table->softDeletes();
         });

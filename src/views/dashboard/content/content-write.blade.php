@@ -45,15 +45,27 @@
         <p>Featured Image
         <input type="file" name="featimage" id="images"></p>
 
+        @if($type->time=='1')
+          <p>Start Date
+          <input type="date" name="start_date"></p>
+          <p>End Date
+          <input type="date" name="end_date"></p>
+        @endif
+
         @if($type->categories=='1')
-        <p>&nbsp;</p>
-        <p class="select-box">Categories
-        <select name="categories[]">
-          @foreach($categories as $cat)
-            <option value="{{$cat->slug}}">{{$cat->title}}</option>
-          @endforeach
-        </select>
-        <i class="fa fa-sort-desc" aria-hidden="true"></i></p>
+          <p>&nbsp;</p>
+
+          <p class="round-button" id="category-select">Select Categories</p>
+
+          <div class="modal-backdrop" id="category-selection">
+            <div class="x"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
+              <div class="categories">
+                @foreach($categories as $cat)
+                  <p>{{$cat->title}}
+                  <input type="checkbox" value="{{$cat->slug}}" @if($content->categories->contains($cat->id)) checked @endif></p>
+                @endforeach
+              </div>
+          </div>
         @endif
         <p>&nbsp;</p>
 
@@ -186,6 +198,7 @@ $(document).on('mouseover', '.store', function(){
 @include('dashboard.functions.toggle-view')
 @include('dashboard.functions.transfer')
 @include('dashboard.functions.image')
+@include('dashboard.functions.categories')
 @include('dashboard.functions.columns')
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

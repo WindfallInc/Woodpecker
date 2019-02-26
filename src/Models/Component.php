@@ -30,7 +30,13 @@ class Component extends Model
 	public function loop($slug) {
         $type =  Type::where('slug', $slug)->first();
 				if(isset($type)){
-					return $type->contents->where('published', 1)->sortByDesc('updated_at')->take(10);
+					if($type->time == 1)
+					{
+						return $type->contents->published()->sortBy('end_date');
+					}
+					else {
+						return $type->contents->published()->sortByDesc('updated_at');
+					}
 				}
 				else {
 					return false;
@@ -45,16 +51,29 @@ class Component extends Model
 					return false;
 				}
 	}
-	public function loopByCat($slug, $cat) {
-        $type =  Type::where('slug', $slug)->first();
+	public function loopByCatType($type, $cat) {
+        $type =  Type::where('slug', $type)->first();
 				if(isset($type)){
-					return $type->contents->where('published', 1)->whereHas('category', function ($query) {
-    				$query->where('slug', $cat);
-					})->sortByDesc('updated_at')->take(10);
+					if($type->time == 1)
+					{
+						return $type->contents->published()->whereHas('categories', function ($query) {
+	    				$query->where('slug', $cat);
+						})->sortBy('end_date');
+					}
+					else {
+						return $type->contents->published()->whereHas('categories', function ($query) {
+	    				$query->where('slug', $cat);
+						})->sortByDesc('updated_at');
+					}
+
 				}
 				else {
 					return false;
 				}
+	}
+	public function loopByCat($cat) {
+				$category = Category::where('slug',$cat)->first();
+				return $category->contents->where('published', 1)->sortByDesc('updated_at');
 	}
 	public function forms() {
 				$forms = Form::all();

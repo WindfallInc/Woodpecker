@@ -8,6 +8,7 @@
 .secondary-font {
   font-family: "clarendon-text-pro", serif;
   font-weight: 400;
+  font-style: normal;
 }
 .serif {
   font-family: "clarendon-text-pro", serif;
@@ -3010,6 +3011,7 @@ header form input.active {
   color: #fff;
   font-family: "clarendon-text-pro", serif;
   font-weight: 400;
+  font-style: normal;
   font-style: italic;
   transition: linear all .2s;
 }
@@ -3464,6 +3466,7 @@ button:hover {
   color: white;
   font-family: "clarendon-text-pro", serif;
   font-weight: 400;
+  font-style: normal;
   margin: 30px 0 0 0;
   transition: linear all .2s;
 }
@@ -3955,6 +3958,10 @@ a:hover {
   padding-bottom: 20px;
   opacity: 1;
   cursor: pointer;
+  transition: linear all .2s;
+}
+.admin .component-preview .row {
+  display: flex;
 }
 .admin .component-preview .columns {
   width: 100%;
@@ -4427,6 +4434,52 @@ a:hover {
   width: 500px;
   top: 20px;
   background-color: #fcfaf7;
+}
+.admin .round-button {
+  background-color: #fff;
+  border-radius: 25px;
+  border: solid 2px #333;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.admin .modal-backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 2;
+  -webkit-animation-name: backdropfadeout;
+  -webkit-animation-duration: .6s;
+  animation-name: backdropfadeout;
+  animation-duration: .6s;
+  animation-fill-mode: forwards;
+}
+.admin .modal-backdrop .x {
+  position: absolute;
+  top: 5vh;
+  right: 10vw;
+  color: #fff;
+  font-size: 3em;
+  cursor: pointer;
+}
+.admin .modal-backdrop.active {
+  display: flex;
+  -webkit-animation-name: backdropfade;
+  -webkit-animation-duration: .6s;
+  animation-name: backdropfade;
+  animation-duration: .6s;
+  animation-fill-mode: forwards;
+}
+.admin .modal-backdrop.active .forms {
+  -webkit-animation-name: expandout;
+  -webkit-animation-duration: .6s;
+  animation-name: expandout;
+  animation-duration: .6s;
+  animation-fill-mode: forwards;
 }
 .featured {
   position: relative;

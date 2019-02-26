@@ -7,13 +7,13 @@
 --}}
 @php $count=0; @endphp
 @php $ad = 0; @endphp
-@php $columncount = 0; @endphp;
+@php $columncount = 0; @endphp
 @foreach($page->rows->sortBy('order') as $row)
   @php $count++; $columncount = 0; $columns = 0; $closed=true; @endphp
   @if($row->order == $count)
 
-    <div class="row component-row">
-      <div class="twelve columns">
+    <div class="row component-row paragraph">
+      <div class="{{$template->loopsize}} columns">
         {!! $row->content !!}
       </div>
     </div>
@@ -49,10 +49,10 @@
         @php $closed = true @endphp
         </div>
         @endif
-        <div class="row component-row">
-        <div class="twelve columns">
-          {!! $row->content !!}
-        </div>
+        <div class="row component-row paragraph">
+          <div class="{{$template->loopsize}} columns">
+            {!! $row->content !!}
+          </div>
         </div>
         @php $closed = false; $columncount=0; @endphp
 

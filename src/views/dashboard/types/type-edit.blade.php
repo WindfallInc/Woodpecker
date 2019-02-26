@@ -33,6 +33,8 @@
         <input type="checkbox" name="categories" value='1' @if($type->categories=='1')checked @endif></p>
         <p>Enable Advanced Content Editor
         <input type="checkbox" name="editor" value='1' @if($type->editor=='1')checked @endif></p>
+        <p>Time Sensitive Content
+        <input type="checkbox" name="time" value='1' @if($type->time=='1')checked @endif></p>
       </div>
       <div class="four push_two columns">
         <p class="select-box">Default Template

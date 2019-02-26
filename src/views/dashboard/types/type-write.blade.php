@@ -31,6 +31,8 @@
         <input type="checkbox" name="categories" value='1'></p>
         <p>Enable Advanced Content Editor
         <input type="checkbox" name="editor" value='1'></p>
+        <p>Time Sensitive Content
+        <input type="checkbox" name="time" value='1'></p>
       </div>
       <div class="four push_two columns">
         <p class="select-box">Default Template

@@ -971,5 +971,52 @@ a:hover {
     top:20px;
     background-color:@gray;
   }
+  .round-button {
+    background-color: #fff;
+    border-radius: 25px;
+    border: solid 2px #333;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+  }
+  .modal-backdrop {
+    position: fixed;
+    top:0px;
+    left:0px;
+    width: 100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,.7);
+    display: none;
+    z-index: 2;
+    -webkit-animation-name: backdropfadeout;
+    -webkit-animation-duration: .6s;
+    animation-name: backdropfadeout;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+    .x {
+      position: absolute;
+      top:5vh;
+      right:10vw;
+      color:#fff;
+      font-size:3em;
+      cursor:pointer;
+    }
+  }
+  .modal-backdrop.active{
+    display:flex;
+    -webkit-animation-name: backdropfade;
+    -webkit-animation-duration: .6s;
+    animation-name: backdropfade;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+
+    .forms {
+      -webkit-animation-name: expandout;
+      -webkit-animation-duration: .6s;
+      animation-name: expandout;
+      animation-duration: .6s;
+      animation-fill-mode: forwards;
+    }
+  }
 
 }

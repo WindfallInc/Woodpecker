@@ -42,7 +42,7 @@
       <ul>
       @if(count($category->contents)>1)
         @foreach($category->contents as $content)
-          <li>{{$content->title}}</li>
+          <li><a href="{{$content->url()}}">{{$content->title}}</a></li>
         @endforeach
       @endif
       </ul>

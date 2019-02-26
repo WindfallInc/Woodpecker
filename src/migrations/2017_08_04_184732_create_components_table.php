@@ -43,6 +43,7 @@ class CreateComponentsTable extends Migration
             $table->string('link_target')->nullable(); // Specify if component will have a link that needs to be targeted
             $table->integer('type_selection')->nullable(); // content relation
             $table->integer('category_selection')->nullable(); // content relation
+            $table->integer('dynamic')->nullable(); // lets the controller know a component is dynamic
             $table->timestamps();
             $table->softDeletes();
         });
@@ -124,7 +125,8 @@ class CreateComponentsTable extends Migration
             'columns'  => 'six',
             'template'     => '1',
             'link_target' => '1',
-            'outside'  => 'off'
+            'outside'  => 'off',
+            'image' => '/component/carousal-component.jpg'
         )
         );
         DB::table('components')->insert(

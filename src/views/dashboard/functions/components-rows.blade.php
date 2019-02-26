@@ -72,7 +72,7 @@ $(document).on('click', '.delete_carousalimage', function(e){
 
 // begin component functions
 var z = {{$lastComponent}};
-@foreach($components->where('type','template') as $component)
+@foreach($components->where('template','1') as $component)
 
 
 $(document).on('click', '#{{$component->slug}}', function(e){

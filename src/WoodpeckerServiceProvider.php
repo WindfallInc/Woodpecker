@@ -28,7 +28,6 @@ class WoodpeckerServiceProvider extends ServiceProvider
     ], 'woodpecker');
         $this->publishes([
        __DIR__.'/views/dashboard' => base_path('resources/views/dashboard'),
-       __DIR__.'/assets/css/woodpecker' => base_path('public/css/woodpecker'),
        __DIR__.'/less/woodpecker/adminstyle.less' => base_path('resources/assets/less/woodpecker/adminstyle.less'),
        __DIR__.'/less/woodpecker/animation.less' => base_path('resources/assets/less/woodpecker/animation.less'),
        __DIR__.'/less/woodpecker/base.less' => base_path('resources/assets/less/woodpecker/base.less'),

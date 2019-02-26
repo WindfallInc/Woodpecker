@@ -15,11 +15,11 @@
               <img src="/component/paragraph-component.jpg" alt="">
             </div>
           </li>
-        @foreach($components->where('type', 'template') as $component)
+        @foreach($components->where('template', '1') as $component)
           <li><p class="preview-title">{{$component->title}}</p>
             <div class="component-preview" id="{{$component->slug}}">
-              @if($component->slug == 'carousal')
-                <img src="/component/carousal-component.jpg" alt="">
+              @if(isset($component->image))
+                <img src="{{$component->image}}" alt="">
               @else
                 @include("components.".$component->slug)
               @endif

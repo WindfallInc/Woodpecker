@@ -35,6 +35,7 @@ class Content extends Model
 	public function images() {
         return $this->belongsToMany('App\Woodpecker\Media');
 	}
+	// Helper Functions
 	public function featimg() {
         $featured = $this->images()->where('featured', 1)->first();
 				if(isset($featured)){
@@ -44,7 +45,6 @@ class Content extends Model
 				return '/featured/default.jpg';
 
 	}
-
 	public function excerpt() {
 		$row = $this->rows->first();
 		$content = strip_tags($row->content);
@@ -66,13 +66,11 @@ class Content extends Model
 				//do nothing
 		}
 	}
-
 	public function url() {
 		$type = $this->type;
 		return $type->slug.'/'.$this->slug;
 
 	}
-
 	public function get_the($name) {
 
 				$field = $this->type->custom_fields->where('name',$name)->first();
@@ -89,10 +87,17 @@ class Content extends Model
 				}
 	}
 
+	// Loop Functions
 	public function loop($slug) {
         $type =  Type::where('slug', $slug)->first();
 				if(isset($type)){
-					return $type->contents->where('published', 1);
+					if($type->time == 1)
+					{
+						return $type->contents->published()->sortBy('end_date');
+					}
+					else {
+						return $type->contents->published()->sortByDesc('updated_at');
+					}
 				}
 				else {
 					return false;
@@ -118,4 +123,10 @@ class Content extends Model
 					return false;
 				}
 	}
+
+	// Scopes
+	public function scopePublished($query)
+  {
+        return $query->where('published', 1);
+  }
 }
