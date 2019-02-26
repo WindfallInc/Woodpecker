@@ -20,7 +20,7 @@ Package auto discovers.
 Publish woodpecker assets, and migrate databases:
 
 ```shell
-php artisan vendor:publish --force
+php artisan vendor:publish --tag=woodpecker --force
 
 php artisan migrate
 ```
@@ -70,27 +70,27 @@ Add the newly created template to the database table 'templates'
 The template will now appear in the backend, becoming available for any datatypes, menus, or pages to use.
 
 **Featured Image**
-```shell
+```php
 $page->featimg()
 ```
 **Title**
-```shell
+```php
 $page->title
 ```
 **Content**
-```shell
+```php
 @include('dashboard.includes.body')
 ```
 **Any Custom Fields**
-```shell
+```php
 $page->get_the('field name')
 ```
 **Meta Desc**
-```shell
+```php
 $page->metadesc
 ```
 **Meta Keywords**
-```shell
+```php
 $page->keywords
 ```
 **Creating a new component**
@@ -100,6 +100,13 @@ Views->components house all front end component code.
 Views->dashboard->components house all backend component code.
 
 Within the database, add a new 'component' and set its 'type' to template.
+
+**Custom Routes**
+
+Any route in the web.php file can override Woodpeckers routes. Ensure they are named and lead to your own custom controller
+```php
+Route::get('/anything', 'WebsiteController@index')->name('anything');
+```
 
 ## Updating
 After your composer update, to finalize your upgrade
