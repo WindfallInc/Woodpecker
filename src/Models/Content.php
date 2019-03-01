@@ -93,10 +93,10 @@ class Content extends Model
 				if(isset($type)){
 					if($type->time == 1)
 					{
-						return $type->contents->published()->sortBy('end_date');
+						return $type->contents->where('published', 1)->sortBy('end_date');
 					}
 					else {
-						return $type->contents->published()->sortByDesc('updated_at');
+						return $type->contents->where('published', 1)->sortByDesc('updated_at');
 					}
 				}
 				else {

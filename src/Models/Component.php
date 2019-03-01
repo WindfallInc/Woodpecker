@@ -32,10 +32,10 @@ class Component extends Model
 				if(isset($type)){
 					if($type->time == 1)
 					{
-						return $type->contents->published()->sortBy('end_date');
+						return $type->contents->where('published', 1)->sortBy('end_date');
 					}
 					else {
-						return $type->contents->published()->sortByDesc('updated_at');
+						return $type->contents->where('published', 1)->sortByDesc('updated_at');
 					}
 				}
 				else {
@@ -56,12 +56,12 @@ class Component extends Model
 				if(isset($type)){
 					if($type->time == 1)
 					{
-						return $type->contents->published()->whereHas('categories', function ($query) {
+						return $type->contents->where('published', 1)->whereHas('categories', function ($query) {
 	    				$query->where('slug', $cat);
 						})->sortBy('end_date');
 					}
 					else {
-						return $type->contents->published()->whereHas('categories', function ($query) {
+						return $type->contents->where('published', 1)->whereHas('categories', function ($query) {
 	    				$query->where('slug', $cat);
 						})->sortByDesc('updated_at');
 					}
