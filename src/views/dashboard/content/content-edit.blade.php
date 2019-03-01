@@ -49,26 +49,25 @@
         <input type="file" name="featimage" id="images"></p>
       @if($type->time=='1')
         <p>Start Date
-        <input type="date" name="start_date" value="{{date('d/m/Y',$start_date)}}"></p>
+        <input type="date" name="start_date" value="{{date('Y-m-d',$content->start_date)}}"></p>
         <p>End Date
-        <input type="date" name="end_date" value="{{date('d/m/Y',$end_date)}}"></p>
+        <input type="date" name="end_date" value="{{date('Y-m-d',$content->end_date)}}"></p>
       @endif
       @if($type->categories=='1')
-        <p>&nbsp;</p>
-
         <p class="round-button" id="category-select">Select Categories</p>
-
         <div class="modal-backdrop" id="category-selection">
           <div class="x"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
             <div class="categories">
               @foreach($categories as $cat)
-                <p>{{$cat->title}}
-                <input type="checkbox" value="{{$cat->slug}}" @if($content->categories->contains($cat->id)) checked @endif></p>
+                <div class="cat">
+                  <p>{{$cat->title}}</p>
+                  <label class="switch"><input type="checkbox" name="categories[]" value="{{$cat->slug}}" @if($content->categories->contains($cat->id)) checked @endif><span class="slider round"></span></label>
+                </div>
               @endforeach
             </div>
         </div>
+        <p>&nbsp;</p>
       @endif
-
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
             <p>{{$custom->name}}</p>

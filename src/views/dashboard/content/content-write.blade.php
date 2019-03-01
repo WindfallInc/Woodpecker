@@ -53,21 +53,20 @@
         @endif
 
         @if($type->categories=='1')
-          <p>&nbsp;</p>
-
           <p class="round-button" id="category-select">Select Categories</p>
-
           <div class="modal-backdrop" id="category-selection">
             <div class="x"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
               <div class="categories">
                 @foreach($categories as $cat)
-                  <p>{{$cat->title}}
-                  <input type="checkbox" value="{{$cat->slug}}" @if($content->categories->contains($cat->id)) checked @endif></p>
+                  <div class="cat">
+                    <p>{{$cat->title}}</p>
+                    <label class="switch"><input type="checkbox" value="{{$cat->slug}}" name="categories[]"><span class="slider round"></span></label>
+                  </div>
                 @endforeach
               </div>
           </div>
+          <p>&nbsp;</p>
         @endif
-        <p>&nbsp;</p>
 
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')

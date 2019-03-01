@@ -4,7 +4,7 @@
     $('#category-select').on('click', function(){
       $('#category-selection').addClass('active');
     });
-    $('#category-select .x').on('click', function(){
+    $('#category-selection .x').on('click', function(){
       $('#category-selection').removeClass('active');
     });
 </script>
