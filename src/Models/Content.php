@@ -125,7 +125,7 @@ class Content extends Model
 	}
 
 	// Scopes
-	public function scopePublished($query)
+	public function scopeIsPublished($query)
   {
         return $query->where('published', 1);
   }

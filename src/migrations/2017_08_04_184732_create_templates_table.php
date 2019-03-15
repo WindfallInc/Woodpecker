@@ -37,8 +37,8 @@ class CreateTemplatesTable extends Migration
         );
         DB::table('templates')->insert(
         array(
-            'title'    => 'Blog',
-            'slug'     => 'blog',
+            'title'    => 'None',
+            'slug'     => 'none',
             'loopsize'     => 'twelve',
         )
         );

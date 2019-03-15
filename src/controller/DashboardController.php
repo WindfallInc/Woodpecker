@@ -805,7 +805,6 @@ class DashboardController extends Controller
         foreach(Input::get('templates') as $template){
           $menu->templates()->attach($template);
         }
-        return $menu;
 
 
       return redirect()->route('menu-details', ['slug'=>$menu->slug]);

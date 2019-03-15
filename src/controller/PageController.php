@@ -45,7 +45,7 @@ class PageController extends Controller
 
     public function home()
     {
-      $page 	 = Content::where('slug','home')->published()->first();
+      $page 	 = Content::where('slug','home')->isPublished()->first();
       if(!isset($page)){
         abort(404);
       }
@@ -72,13 +72,13 @@ class PageController extends Controller
           }
         }
 
-        $page 	 = Content::where('slug',$slug)->published()->first();
+        $page 	 = Content::where('slug',$slug)->isPublished()->first();
 
         if(!isset($page)){
           abort(404);
         }
 
-        $body = Html::where('content_id', $page->id)->published()->first();
+        $body = Html::where('content_id', $page->id)->isPublished()->first();
 
 
         if(isset($page->template->id)){
@@ -106,7 +106,7 @@ class PageController extends Controller
         $type    = Type::where('slug',$type)->first();
         if(isset($type))
         {
-          $page 	 = Content::where('slug',$slug)->where('type_id',$type->id)->published()->with(['rows', 'components'])->first();
+          $page 	 = Content::where('slug',$slug)->where('type_id',$type->id)->isPublished()->with(['rows', 'components'])->first();
         }
         else
         {
@@ -183,7 +183,7 @@ class PageController extends Controller
 
   	  $search        = Input::get('search');
   	  if(isset($search)){
-  	    $results       	= Content::where('title', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->orWhere('metadesc', 'like', '%'.$search.'%')->published()->orderBy('created_at','DESC')->get();
+  	    $results       	= Content::where('title', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->orWhere('metadesc', 'like', '%'.$search.'%')->isPublished()->orderBy('created_at','DESC')->get();
   	  }
   	  else{
   	    $results        = Content::inRandomOrder()->take(6)->get();

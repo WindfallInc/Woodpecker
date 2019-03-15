@@ -32,7 +32,7 @@ class Component extends Model
 				if(isset($type)){
 					if($type->time == 1)
 					{
-						return $type->contents->where('published', 1)->sortBy('end_date');
+						return $type->contents->where('published', 1)->sortBy('start_date');
 					}
 					else {
 						return $type->contents->where('published', 1)->sortByDesc('updated_at');
@@ -58,7 +58,7 @@ class Component extends Model
 					{
 						return $type->contents->where('published', 1)->whereHas('categories', function ($query) {
 	    				$query->where('slug', $cat);
-						})->sortBy('end_date');
+						})->sortBy('start_date');
 					}
 					else {
 						return $type->contents->where('published', 1)->whereHas('categories', function ($query) {
@@ -73,7 +73,16 @@ class Component extends Model
 	}
 	public function loopByCat($cat) {
 				$category = Category::where('slug',$cat)->first();
-				return $category->contents->where('published', 1)->sortByDesc('updated_at');
+				$contents = $category->contents->where('published', 1);
+				$test = $contents->first();
+				if(isset($test)){
+					if($test->type->time == 1){
+						return $contents->sortBy('start_date');
+					}
+					else {
+						return $contents->sortByDesc('updated_at');
+					}
+				}
 	}
 	public function forms() {
 				$forms = Form::all();
