@@ -265,7 +265,7 @@
           @endif
         @endforeach
         @php $columncount = 0;@endphp
-        @foreach($content->components->where('order', '>', $count) as $component)
+        @foreach($content->components->where('order', '>', $count)->sortBy('order') as $component)
             @if($component->columns == 'twelve'|| $component->columns == 'eight')
               @php $expected = 1; @endphp
             @elseif($component->columns == 'six')
@@ -393,6 +393,17 @@
     <script>
     //order functions for saving
 $(document).on('mouseover', '.store', function(){
+      var ids = [];
+
+
+      $('#counter').siblings().each(function () {
+       ids.push($(this).data('id'));
+      });
+      ids.join(',');
+      $('#order').val(ids);
+
+});
+$(document).on('mouseup', '.fa-arrows-v', function(){
       var ids = [];
 
 

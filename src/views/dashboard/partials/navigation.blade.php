@@ -75,7 +75,7 @@
     </div>
     @if($user->isAdmin())
     <div class="nav-box mini">
-      <a href="/dashboard/admins">
+      <a href="/dashboard/users">
         <p><i class="fa fa-users" aria-hidden="true"></i>Users</p>
       </a>
     </div>

@@ -153,6 +153,17 @@ Route::get('/{type}/{id}/edit','App\Http\Controllers\DashboardController@content
 // delete content
 Route::post('/{type}/delete','App\Http\Controllers\DashboardController@contentDelete');
 
+
+// View Users
+Route::get('/users','App\Http\Controllers\DashboardController@users')->name('users');
+// Edit User
+Route::get('/user/{user}/edit','App\Http\Controllers\DashboardController@userEdit');
+// Save User
+Route::post('/user/{user}/edit','App\Http\Controllers\DashboardController@userUpdate');
+// Delete User
+Route::get('/user/{user}/delete','App\Http\Controllers\DashboardController@userDelete');
+
+
 Route::get('/{slug}','App\Http\Controllers\PageController@preview')->name('preview');
 
 

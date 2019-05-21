@@ -25,6 +25,7 @@ use App\Woodpecker\Answer;
 use App\Woodpecker\Submission;
 use App\Woodpecker\CustomField;
 use App\Woodpecker\CustomFieldContent;
+use App\Woodpecker\Dashboard;
 use App\Woodpecker\Ticket;
 use App\Woodpecker\Html;
 use Image;
@@ -539,6 +540,7 @@ class DashboardController extends Controller
         $row = Row::where('id', $order)->where('content_id', $content->id)->first();
         $component = Component::where('id', $order)->where('content_id', $content->id)->first();
         if(isset($skip) && $skip==1){
+          $skip=0;
           continue;
         }
         if(isset($component->id) && isset($row->id))
@@ -1044,6 +1046,80 @@ class DashboardController extends Controller
           $delete->delete();
 
           return 'true';
+    }
+
+    public function users()
+    {
+          $dashboards = Dashboard::all();
+          return view('dashboard.users.users',compact('dashboards'));
+    }
+    public function userEdit($id)
+    {
+          $dashboard = Dashboard::find($id);
+
+          $user = Auth::guard('dashboard')->user();
+
+          $contents = Content::all();
+          $types = Type::all();
+
+          if($user->isAdmin())
+          {
+            return view('dashboard.users.user-edit',compact('dashboard','contents','types'));
+          }
+          else
+          {
+            abort(403);
+          }
+    }
+    public function userUpdate($id)
+    {
+          $dashboard = Dashboard::find($id);
+
+          if($user->isAdmin())
+          {
+            $dashboard->name = Input::get('name');
+            $dashboard->email = Input::get('email');
+            $dashboard->admin = Input::get('admin');
+            $dashboard->forms = Input::get('forms');
+            $dashboard->menus = Input::get('menus');
+            $dashboard->confirmed = Input::get('confirmed');
+            $dashboard->save();
+            $dashboard->permissions()->detach();
+            if(isset(Input::get('typepermissions')))
+            {
+              foreach(Input::get('typepermissions') as $permission)
+              {
+                $type = Type::find($permission);
+                $dashboardPermission = new Permission;
+                $dashboardPermission->type()->associate($type);
+                $dashboardPermission->save();
+                $dashboard->permissions()->attach($dashboardPermission);
+              }
+            }
+            if(isset(Input::get('contentpermissions')))
+            {
+              foreach(Input::get('contentpermissions') as $permission)
+              {
+                $content = Content::find($permission);
+                $dashboardPermission = new Permission;
+                $dashboardPermission->content()->associate($content);
+                $dashboardPermission->save();
+                $dashboard->permissions()->attach($dashboardPermission);
+              }
+            }
+          }
+          else
+          {
+            abort(403);
+          }
+          return redirect()->route('users');
+    }
+    public function userDelete($id)
+    {
+          $dashboard = Dashboard::find($id);
+          $dashboard->delete();
+
+          return redirect()->route('users');
     }
 
     public function forms()

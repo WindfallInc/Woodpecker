@@ -59,6 +59,13 @@ mix.js('resources/js/app.js', 'public/js')
    .less('resources/assets/less//woodpecker/admin.less', 'public/css/woodpecker');
 ```
 
+Setup .env captcha to enable forms
+
+```shell
+NOCAPTCHA_SECRET=<Your Secret Key>
+NOCAPTCHA_SITEKEY=<Your Site Key>
+```
+
 ## Customization
 
 **Creating a new template**
@@ -67,7 +74,7 @@ Create template in views/templates/example-slug.blade.php
 
 Add the newly created template to the database table 'templates'
 
-The template will now appear in the backend, becoming available for any datatypes, menus, or pages to use.
+The template will now appear in the backend, becoming available for any datatypes to use.
 
 **Featured Image**
 ```php
@@ -100,6 +107,8 @@ Views->components house all front end component code.
 Views->dashboard->components house all backend component code.
 
 Within the database, add a new 'component' and set its 'type' to template.
+
+Edit Woodpeckers admin.less file to include your component css. For example: @import "../components/homepage-slider.less";
 
 **Custom Routes**
 

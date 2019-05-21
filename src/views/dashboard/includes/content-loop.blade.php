@@ -29,6 +29,8 @@
           @php $expected = 3; @endphp
         @elseif($component->columns == 'three')
           @php $expected = 4; @endphp
+        @else
+          @php $expected = 1; @endphp
         @endif
 
 
@@ -63,7 +65,7 @@
   @endwhile
   @endif
 @endforeach
-@foreach($page->components->where('order', '>', $count) as $component)
+@foreach($page->components->where('order', '>', $count)->sortBy('order') as $component)
   @if($component->columns == 'twelve'|| $component->columns == 'eight')
     @php $expected = 1; @endphp
   @elseif($component->columns == 'six')
@@ -72,6 +74,8 @@
     @php $expected = 3; @endphp
   @elseif($component->columns == 'three')
     @php $expected = 4; @endphp
+  @else
+    @php $expected = 1; @endphp
   @endif
 
 

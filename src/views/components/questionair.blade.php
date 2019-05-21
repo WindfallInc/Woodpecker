@@ -38,7 +38,7 @@
 				@elseif($q->type=='select')
 					<select name="{{$q->slug}}" id="{{$q->slug}}" @if($q->required == 1) required @endif>
 						@foreach($q->children() as $child)
-							<option value="{{$child->slug}}">
+							<option value="{{$child->title}}">
 								{{$child->title}}
 							</option>
 						@endforeach
