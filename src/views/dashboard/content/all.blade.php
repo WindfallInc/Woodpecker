@@ -40,30 +40,32 @@
         <p>You have no {{str_plural($type->title)}}. Try creating one!</p>
       @endif
       @foreach($contents as $content)
-      <span class="content-item">
-      <div class="row">
-        <div class="three push_one columns">
-          <a href="/{{$content->type->slug}}/{{$content->slug}}" target="_blank"><p><thing data-unix="{{strtotime($content->updated_at)}}">{{$content->title}}</thing></p></a>
-        </div>
-        <div class="two columns">
-          <p>{{date('M j, Y',strtotime($content->updated_at))}}</p>
-        </div>
-        <div class="two columns centering">
-          @if($content->published == 1)
-            <p class="published" data-id="{{$content->id}}"><i class="fa fa-check" aria-hidden="true"></i></p>
-          @else
-            <p class="published" data-id="{{$content->id}}"><i class="fa fa-times" aria-hidden="true"></i></p>
-          @endif
-        </div>
-        <div class="two columns">
-          <a href="/dashboard/{{$type->id}}/{{$content->id}}/edit" class="edit-link"><p class="edit">Edit</p></a>
-        </div>
-        <div class="two columns">
-          <p class="delete" data-id="{{$content->id}}">Delete</p>
-        </div>
-      </div>
-      <hr>
-      </span>
+        @if($user->canEdit($content->id))
+          <span class="content-item">
+          <div class="row">
+            <div class="three push_one columns">
+              <a href="/{{$content->type->slug}}/{{$content->slug}}" target="_blank"><p><thing data-unix="{{strtotime($content->updated_at)}}">{{$content->title}}</thing></p></a>
+            </div>
+            <div class="two columns">
+              <p>{{date('M j, Y',strtotime($content->updated_at))}}</p>
+            </div>
+            <div class="two columns centering">
+              @if($content->published == 1)
+                <p class="published" data-id="{{$content->id}}"><i class="fa fa-check" aria-hidden="true"></i></p>
+              @else
+                <p class="published" data-id="{{$content->id}}"><i class="fa fa-times" aria-hidden="true"></i></p>
+              @endif
+            </div>
+            <div class="two columns">
+              <a href="/dashboard/{{$type->id}}/{{$content->id}}/edit" class="edit-link"><p class="edit">Edit</p></a>
+            </div>
+            <div class="two columns">
+              <p class="delete" data-id="{{$content->id}}">Delete</p>
+            </div>
+          </div>
+          <hr>
+          </span>
+        @endif
       @endforeach
     </div>
 

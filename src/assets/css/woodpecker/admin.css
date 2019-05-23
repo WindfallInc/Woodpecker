@@ -3500,8 +3500,8 @@ a:hover {
   left: -150px;
   width: 200px;
   z-index: 9;
-  height: 100vh;
-  overflow: visible;
+  overflow-y: visible;
+  scroll-behavior: smooth;
   transition: linear all .2s;
 }
 .admin .side-nav .nav-box {
@@ -3570,6 +3570,7 @@ a:hover {
 .admin .side-nav .main-items {
   background-color: #4d4d4d;
   opacity: 0;
+  width: 200px;
   transition: linear all .2s;
 }
 .admin .side-nav .main-items .nav-box {
@@ -3583,6 +3584,7 @@ a:hover {
   color: #fff;
   font-size: 1.2em;
   padding: 8px;
+  width: 200px;
   transition: linear all .2s;
 }
 .admin .side-nav .nav-box.mini {
@@ -3618,12 +3620,25 @@ a:hover {
   z-index: 99;
 }
 .admin .side-nav img {
+  display: block;
+  background-color: #fff;
   opacity: 0;
+  width: 200px;
   transition: linear all .2s;
+}
+.admin nav {
+  overflow-x: scroll;
+  width: 200px;
+}
+.admin nav::-webkit-scrollbar {
+  width: 0 !important;
+}
+.admin nav {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
 }
 .admin .side-nav:hover {
   left: 0px;
-  background-color: #fff;
 }
 .admin .side-nav:hover img {
   opacity: 1;
@@ -3636,6 +3651,9 @@ a:hover {
 }
 .admin .side-nav:hover .navheader {
   opacity: 1;
+}
+.admin .side-nav:hover nav {
+  width: 450px;
 }
 .admin .edit {
   padding: 10px;

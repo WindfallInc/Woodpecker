@@ -26,6 +26,9 @@ class Component extends Model
 	public function images() {
         return $this->hasMany('App\Woodpecker\Media');
 	}
+	public function parent() {
+        return $this->belongsTo('App\Woodpecker\Component');
+	}
 
 	public function loop($slug) {
         $type =  Type::where('slug', $slug)->first();

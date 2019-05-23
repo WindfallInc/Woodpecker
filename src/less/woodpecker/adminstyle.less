@@ -23,8 +23,9 @@ a:hover {
     left: -150px;
     width:200px;
     z-index: 9;
-    height: 100vh;
-    overflow: visible;
+    //height: 100vh;
+    overflow-y: visible;
+    scroll-behavior: smooth;
     .transition;
     .nav-box {
       position: relative;
@@ -90,6 +91,7 @@ a:hover {
     .main-items{
       background-color:lighten(@dark,10%);
       opacity: 0;
+      width:200px;
       .transition;
       .nav-box{
         width:190px;
@@ -104,6 +106,7 @@ a:hover {
       color: #fff;
       font-size: 1.2em;
       padding: 8px;
+      width:200px;
       .transition;
     }
     .nav-box.mini {
@@ -139,13 +142,21 @@ a:hover {
       z-index: 99;
     }
     img {
+      display: block;
+      background-color:#fff;
       opacity: 0;
+      width:200px;
       .transition;
     }
   }
+  nav {
+    overflow-x: scroll;
+    width:200px;
+  }
+  nav::-webkit-scrollbar { width: 0 !important; }
+  nav {overflow: -moz-scrollbars-none;-ms-overflow-style: none;}
   .side-nav:hover{
     left:0px;
-    background-color: #fff;
     img {
       opacity: 1;
     }
@@ -157,6 +168,9 @@ a:hover {
     }
     .navheader {
       opacity: 1;
+    }
+    nav {
+      width:450px;
     }
   }
   .edit {

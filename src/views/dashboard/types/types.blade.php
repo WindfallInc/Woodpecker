@@ -23,21 +23,23 @@
         <p>You have no datatypes. Try creating one! Datatypes are the types on centent that will display on your website. Perhaps your website will have "pages" and "posts." You might even want to display "events" or "galleries".</p>
       @endif
       @foreach($types as $type)
-      <div class="row">
-        <div class="four columns">
-          <p>{{$type->title}}</p>
-        </div>
-        <div class="four columns">
-          <p>{{date('M j, Y',strtotime($type->created_at))}}</p>
-        </div>
-        <div class="two columns">
-          <a href="/dashboard/type/{{$type->slug}}/edit"><p class="edit">Edit</p></a>
-        </div>
-        <div class="two columns">
-          <a href="/dashboard/type/{{$type->slug}}/delete"><p class="delete">Delete</p></a>
-        </div>
-      </div>
-      <hr>
+        @if($user->canEditType($type->id))
+          <div class="row">
+            <div class="four columns">
+              <p>{{$type->title}}</p>
+            </div>
+            <div class="four columns">
+              <p>{{date('M j, Y',strtotime($type->created_at))}}</p>
+            </div>
+            <div class="two columns">
+              <a href="/dashboard/type/{{$type->slug}}/edit"><p class="edit">Edit</p></a>
+            </div>
+            <div class="two columns">
+              <a href="/dashboard/type/{{$type->slug}}/delete"><p class="delete">Delete</p></a>
+            </div>
+          </div>
+          <hr>
+        @endif
       @endforeach
     </div>
 

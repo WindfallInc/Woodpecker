@@ -67,14 +67,17 @@ class Dashboard extends Authenticatable
           // if not admin
   				else
           {
+            // get content
             $content = Content::find($id);
             $type = $content->type;
+            // if user can edit the type
             if($this->canEditType($type->id))
             {
               return true;
             }
             else
             {
+              // check if the user can edit this specific page
               $permission = Permission::where('dashboard_id',$this->id)->where('content_id',$id)->first();
               if(isset($permission))
               {

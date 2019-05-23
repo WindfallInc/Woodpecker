@@ -1262,6 +1262,18 @@
 		"oAP": "\/src\/views\/dashboard\/types\/types.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/users\/user-edit.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/users\/user-edit.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/users\/users.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/users\/users.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/examples\/includes\/footer.blade.php": {
 		"ft": 8192,
 		"oA": 2,

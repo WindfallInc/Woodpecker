@@ -1,4 +1,5 @@
-<div class="side-nav">
+<div class="side-nav" id="dashboard-nav">
+  <nav>
   <a href="/dashboard"><img src="/css/woodpecker/woodpecker-logo.png"></a>
   <div class="navheader">Website Content</div>
   <div class="main-items">
@@ -119,7 +120,7 @@
   <div class="expander-arrow">
     <i class="fa fa-angle-right" aria-hidden="true"></i>
   </div>
-
+</nav>
 </div>
 @push('footer')
   <script>
@@ -127,5 +128,7 @@
     document.getElementById(id).classList.toggle('active');
     return false;
     }
+
+
   </script>
 @endpush
