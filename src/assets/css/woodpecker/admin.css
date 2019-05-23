@@ -3498,8 +3498,9 @@ a:hover {
   color: #fff;
   border-right: solid 4px #333;
   left: -150px;
-  width: 200px;
+  width: 205px;
   z-index: 9;
+  height: 100vh;
   overflow-y: visible;
   scroll-behavior: smooth;
   transition: linear all .2s;
@@ -3552,6 +3553,16 @@ a:hover {
 }
 .admin .side-nav .nav-box .options .subitems a {
   padding: 0px;
+}
+.admin .side-nav .nav-box .options:hover {
+  opacity: 1;
+  left: 100%;
+  font-family: 'FontAwesome';
+  transition: linear all .2s;
+}
+.admin .side-nav .nav-box .options:hover a:hover {
+  background-color: #2d3e4f;
+  transition: linear all .2s;
 }
 .admin .side-nav .nav-box:hover {
   color: #048BA8;
@@ -3629,6 +3640,7 @@ a:hover {
 .admin nav {
   overflow-x: scroll;
   width: 200px;
+  height: 100vh;
 }
 .admin nav::-webkit-scrollbar {
   width: 0 !important;

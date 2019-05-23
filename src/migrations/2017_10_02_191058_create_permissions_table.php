@@ -17,6 +17,7 @@ class CreatePermissionsTable extends Migration
             $table->integer('dashboard_id')->nullable();
             $table->integer('type_id')->nullable();
             $table->integer('content_id')->nullable();
+            $table->timestamps();
         });
     }
 

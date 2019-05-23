@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
 	public function user() {
-        return $this->belongsTo('App\Woodpecker\Dashboard');
+        return $this->belongsTo('App\Woodpecker\Dashboard','dashboard_id');
 	}
 	public function type() {
         return $this->belongsTo('App\Woodpecker\Type');

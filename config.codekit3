@@ -674,12 +674,6 @@
 		"oAP": "\/src\/migrations\/2017_08_04_185939_create_template_type_table.php",
 		"oF": 0
 		},
-	"\/src\/migrations\/2017_10_02_191058_create_dashboardPermissions_table.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/migrations\/2017_10_02_191058_create_dashboardPermissions_table.php",
-		"oF": 0
-		},
 	"\/src\/migrations\/2017_10_02_191058_create_dashboards_table.php": {
 		"ft": 8192,
 		"oA": 2,

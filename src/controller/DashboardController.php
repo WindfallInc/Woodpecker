@@ -26,6 +26,7 @@ use App\Woodpecker\Submission;
 use App\Woodpecker\CustomField;
 use App\Woodpecker\CustomFieldContent;
 use App\Woodpecker\Dashboard;
+use App\Woodpecker\Permission;
 use App\Woodpecker\Ticket;
 use App\Woodpecker\Html;
 use Image;
@@ -1071,9 +1072,10 @@ class DashboardController extends Controller
             abort(403);
           }
     }
-    public function userUpdate($id)
+    public function userUpdate(Request $request, $id)
     {
           $dashboard = Dashboard::find($id);
+          $user = Auth::guard('dashboard')->user();
 
           if($user->isAdmin())
           {
@@ -1084,27 +1086,33 @@ class DashboardController extends Controller
             $dashboard->menus = Input::get('menus');
             $dashboard->confirmed = Input::get('confirmed');
             $dashboard->save();
-            $dashboard->permissions()->detach();
-            if(isset(Input::get('typepermissions')))
+            foreach($dashboard->permissions as $p)
+            {
+              $p->delete();
+            }
+            $typep = Input::get('typepermissions');
+            if(isset($typep))
             {
               foreach(Input::get('typepermissions') as $permission)
               {
                 $type = Type::find($permission);
                 $dashboardPermission = new Permission;
                 $dashboardPermission->type()->associate($type);
+                $dashboardPermission->user()->associate($dashboard);
                 $dashboardPermission->save();
-                $dashboard->permissions()->attach($dashboardPermission);
               }
             }
-            if(isset(Input::get('contentpermissions')))
+            $contentp = Input::get('contentpermissions');
+            if(isset($contentp))
             {
               foreach(Input::get('contentpermissions') as $permission)
               {
                 $content = Content::find($permission);
                 $dashboardPermission = new Permission;
                 $dashboardPermission->content()->associate($content);
+                $dashboardPermission->user()->associate($dashboard);
                 $dashboardPermission->save();
-                $dashboard->permissions()->attach($dashboardPermission);
+
               }
             }
           }

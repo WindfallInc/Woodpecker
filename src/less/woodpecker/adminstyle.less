@@ -21,9 +21,9 @@ a:hover {
     color:#fff;
     border-right: solid 4px #333;
     left: -150px;
-    width:200px;
+    width:205px;
     z-index: 9;
-    //height: 100vh;
+    height: 100vh;
     overflow-y: visible;
     scroll-behavior: smooth;
     .transition;
@@ -71,6 +71,16 @@ a:hover {
           a {
             padding:0px;
           }
+        }
+      }
+      .options:hover{
+        opacity: 1;
+        left:100%;
+        font-family: 'FontAwesome';
+        .transition;
+        a:hover {
+          background-color: @dblue;
+          .transition;
         }
       }
     }
@@ -152,6 +162,7 @@ a:hover {
   nav {
     overflow-x: scroll;
     width:200px;
+    height:100vh;
   }
   nav::-webkit-scrollbar { width: 0 !important; }
   nav {overflow: -moz-scrollbars-none;-ms-overflow-style: none;}

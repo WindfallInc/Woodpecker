@@ -5,7 +5,7 @@
   @push('header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
   @endpush
-  <form action="/dashboard/type/store" method="POST">
+  <form action="/dashboard/user/{{$dashboard->id}}/edit" method="POST">
     {{ csrf_field() }}
 
 
@@ -25,7 +25,9 @@
 
       <div class="six columns">
         <p>Username
-        <input type="text" name="title" value="{{$dashboard->name}}"></p>
+        <input type="text" name="name" value="{{$dashboard->name}}"></p>
+        <p>Email
+        <input type="text" name="email" value="{{$dashboard->email}}"></p>
         <p>Administrator
         <input type="checkbox" name="admin" value='1' @if($dashboard->admin=='1')checked @endif></p>
         <p>This user can edit forms
@@ -49,7 +51,7 @@
         <h3>Content Types</h3>
         @foreach ($types as $type)
           <p>{{$type->title}}
-          <input type="checkbox" name="typepermissions[]" value='{{$type->id}}' @if($dashboard->premissions->confirmed=='1')checked @endif></p>
+          <input type="checkbox" name="typepermissions[]" value='{{$type->id}}' @if($dashboard->canEditType($type->id))checked @endif @if($dashboard->isAdmin())checked @endif)></p>
         @endforeach
       </div>
       <div class="six columns">
