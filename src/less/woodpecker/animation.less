@@ -116,3 +116,24 @@
     height:80vh;
   }
 }
+@keyframes menuout
+{
+  0%
+  {
+    opacity: 0;
+    left:-300px;
+    z-index:-1;
+  }
+  99%
+  {
+    opacity: 1;
+    left:100%;
+    z-index:-1;
+  }
+  100%
+  {
+    opacity: 1;
+    left:100%;
+    z-index:1;
+  }
+}

@@ -382,6 +382,7 @@ class DashboardController extends Controller
         $component->input4            = $father->input4;
         $component->input5            = $father->input5;
         $component->input6            = $father->input6;
+        $component->parent_id         = $father->id;
         $component->columns           = $father->columns;
         $component->link_target       = $father->link_target;
         $component->category_selection     = $father->category_selection;

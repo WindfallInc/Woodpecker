@@ -128,7 +128,5 @@
     document.getElementById(id).classList.toggle('active');
     return false;
     }
-
-
   </script>
 @endpush

@@ -2838,6 +2838,23 @@ header form input.active {
     height: 80vh;
   }
 }
+@keyframes menuout {
+  0% {
+    opacity: 0;
+    left: -300px;
+    z-index: -1;
+  }
+  99% {
+    opacity: 1;
+    left: 100%;
+    z-index: -1;
+  }
+  100% {
+    opacity: 1;
+    left: 100%;
+    z-index: 1;
+  }
+}
 .test-component {
   background-color: #333;
   font-weight: 600;
@@ -3554,16 +3571,6 @@ a:hover {
 .admin .side-nav .nav-box .options .subitems a {
   padding: 0px;
 }
-.admin .side-nav .nav-box .options:hover {
-  opacity: 1;
-  left: 100%;
-  font-family: 'FontAwesome';
-  transition: linear all .2s;
-}
-.admin .side-nav .nav-box .options:hover a:hover {
-  background-color: #2d3e4f;
-  transition: linear all .2s;
-}
 .admin .side-nav .nav-box:hover {
   color: #048BA8;
   box-shadow: 0px 0px 60px -3px rgba(0, 0, 0, 0.33);
@@ -3572,7 +3579,11 @@ a:hover {
   opacity: 1;
   left: 100%;
   font-family: 'FontAwesome';
-  transition: linear all .2s;
+  -webkit-animation-name: menuout;
+  -webkit-animation-duration: .3s;
+  animation-name: menuout;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
 }
 .admin .side-nav .nav-box:hover .options a:hover {
   background-color: #2d3e4f;

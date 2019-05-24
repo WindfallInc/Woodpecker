@@ -73,16 +73,6 @@ a:hover {
           }
         }
       }
-      .options:hover{
-        opacity: 1;
-        left:100%;
-        font-family: 'FontAwesome';
-        .transition;
-        a:hover {
-          background-color: @dblue;
-          .transition;
-        }
-      }
     }
     .nav-box:hover {
       color:@lblue;
@@ -91,7 +81,11 @@ a:hover {
           opacity: 1;
           left:100%;
           font-family: 'FontAwesome';
-          .transition;
+          -webkit-animation-name: menuout;
+          -webkit-animation-duration: .3s;
+          animation-name: menuout;
+          animation-duration: .3s;
+          animation-fill-mode: forwards;
           a:hover {
             background-color: @dblue;
             .transition;

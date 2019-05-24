@@ -37,7 +37,8 @@ class Component extends Model
 					{
 						return $type->contents->where('published', 1)->sortBy('start_date');
 					}
-					else {
+					else
+					{
 						return $type->contents->where('published', 1)->sortByDesc('updated_at');
 					}
 				}
