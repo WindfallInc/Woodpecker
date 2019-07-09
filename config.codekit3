@@ -1022,6 +1022,12 @@
 		"oAP": "\/src\/views\/dashboard\/content\/content-write.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/content\/deleted.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/content\/deleted.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/dashboard.blade.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -1212,6 +1218,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/menus\/menus.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/partials\/content-bar.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/partials\/content-bar.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/partials\/contentoptions.blade.php": {

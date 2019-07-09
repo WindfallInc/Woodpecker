@@ -15,7 +15,7 @@
         <h3>{{$form->title}}</h3>
       </div>
       <div class="four columns">
-        <a href="/dashboard/form/{{$form->id}}/massdelete"><h3 class="delete">Delete All</h3></a>
+        <a id="massdelete"><h3 class="delete">Delete All</h3></a>
       </div>
       <div class="four columns">
         <a href="/dashboard/export/form/{{$form->id}}" target="_blank"><h3 class="store">Export</h3></a>
@@ -52,6 +52,17 @@
     $('.submission .edit').click(function(){
       $(this).parents('.submission').find('.submission-details').toggleClass('active');
     })
+
+    $('#massdelete').on('click',function(e){
+      e.preventDefault();
+      var answer=confirm('Do you want to delete?');
+      if(answer){
+          window.location.href = '/dashboard/form/{{$form->id}}/massdelete';
+      }
+      else{
+          alert('Not Deleted');
+      }
+    });
     </script>
     <script>
     $(document).on('click', '.delete', function(e){

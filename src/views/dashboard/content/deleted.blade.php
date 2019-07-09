@@ -67,7 +67,6 @@
           </span>
         @endif
       @endforeach
-      <p><a href="/dashboard/{{$type->id}}/deleted">View Deleted {{str_plural($type->title)}}</a></p>
     </div>
 
     @push('footer')

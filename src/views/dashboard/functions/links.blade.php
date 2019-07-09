@@ -54,7 +54,7 @@
         }
       }
       else {
-        console.log('No selection passed!')
+        console.log('No selection passed!');
       }
 
       $( "#linker" ).dialog( "open" );
@@ -101,6 +101,27 @@ function link() {
     $( "#linker" ).dialog( "close" );
     }
   }
+}
 
+function unlink() {
+  if (window.getSelection) {
+    if ($("[contenteditable]").is(":focus")) {
+      var selection = window.getSelection().getRangeAt(0);
+      if(selection){
+          if (selection.startContainer.parentNode.tagName === 'A' || selection.endContainer.parentNode.tagName === 'A') {
+
+              var replacementText = selection.startContainer.parentNode.innerHTML;
+                  selection.startContainer.parentNode.remove();
+                  selection.deleteContents();
+                  selection.insertNode(document.createTextNode(replacementText));
+          } else {
+            return false;
+           }
+      } else { return false; }
+    } else {
+        alert("Select a link");
+    }
+
+  }
 }
 </script>

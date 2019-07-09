@@ -3,7 +3,6 @@
 
 
 document.querySelector('.row-editor').addEventListener("paste", function(e) {
-      //document.querySelector('.transfer').addEventListener("paste", function(e) { doesn't work on dynamic elements
       if(e.target.classList.contains('codearea')){
 
       }
@@ -21,7 +20,12 @@ document.querySelector('.row-editor').addEventListener("paste", function(e) {
             div.innerHTML = element;
             var inner = div.innerText;
             var nodes = text.split(inner);
-            var result = nodes[0] + '<a ' + href + ' target="_blank">' + inner + '</a>' + nodes[1];
+            if(nodes[1]){
+              var result = nodes[0] + '<a ' + href + ' target="_blank">' + inner + '</a>' + nodes[1];
+            }
+            else {
+              var result = nodes[0];
+            }
             text = result;
           });
         }
@@ -32,23 +36,21 @@ document.querySelector('.row-editor').addEventListener("paste", function(e) {
 
     });
     function replaceBreaksWithParagraphs(input) {
-        input = filterEmpty(input.split('\n')).join('</p><p>');
-        return '<p>' + input + '</p>';
+      inputs = filterEmpty(input.split('\n')).join('</p><p>');
+      return '<p>' + inputs + '</p>';
     }
-    function filterEmpty(arr) {
-    var new_arr = [];
-
-    for (var i = arr.length-1; i >= 0; i--)
+    function filterEmpty(arr)
     {
-        if (arr[i] != "")
-            new_arr.push(arr.pop());
-        else
-            arr.pop();
-    }
-
-    return new_arr.reverse();
-};
-
-
+        var new_arr = [];
+        var i = arr.length-1;
+        for (i; i >= 0; i--)
+        {
+            if (arr[i] != "")
+                new_arr.push(arr.pop());
+            else
+                arr.pop();
+        }
+        return new_arr.reverse();
+    };
 
 </script>

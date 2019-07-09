@@ -96,6 +96,14 @@ class DashboardController extends Controller
           return view('dashboard.content.all',compact('contents','type'));
     }
 
+    public function deleted($type)
+    {
+          $contents = Content::where('type_id',$type)->orderByDesc('updated_at')->withTrashed()->get();
+          $type = Type::find($type);
+
+          return view('dashboard.content.deleted',compact('contents','type'));
+    }
+
     public function contentCreate($type)
     {
           $type = Type::find($type);

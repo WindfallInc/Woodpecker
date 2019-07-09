@@ -160,6 +160,8 @@ Route::post('/{type}/active/update','App\Http\Controllers\DashboardController@co
 Route::get('/{type}/{id}/edit','App\Http\Controllers\DashboardController@contentEdit');
 // delete content
 Route::post('/{type}/delete','App\Http\Controllers\DashboardController@contentDelete');
+// view deleted content
+Route::get('/{type}/deleted','App\Http\Controllers\DashboardController@deleted');
 
 
 

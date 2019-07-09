@@ -27,7 +27,7 @@
       <div class="tab" data-expand="feats">Featured Images</div><div class="tab" data-expand="files">Documents</div><div class="tab" data-expand="media-images">Images</div>
 
       <div class="expand-tab files" id="files">
-      @foreach($files as $file)
+      @foreach($files->sortByDesc('updated_at') as $file)
 
 
             @if($loop->first)

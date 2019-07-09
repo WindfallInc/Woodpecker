@@ -291,14 +291,18 @@ function lister() {
         if (sel.getRangeAt && sel.rangeCount) {
 
             range = sel.getRangeAt(0);
-
-            var content = range.startContainer.parentNode.innerHTML
-            if(range.startContainer.parentNode.className !=='textarea active'){
-            range.startContainer.parentNode.remove();
-            range.deleteContents();
+            if(range.startContainer.parentNode.className =='twelve columns transfer'){
+              var content = range.startContainer.innerHTML;
+            }
+            else if(range.startContainer.parentNode.className =='textarea active cursor-save') {
+              var content = range.startContainer.parentNode.innerHTML;
+              range.startContainer.remove();
+              range.deleteContents();
             }
             else{
-              range.startContainer.parentNode.innerHTML = '';
+              var content = range.startContainer.parentNode.innerHTML;
+              range.startContainer.parentNode.remove();
+              range.deleteContents();
             }
 
             var el = document.createElement("div");

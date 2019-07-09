@@ -8,7 +8,7 @@
       {{ csrf_field() }}
     <div class="row heading">
       <div class="four columns">
-        <h1>New Media</h1>
+        <h3>New Media</h3>
       </div>
       <div class="four columns">
 
