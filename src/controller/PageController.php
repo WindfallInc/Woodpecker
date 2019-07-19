@@ -72,10 +72,27 @@ class PageController extends Controller
           }
         }
 
-        $page 	 = Content::where('slug',$slug)->isPublished()->first();
+        $pages 	 = Content::where('slug',$slug)->isPublished()->get();
 
-        if(!isset($page)){
+        if(count($pages) == 0)
+        {
           abort(404);
+        }
+
+        foreach($pages as $page)
+        {
+          if(isset($page->template->id)){
+            if($page->template->id == 3)
+            {
+              continue;
+            }
+            $template = $page->template;
+            break;
+          }
+          else {
+            $template = $page->type->templates->sortByDesc('updated_at')->first();
+            break;
+          }
         }
 
         $body = Html::where('content_id', $page->id)->isPublished()->first();
