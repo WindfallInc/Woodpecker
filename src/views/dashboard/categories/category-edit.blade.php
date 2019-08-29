@@ -27,7 +27,7 @@
       <div class="four columns">
         <p>Category Title
         <input type="text" name="title" value="{{$category->title}}"></p>
-        <p>Datatype slug
+        <p>Category slug
         <input type="text" name="slug" readonly value="{{$category->slug}}"></p>
         <p class="mini">Note that all slugs update automatically with their corresponding titles</p>
       </div>

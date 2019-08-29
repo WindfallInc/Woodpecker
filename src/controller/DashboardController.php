@@ -78,14 +78,17 @@ class DashboardController extends Controller
 
       	  $user = Auth::guard('dashboard')->user();
 
+          $view = view('dashboard.dashboard');
+
           if($user->tutorial_1 == 0)
           {
             $user->tutorial_1 = 1;
             $user->save();
             $tutorial = true;
+            $view = $view->with('tutorial', $tutorial);
           }
 
-          return view('dashboard.dashboard', compact('tutorial'));
+          return $view;
     }
 
     public function contents($type)
@@ -98,7 +101,7 @@ class DashboardController extends Controller
 
     public function deleted($type)
     {
-          $contents = Content::where('type_id',$type)->orderByDesc('updated_at')->withTrashed()->get();
+          $contents = Content::where('type_id',$type)->whereNotNull('deleted_at')->orderByDesc('updated_at')->withTrashed()->get();
           $type = Type::find($type);
 
           return view('dashboard.content.deleted',compact('contents','type'));
@@ -384,12 +387,6 @@ class DashboardController extends Controller
         $component->title             = $content->title .' '. $slug;
         $component->slug              = $slug;
         $father                       = Component::where('slug', $slug)->first();
-        $component->input1            = $father->input1;
-        $component->input2            = $father->input2;
-        $component->input3            = $father->input3;
-        $component->input4            = $father->input4;
-        $component->input5            = $father->input5;
-        $component->input6            = $father->input6;
         $component->parent_id         = $father->id;
         $component->columns           = $father->columns;
         $component->link_target       = $father->link_target;
@@ -398,42 +395,42 @@ class DashboardController extends Controller
         $component->reqimg            = $father->reqimg;
 
         if(isset($input1)){
-          if(isset($component->input1)){
+          if(isset($component->father->content1)){
             $thing                    = array_slice($input1, $count1);
             $component->content1      = $thing[0];
             $count1++;
           }
         }
         if(isset($input2)){
-          if(isset($component->input2)){
+          if(isset($component->father->content2)){
             $thing                        = array_slice($input2, $count2);
             $component->content2          = $thing[0];
             $count2++;
           }
         }
         if(isset($input3)){
-          if(isset($component->input3)){
+          if(isset($component->father->content3)){
             $thing                        = array_slice($input3, $count3);
             $component->content3          = $thing[0];
             $count3++;
           }
         }
         if(isset($input4)){
-          if(isset($component->input4)){
+          if(isset($component->father->content4)){
             $thing                        = array_slice($input4, $count4);
             $component->content4          = $thing[0];
             $count4++;
           }
         }
         if(isset($input5)){
-          if(isset($component->input5)){
+          if(isset($component->father->content5)){
             $thing                        = array_slice($input5, $count5);
             $component->content5          = $thing[0];
             $count5++;
           }
         }
         if(isset($input6)){
-          if(isset($component->input6)){
+          if(isset($component->father->content6)){
             $thing                        = array_slice($input6, $count6);
             $component->content6          = $thing[0];
             $count6++;
@@ -650,7 +647,7 @@ class DashboardController extends Controller
     public function contentEdit($type,$id)
     {
       $type = Type::find($type);
-      $content = Content::find($id);
+      $content = Content::withTrashed()->where('id', $id)->first();
       $last = Row::orderBy('id', 'DESC')->first();
       $last = $last->id;
       $last++;
@@ -666,11 +663,14 @@ class DashboardController extends Controller
     {
           $post_id = $request['postId'];
           $delete = Content::find($post_id);
+          $media = $delete->media;
+          foreach($media as $img)
+          {
+            $img->delete();
+          }
           $delete->delete();
 
           return 'true';
-
-          //return redirect()->route('contents', ['type'=>$type]);
     }
 
 
@@ -1243,7 +1243,7 @@ class DashboardController extends Controller
 
 
 
-            if($question->type == 'radio' || $question->type == 'select'){
+            if($question->type == 'radio' || $question->type == 'select' || $question->type == 'checkbox-group'){
               // reset radio options
               foreach($question->children() as $kid){
                 $kid->parent_id = NULL;
@@ -1268,6 +1268,9 @@ class DashboardController extends Controller
                   $q->type                = 'radio';
                   $columns                = array_slice(Input::get('childcolumns'.$question->id), $count);
                   $q->columns             = $columns[0];
+                }
+                elseif($question->type == 'checkbox-group'){
+                  $q->type                = 'checkbox';
                 }
 
 

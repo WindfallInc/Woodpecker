@@ -1082,10 +1082,22 @@
 		"oAP": "\/src\/views\/dashboard\/functions\/columns.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/functions\/component-transfer.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/component-transfer.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/functions\/components-rows.blade.php": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/functions\/components-rows.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/functions\/content-bar.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/content-bar.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/functions\/draggable.blade.php": {

@@ -71,9 +71,9 @@
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
             <p>{{$custom->name}}</p>
-            <div class="transfer">
-              <div class="textarea active" contenteditable="true"></div>
-              <textarea name="customfield{{$custom->id}}" class="codearea">Enter {{$custom->name}}</textarea>
+            <div class="transfer custom-field-row" id="customfield{{$custom->id}}">
+              <div class="textarea active" contenteditable="true">Enter {{$custom->name}}</div>
+              <textarea name="customfield{{$custom->id}}" class="codearea"></textarea>
             </div>
           @elseif($custom->input == 'checkbox')
               <p>{{$custom->name}}
@@ -100,33 +100,7 @@
 
 
           <div class="row content-write" data-id="{{$last}}">
-              <div class="content-bar">
-                <span>Columns<input type="number" name="columns[]" value="1" min="1" max="5" class="column-select" id="row{{$last}}"></span>
-
-
-                <span><i class="fa fa-header" aria-hidden="true" style="font-size:22px;" onmousedown="h1()"></i>
-                  <i class="fa fa-header" aria-hidden="true" style="font-size:18px;" onmousedown="h2()"></i>
-                  <i class="fa fa-header" aria-hidden="true" style="font-size:14px;" onmousedown="h3()"></i>
-                  <i class="fa fa-header" aria-hidden="true" style="font-size:8px;" onmousedown="h4()"></i>
-                </span>
-                <span><i class="fa fa-bold" aria-hidden="true" onmousedown="bold()"></i>
-                <i class="fa fa-italic" aria-hidden="true" onmousedown="italic()"></i></span>
-
-                <span><i class="fa fa-align-left" aria-hidden="true" onmousedown="left()"></i>
-                <i class="fa fa-align-center" aria-hidden="true" onmousedown="center()"></i>
-                <i class="fa fa-align-right" aria-hidden="true" onmousedown="right()"></i></span>
-
-
-                <i class="fa fa-list" aria-hidden="true" onmousedown="lister()"></i>
-
-                <i class="fa fa-picture-o" aria-hidden="true" onclick="activate(30000)"></i>
-
-                <i class="fa fa-link linker" aria-hidden="true"></i>
-
-                <i class="fa fa-code" aria-hidden="true" onclick="codeview()"></i>
-
-                <input type="number" name="row[]" hidden value="{{$last}}">
-              </div>
+              @include("dashboard.partials.content-bar")
             <i class="fa fa-minus-circle remove_field"></i>
             <i class="fa fa-arrows-v" aria-hidden="true"></i>
             <div class="row{{$last}}">
@@ -193,6 +167,7 @@ $(document).on('mouseover', '.store', function(){
 @include('dashboard.functions.meta')
 @include('dashboard.functions.prevent')
 @include('dashboard.functions.basic')
+@include('dashboard.functions.content-bar')
 @include('dashboard.functions.components-rows')
 @include('dashboard.functions.toggle-view')
 @include('dashboard.functions.transfer')

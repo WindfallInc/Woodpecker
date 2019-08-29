@@ -72,38 +72,21 @@ class PageController extends Controller
           }
         }
 
-        $pages 	 = Content::where('slug',$slug)->isPublished()->get();
+        $page 	 = Content::where('slug',$slug)->where('type_id', 1)->isPublished()->first();
 
-        if(count($pages) == 0)
+        if(!isset($page))
         {
           abort(404);
         }
 
-        foreach($pages as $page)
-        {
-          if(isset($page->template->id)){
-            if($page->template->id == 3)
-            {
-              continue;
-            }
-            $template = $page->template;
-            break;
-          }
-          else {
-            $template = $page->type->templates->sortByDesc('updated_at')->first();
-            break;
-          }
-        }
-
-        $body = Html::where('content_id', $page->id)->isPublished()->first();
-
-
         if(isset($page->template->id)){
-          $template= $page->template;
+          $template = $page->template;
         }
         else {
           $template = $page->type->templates->sortByDesc('updated_at')->first();
         }
+
+        $body = Html::where('content_id', $page->id)->isPublished()->first();
 
 
         return view('templates.'.$template->slug, compact('page','template','body'));
@@ -118,6 +101,11 @@ class PageController extends Controller
               return \App::call('\\'.$name);
             }
           }
+        }
+
+        if($type == 'page')
+        {
+          return redirect('/'.$slug, 301);
         }
 
         $type    = Type::where('slug',$type)->first();

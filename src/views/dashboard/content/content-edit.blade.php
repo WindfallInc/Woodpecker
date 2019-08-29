@@ -71,7 +71,7 @@
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
             <p>{{$custom->name}}</p>
-            <div class="transfer" id="customfield{{$custom->id}}">
+            <div class="transfer custom-field-row" id="customfield{{$custom->id}}">
               <div class="textarea active" contenteditable="true"></div>
               <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>
             </div>
@@ -128,6 +128,8 @@
                 @php $expected = 3; @endphp
               @elseif($component->columns == 'three')
                 @php $expected = 4; @endphp
+              @else
+                @php $expected = 1; @endphp
               @endif
               @if($columncount == 0)
                 @php $closed = false; $columncount++; @endphp
@@ -168,34 +170,7 @@
                 <i class="fa fa-minus-circle remove_field"></i>
                 <i class="fa fa-arrows-v" aria-hidden="true"></i>
 
-                <script>
-                $(document).ready(function(){
-                  $('#component-row{{$component->id}}').find("input[name='input1[]']").val('{!!str_replace("'",'&#39;',$component->content1)!!}');
-                  $('#component-row{{$component->id}}').find("input[name='input2[]']").val('{!!str_replace("'",'&#39;',$component->content2)!!}');
-                  $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{!!str_replace("'",'&#39;',$component->content3)!!}');
-                  $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{!!str_replace("'",'&#39;',$component->content4)!!}');
-                  $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{!!str_replace("'",'&#39;',$component->content5)!!}');
-                  @if(substr($component->input1, 0, 25)  == '<div class="content-bar">')
-                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content1)!!}');
-                  @endif
-                  @if(substr($component->input2, 0, 25)  == '<div class="content-bar">')
-                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content2)!!}');
-                  @endif
-                  @if(substr($component->input3, 0, 25)  == '<div class="content-bar">')
-                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
-                  @endif
-                  @if(substr($component->input4, 0, 25)  == '<div class="content-bar">')
-                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content4)!!}');
-                  @endif
-                  @if(substr($component->input5, 0, 25)  == '<div class="content-bar">')
-                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content5)!!}');
-                  @endif
-                  @if(substr($component->input6, 0, 25)  == '<div class="content-bar">')
-                    $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content6)!!}');
-                  @endif
-                });
-                </script>
-
+                @include("dashboard.functions.component-transfer")
 
               </div>
 
@@ -216,15 +191,19 @@
         @endforeach
         @php $columncount = 0;@endphp
         @foreach($content->components->where('order', '>', $count)->sortBy('order') as $component)
-            @if($component->columns == 'twelve'|| $component->columns == 'eight')
-              @php $expected = 1; @endphp
-            @elseif($component->columns == 'six')
-              @php $expected = 2; @endphp
-            @elseif($component->columns == 'four')
-              @php $expected = 3; @endphp
-            @elseif($component->columns == 'three')
-              @php $expected = 4; @endphp
-            @endif
+          @if($component->columns == 'twelve'|| $component->columns == 'eight')
+            @php $expected = 1; @endphp
+          @elseif($component->columns == 'ten')
+            @php $expected = 1; @endphp
+          @elseif($component->columns == 'six')
+            @php $expected = 2; @endphp
+          @elseif($component->columns == 'four')
+            @php $expected = 3; @endphp
+          @elseif($component->columns == 'three')
+            @php $expected = 4; @endphp
+          @else
+            @php $expected = 1; @endphp
+          @endif
 
 
 
@@ -267,35 +246,7 @@
             <i class="fa fa-minus-circle remove_field"></i>
             <i class="fa fa-arrows-v" aria-hidden="true"></i>
 
-            <script>
-            $(document).ready(function(){
-
-              $('#component-row{{$component->id}}').find("input[name='input1[]']").val('{!!str_replace("'",'&#39;',$component->content1)!!}');
-              $('#component-row{{$component->id}}').find("input[name='input2[]']").val('{!!str_replace("'",'&#39;',$component->content2)!!}');
-              $('#component-row{{$component->id}}').find("input[name='input3[]']").val('{!!str_replace("'",'&#39;',$component->content3)!!}');
-              $('#component-row{{$component->id}}').find("input[name='input4[]']").val('{!!str_replace("'",'&#39;',$component->content4)!!}');
-              $('#component-row{{$component->id}}').find("input[name='input5[]']").val('{!!str_replace("'",'&#39;',$component->content5)!!}');
-              @if(substr($component->input1, 0, 25)  == '<div class="content-bar">')
-                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content1)!!}');
-              @endif
-              @if(substr($component->input2, 0, 25)  == '<div class="content-bar">')
-                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content2)!!}');
-              @endif
-              @if(substr($component->input3, 0, 25)  == '<div class="content-bar">')
-                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content3)!!}');
-              @endif
-              @if(substr($component->input4, 0, 25)  == '<div class="content-bar">')
-                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content4)!!}');
-              @endif
-              @if(substr($component->input5, 0, 25)  == '<div class="content-bar">')
-                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content5)!!}');
-              @endif
-              @if(substr($component->input6, 0, 25)  == '<div class="content-bar">')
-                $('#component-row{{$component->id}}').find(".textarea").html('{!!str_replace("'",'&#39;',$component->content6)!!}');
-              @endif
-
-            });
-            </script>
+            @include("dashboard.functions.component-transfer")
 
           </div>
 
@@ -389,6 +340,7 @@ $('#contentsubmission').submit( function(event) {
     @include('dashboard.functions.meta')
     @include('dashboard.functions.prevent')
     @include('dashboard.functions.basic')
+    @include('dashboard.functions.content-bar')
     @include('dashboard.functions.components-rows')
     @include('dashboard.functions.toggle-view')
     @include('dashboard.functions.transfer')

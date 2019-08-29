@@ -80,8 +80,8 @@ $(document).on('click', '#{{$component->slug}}', function(e){
   var max_fields      = {{$lastComponent++}}+29; //maximum input boxes allowed
   var wrapper         = $(".input_fields_wrap"); //Fields wrapper
   var add_image       = $(".image-add"); //Add button ID
-  var content         = '@include("dashboard.components.form")'
-  var preview         = '@include("dashboard.components.preview-".$component->slug)'
+  var content         = '@include("dashboard.components.form")';
+  var preview         = '@include("dashboard.components.preview-".$component->slug)';
 
 
     if(z < max_fields){ //max input box allowed
@@ -93,6 +93,8 @@ $(document).on('click', '#{{$component->slug}}', function(e){
       z++; //text box increment
     }
     $('#contentoptions').removeClass('active');
+
+    contentbarcheck();
 });
 @endforeach
 

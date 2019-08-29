@@ -35,7 +35,7 @@ class Component extends Model
 				if(isset($type)){
 					if($type->time == 1)
 					{
-						return $type->contents->where('published', 1)->sortBy('start_date');
+						return $type->contents->where('published', 1)->where('start_date', '>' , time())->sortBy('start_date');
 					}
 					else
 					{

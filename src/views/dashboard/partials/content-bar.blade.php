@@ -1,5 +1,5 @@
 <div class="content-bar">
-  <span>Columns<input type="number" name="columns[]" value="{{$row->columns}}" min="1" max="5" class="column-select" id="row{{$row->id}}"></span>
+  <span>Columns<input type="number" name="columns[]" value="@if(isset($row)){{$row->columns}}@else{{1}}@endif" min="1" max="5" class="column-select" id="@if(isset($row))row{{$row->id}}@else{{'row'.$last}}@endif"></span>
 
   <span><i class="fa fa-header" aria-hidden="true" style="font-size:22px;" onmousedown="h1()"></i>
     <i class="fa fa-header" aria-hidden="true" style="font-size:18px;" onmousedown="h2()"></i>
@@ -25,5 +25,5 @@
 
   <i class="fa fa-code" aria-hidden="true" onclick="codeview()"></i>
 
-  <input type="number" name="row[]" hidden value="{{$row->id}}">
+  <input type="number" name="row[]" hidden value="@if(isset($row)){{$row->id}}@else{{$last}}@endif">
 </div>

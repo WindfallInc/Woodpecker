@@ -24,7 +24,7 @@ document.querySelector('.row-editor').addEventListener("paste", function(e) {
               var result = nodes[0] + '<a ' + href + ' target="_blank">' + inner + '</a>' + nodes[1];
             }
             else {
-              var result = nodes[0];
+              var result = nodes[0] + inner;
             }
             text = result;
           });
@@ -39,6 +39,10 @@ document.querySelector('.row-editor').addEventListener("paste", function(e) {
       inputs = filterEmpty(input.split('\n')).join('</p><p>');
       return '<p>' + inputs + '</p>';
     }
+    function replaceBreaksWithBR(input) {
+      inputs = filterEmpty(input.split('\n')).join('<br>');
+      return inputs;
+    }
     function filterEmpty(arr)
     {
         var new_arr = [];
@@ -52,5 +56,42 @@ document.querySelector('.row-editor').addEventListener("paste", function(e) {
         }
         return new_arr.reverse();
     };
+    @foreach($type->custom_fields as $custom)
+      @if($custom->input == 'textbox')
+        document.querySelector('.custom-field-row').addEventListener("paste", function(e) {
+              if(e.target.classList.contains('codearea')){
+
+              }
+              else {
+                e.preventDefault();
+
+                var html = e.clipboardData.getData('text/html');
+                var array = html.match(/<a[\s]*([^>]*)>((?:.(?!\<\/a\>)|\s(?!\<\/a\>))*.)<\/a>/g);
+                var text = e.clipboardData.getData("text/plain");
+                text = replaceBreaksWithBR(text);
+                if(array != null){
+                  array.forEach(function(element) {
+                    href = element.match(/href="(.*?)"/g);
+                    var div = document.createElement("div");
+                    div.innerHTML = element;
+                    var inner = div.innerText;
+                    var nodes = text.split(inner);
+                    if(nodes[1]){
+                      var result = nodes[0] + '<a ' + href + ' target="_blank">' + inner + '</a>' + nodes[1];
+                    }
+                    else {
+                      var result = nodes[0] + inner;
+                    }
+                    text = result;
+                  });
+                }
+
+
+                document.execCommand("insertHTML", false, text);
+              }
+
+            });
+      @endif
+    @endforeach
 
 </script>

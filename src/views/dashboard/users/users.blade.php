@@ -22,7 +22,6 @@
         <h3>Menus</h3>
       </div>
       <div class="four columns">
-        <a href="/dashboard/type/create"><h3 class="create">New Datatype</h3></a>
       </div>
     </div>
 

@@ -47,6 +47,10 @@ class Content extends Model
 	}
 	public function excerpt() {
 		$row = $this->rows->first();
+		if(!isset($row))
+		{
+			return '';
+		}
 		$content = strip_tags($row->content);
 		$dot = ".";
 
@@ -63,7 +67,7 @@ class Content extends Model
 				return $excerpt;
 		}
 		else {  //if there are no dots
-				//do nothing
+				return '';
 		}
 	}
 	public function url() {

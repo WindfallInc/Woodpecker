@@ -101,6 +101,36 @@
                   </div>
                   <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </div>
+              @elseif($q->type == 'checkbox-group')
+                <div class="question row" data-id="{{$q->id}}">
+                  <div class="four columns question-input">
+                    <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
+                  </div>
+                  <div class="eight columns question-input">
+                    <input type="hidden" name="columns{{$q->id}}" value="twelve">
+                    <input type="hidden" name="type{{$q->id}}" value="radio">
+                    <div class="radiochildren">
+                      @foreach($q->children() as $child)
+                      <div class="row">
+                        <div class="six columns">
+                          <label for="child{{$q->id}}">Option {{$loop->iteration}}</label>
+                          <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
+                          <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
+                        </div>
+                        <div class="remove_option">Remove</div>
+                      </div>
+                      @endforeach
+                    </div>
+                    <div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
+                  </div>
+                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
+                  <div class="outside-link">
+                    <div class="required">
+                      Required &nbsp;
+                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on" @if($q->required == 1)checked @endif><span class="slider round"></span></label>
+                    </div>
+                  </div>
+                  <i class="fa fa-arrows-v" aria-hidden="true"></i></div>
               @else
                 <div class="question row" data-id="{{$q->id}}">
                   <div class="four columns question-input">
@@ -167,6 +197,7 @@
             <option value="text-area">Paragraph</option>
             <option value="date">Date</option>
             <option value="checkbox">Checkbox</option>
+            <option value="checkbox-group">Checkbox Group</option>
             <option value="radio">Radio</option>
             <option value="select">Select Box</option>
             <option value="section">Section Text</option>
@@ -217,6 +248,26 @@
                 id++;
                 x++;
                 var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]" placeholder="no"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six" selected>Half Row</option><option value="four">Third Row</option><option value="three">Fourth Row</option></select></div><div class="remove_option">Remove</div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+parent+'"></div>';
+                // close parent
+                var end = '</div><div class="outside-link"><div class="required">Required &nbsp;<label class="switch"><input type="checkbox" name="required'+parent+'" id="target" value="1"><span class="slider round"></span></label></div></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
+                // Make up for new question ids
+
+                // append
+                $(wrapper).append(start+firstChild+secondChild+end);
+              }
+              else if(type == 'checkbox-group'){
+
+                var parent = id;
+                // start parent
+                var start = '<div class="question row" data-id="'+id+'"><div class="four columns question-input"><input type="text" name="title'+id+'" value="'+title+'"></div><div class="eight columns question-input"><input type="hidden" name="columns'+id+'" value="twelve"><input type="hidden" name="type'+id+'" value="checkbox-group">';
+                // add first child
+                id++;
+                x++;
+                var firstChild = '<div class="radiochildren"><div class="row"><div class="six columns"><label for="child'+parent+'">Option 1</label><input type="text" name="child'+parent+'[]"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="remove_option">Remove</div></div>';
+                // add second child
+                id++;
+                x++;
+                var secondChild = '<div class="row"><div class="six columns"><label for="child'+parent+'">Option 2</label><input type="text" name="child'+parent+'[]"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="remove_option">Remove</div></div></div><div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="'+parent+'"></div>';
                 // close parent
                 var end = '</div><div class="outside-link"><div class="required">Required &nbsp;<label class="switch"><input type="checkbox" name="required'+parent+'" id="target" value="1"><span class="slider round"></span></label></div></div><div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div><i class="fa fa-arrows-v" aria-hidden="true"></i></div>';
                 // Make up for new question ids

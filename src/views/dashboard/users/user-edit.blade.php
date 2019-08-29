@@ -17,7 +17,7 @@
       <div class="four columns">
       </div>
       <div class="four columns">
-        <button class="nope"><h3 class="store">Save Datatype</h3></button>
+        <button class="nope"><h3 class="store">Save User</h3></button>
       </div>
     </div>
 

@@ -5,6 +5,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
   @endpush
 
+  <div class="message" style="position:fixed; top:-150px; background-color:#F18F01; left:0px; padding:20px; color:#fff; transition:linear all .2s; width:100vw; text-align:center;">
+    <p>PATH COPIED</p>
+  </div>
 
     <div class="row">
       <p></p>
@@ -36,8 +39,8 @@
 
             <div class="twelve columns img-container" style="justify-content:left;">
               <p>File slug: {{$file->slug}}
-              <br>File path: {{$file->path}}
-              <br><a href="/{{$file->path}}" target="_blank">View File</a></p>
+              <br>File path: <span class="copy">{{$file->path}}</span>
+              <br><a href="{{$file->path}}" target="_blank">View File</a></p>
               <i class="fa fa-eraser" aria-hidden="true" data-id="{{$file->id}}"></i>
             </div>
 
@@ -122,6 +125,31 @@
       })
 
       $(this).parent('div').remove();
+    });
+
+    $(document).on('click', '.media-img', function(e){
+        var path = $(this).attr('src');
+        var temp = $("<input>");
+        $("body").append(temp);
+        temp.val(path).select();
+        document.execCommand("copy");
+        temp.remove();
+        $('.message').css('top','0px');
+        setTimeout( function () {
+            $('.message').css('top','-150px');
+        }, 1500);
+    });
+    $(document).on('click', '.copy', function(e){
+        var path = $(this).text();
+        var temp = $("<input>");
+        $("body").append(temp);
+        temp.val(path).select();
+        document.execCommand("copy");
+        temp.remove();
+        $('.message').css('top','0px');
+        setTimeout( function () {
+            $('.message').css('top','-150px');
+        }, 1500);
     });
 </script>
 

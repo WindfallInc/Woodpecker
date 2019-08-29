@@ -3914,6 +3914,17 @@ a:hover {
   border: solid 1px #333;
   padding: 10px;
   overflow: scroll;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+.admin .transfer .textarea p,
+.admin .transfer .textarea li,
+.admin .transfer .textarea span,
+.admin .transfer .textarea div {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
 }
 .admin .transfer .textarea.active {
   display: block;
@@ -4393,6 +4404,7 @@ a:hover {
   margin: auto;
   background-color: #eee;
   padding: 18px;
+  overflow: hidden;
 }
 .admin #contentoptions .content-chooser li {
   background-color: #000;
@@ -4413,9 +4425,9 @@ a:hover {
 }
 .admin #contentoptions.active .content-chooser {
   -webkit-animation-name: expandoutlrg;
-  -webkit-animation-duration: .2s;
+  -webkit-animation-duration: .5s;
   animation-name: expandoutlrg;
-  animation-duration: .2s;
+  animation-duration: .5s;
   animation-fill-mode: forwards;
 }
 .admin .tutorial {

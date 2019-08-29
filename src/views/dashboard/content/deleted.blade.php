@@ -37,7 +37,7 @@
     <div class="row dashboard-list" id="list">
       <hr>
       @if(count($contents)==0)
-        <p>You have no {{str_plural($type->title)}}. Try creating one!</p>
+        <p>No {{str_plural($type->title)}} have been deleted.</p>
       @endif
       @foreach($contents as $content)
         @if($user->canEdit($content->id))
@@ -56,17 +56,15 @@
                 <p class="published" data-id="{{$content->id}}"><i class="fa fa-times" aria-hidden="true"></i></p>
               @endif
             </div>
-            <div class="two columns">
+            <div class="two push_two columns">
               <a href="/dashboard/{{$type->id}}/{{$content->id}}/edit" class="edit-link"><p class="edit">Edit</p></a>
-            </div>
-            <div class="two columns">
-              <p class="delete" data-id="{{$content->id}}">Delete</p>
             </div>
           </div>
           <hr>
           </span>
         @endif
       @endforeach
+      <p><a href="/dashboard/{{$type->id}}/all">View {{str_plural($type->title)}}</a></p>
     </div>
 
     @push('footer')
