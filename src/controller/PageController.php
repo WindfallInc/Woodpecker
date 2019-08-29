@@ -172,7 +172,20 @@ class PageController extends Controller
         foreach($form->questions as $question){
           if($question->type != 'section'){
             $answer = new Answer;
-            $answer->content = Input::get($question->slug);
+            if($question->type=='checkbox-group')
+            {
+              $anws = Input::get('woodpecker'.$question->id);
+              $answer->content = '';
+              foreach($anws as $a)
+              {
+                $answer->content .= $a.',';
+              }
+              $answer->content = rtrim($answer->content, ",");
+            }
+            else
+            {
+              $answer->content = Input::get('woodpecker'.$question->id);
+            }
             $answer->submission()->associate($submission);
             $answer->question()->associate($question);
             $answer->save();

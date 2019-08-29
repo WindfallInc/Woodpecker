@@ -23,20 +23,32 @@
 				<label for="{{$q->slug}}">{{$q->title}}</label>
 				@if($q->type=='text-area')
 					<br>
-					<textarea name="{{$q->slug}}" id="" cols="30" rows="10" @if($q->required == 1) required @endif></textarea>
+					<textarea name="woodpecker{{$q->id}}" id="" cols="30" rows="10" @if($q->required == 1) required @endif class="woodpecker-textarea"></textarea>
 				@elseif($q->type=='section')
 
 				@elseif($q->type=='radio')
-					<div class="row">
+					<div class="row woodpecker-radio-section">
 						@foreach($q->children() as $child)
+							@if($child->columns == 'twelve')<span></span>@endif
 							<div class="{{$child->columns}} columns">
 								<label for="{{$child->slug}}">{{$child->title}}</label>
-								<input type="radio" name="{{$q->slug}}" value="{{$child->slug}}" @if($q->required == 1) required @endif>
+								<input type="radio" name="woodpecker{{$q->id}}" value="{{$child->title}}" id="{{$child->slug}}" @if($q->required == 1) required @endif>
 							</div>
 						@endforeach
 					</div>
+				@elseif($q->type=='checkbox-group')
+					<div class="row woodpecker-checkbox-group" id="checkbox-group{{$q->id}}">
+						<ul>
+							@foreach($q->children() as $child)
+								<li>
+									<label for="{{$child->slug}}">{{$child->title}}</label>
+									<input type="checkbox" name="woodpecker{{$q->id}}[]" value="{{$child->title}}" id="{{$child->slug}}" @if($q->required == 1) required @endif>
+								</li>
+							@endforeach
+						</ul>
+					</div>
 				@elseif($q->type=='select')
-					<select name="{{$q->slug}}" id="{{$q->slug}}" @if($q->required == 1) required @endif>
+					<select name="woodpecker{{$q->id}}" id="{{$q->slug}}" @if($q->required == 1) required @endif class="woodpecker-select">
 						@foreach($q->children() as $child)
 							<option value="{{$child->title}}">
 								{{$child->title}}
@@ -44,7 +56,7 @@
 						@endforeach
 					</select>
 				@else
-					<input type="{{$q->type}}" placeholder="{{$q->placeholder}}" name="{{$q->slug}}" id="{{$q->slug}}" @if($q->required == 1) required @endif>
+					<input type="{{$q->type}}" placeholder="{{$q->placeholder}}" name="woodpecker{{$q->id}}" id="{{$q->slug}}" @if($q->required == 1) required @endif class="woodpecker-input">
 				@endif
 			</div>
 
