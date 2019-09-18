@@ -56,7 +56,9 @@ class PageController extends Controller
         $template = Template::where('slug','home-page')->first();
       }
 
-      return view('templates.'.$template->slug, compact('page','template'));
+      $menu = $template->menus->first();
+
+      return view('templates.'.$template->slug, compact('page','template','menu'));
     }
 
     public function page($slug){
@@ -86,10 +88,12 @@ class PageController extends Controller
           $template = $page->type->templates->sortByDesc('updated_at')->first();
         }
 
+        $menu = $template->menus->first();
+
         $body = Html::where('content_id', $page->id)->isPublished()->first();
 
 
-        return view('templates.'.$template->slug, compact('page','template','body'));
+        return view('templates.'.$template->slug, compact('page','template','body','menu'));
     }
     public function pageByType($type,$slug){
         $route = $type.'/'.$slug;
@@ -128,9 +132,11 @@ class PageController extends Controller
           $template = $page->type->templates->sortByDesc('updated_at')->first();
         }
 
+        $menu = $template->menus->first();
+
         $body = Html::where('content_id', $page->id)->where('published',1)->first();
 
-        return view('templates.'.$template->slug, compact('page','template', 'body'));
+        return view('templates.'.$template->slug, compact('page','template', 'body', 'menu'));
     }
     public function preview($slug){
 
@@ -172,20 +178,7 @@ class PageController extends Controller
         foreach($form->questions as $question){
           if($question->type != 'section'){
             $answer = new Answer;
-            if($question->type=='checkbox-group')
-            {
-              $anws = Input::get('woodpecker'.$question->id);
-              $answer->content = '';
-              foreach($anws as $a)
-              {
-                $answer->content .= $a.',';
-              }
-              $answer->content = rtrim($answer->content, ",");
-            }
-            else
-            {
-              $answer->content = Input::get('woodpecker'.$question->id);
-            }
+            $answer->content = Input::get('woodpecker'.$question->id);
             $answer->submission()->associate($submission);
             $answer->question()->associate($question);
             $answer->save();
@@ -211,7 +204,7 @@ class PageController extends Controller
   		}
   		else {
   			$results        = Content::inRandomOrder()->take(6)->get();
-        $success=false;
+        $success        = false;
   		}
       $template = Template::find(1);
 

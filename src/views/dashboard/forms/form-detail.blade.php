@@ -108,7 +108,7 @@
                   </div>
                   <div class="eight columns question-input">
                     <input type="hidden" name="columns{{$q->id}}" value="twelve">
-                    <input type="hidden" name="type{{$q->id}}" value="radio">
+                    <input type="hidden" name="type{{$q->id}}" value="checkbox-group">
                     <div class="radiochildren">
                       @foreach($q->children() as $child)
                       <div class="row">
@@ -121,7 +121,7 @@
                       </div>
                       @endforeach
                     </div>
-                    <div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
+                    <div class="addcheckboxchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
                   </div>
                   <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
                   <div class="outside-link">
@@ -315,7 +315,7 @@
       var childwrapper = $(this).siblings('.radiochildren');
       x++;
       id++;
-      $(childwrapper).append('<div class="row"><div class="six columns"><label for="child'+parent+'">Option</label><input type="text" name="child'+parent+'[]" placeholder="button value"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four" selected>Third Row</option><option value="three">Fourth Row</option></select></div></div>div>');
+      $(childwrapper).append('<div class="row"><div class="six columns"><label for="child'+parent+'">Option</label><input type="text" name="child'+parent+'[]" placeholder="button value"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div><div class="six columns"><label for="childcolumns'+parent+'">Size</label><select name="childcolumns'+parent+'[]"><option value="twelve">Full Row</option><option value="six">Half Row</option><option value="four" selected>Third Row</option><option value="three">Fourth Row</option></select></div></div>');
     });
 
     $(document).on('click', '.addcheckboxchild' , function(e){

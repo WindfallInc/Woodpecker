@@ -395,42 +395,42 @@ class DashboardController extends Controller
         $component->reqimg            = $father->reqimg;
 
         if(isset($input1)){
-          if(isset($component->father->content1)){
+          if(isset($component->parent->content1)){
             $thing                    = array_slice($input1, $count1);
             $component->content1      = $thing[0];
             $count1++;
           }
         }
         if(isset($input2)){
-          if(isset($component->father->content2)){
+          if(isset($component->parent->content2)){
             $thing                        = array_slice($input2, $count2);
             $component->content2          = $thing[0];
             $count2++;
           }
         }
         if(isset($input3)){
-          if(isset($component->father->content3)){
+          if(isset($component->parent->content3)){
             $thing                        = array_slice($input3, $count3);
             $component->content3          = $thing[0];
             $count3++;
           }
         }
         if(isset($input4)){
-          if(isset($component->father->content4)){
+          if(isset($component->parent->content4)){
             $thing                        = array_slice($input4, $count4);
             $component->content4          = $thing[0];
             $count4++;
           }
         }
         if(isset($input5)){
-          if(isset($component->father->content5)){
+          if(isset($component->parent->content5)){
             $thing                        = array_slice($input5, $count5);
             $component->content5          = $thing[0];
             $count5++;
           }
         }
         if(isset($input6)){
-          if(isset($component->father->content6)){
+          if(isset($component->parent->content6)){
             $thing                        = array_slice($input6, $count6);
             $component->content6          = $thing[0];
             $count6++;
