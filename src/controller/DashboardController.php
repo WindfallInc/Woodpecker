@@ -1254,28 +1254,28 @@ class DashboardController extends Controller
               // save new radio options
               foreach($children as $child){
                 $id                     = array_slice(Input::get('childid'.$question->id), $count);
-                $q                      = Question::find($id[0]);
-                if(!isset($q)){
-                  $q                    = new Question;
+                $kid                      = Question::find($id[0]);
+                if(!isset($kid)){
+                  $kid                    = new Question;
                 }
-                $q->id                  = $id[0];
-                $q->title               = $child;
-                $q->slug                = str_slug($child,"-");
+                $kid->id                  = $id[0];
+                $kid->title               = $child;
+                $kid->slug                = str_slug($child,"-");
                 if($question->type == 'select'){
-                  $q->type                = 'select';
+                  $kid->type                = 'select';
                 }
                 elseif($question->type == 'radio'){
-                  $q->type                = 'radio';
+                  $kid->type                = 'radio';
                   $columns                = array_slice(Input::get('childcolumns'.$question->id), $count);
-                  $q->columns             = $columns[0];
+                  $kid->columns             = $columns[0];
                 }
                 elseif($question->type == 'checkbox-group'){
-                  $q->type                = 'checkbox';
+                  $kid->type                = 'checkbox';
                 }
 
 
-                $q->parent()->associate($question);
-                $q->save();
+                $kid->parent()->associate($question);
+                $kid->save();
 
                 $count++;
               }

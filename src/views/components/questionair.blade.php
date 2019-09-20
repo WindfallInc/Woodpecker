@@ -20,7 +20,7 @@
 			@endif
 
 			<div class="{{$q->columns}} columns">
-				<label for="{{$q->slug}}">{{$q->title}}</label>
+				<label for="{{$q->slug}}" class="{{$q->type}}-label">{{$q->title}}</label>
 				@if($q->type=='text-area')
 					<br>
 					<textarea name="woodpecker{{$q->id}}" id="" cols="30" rows="10" @if($q->required == 1) required @endif class="woodpecker-textarea"></textarea>
@@ -31,8 +31,8 @@
 						@foreach($q->children() as $child)
 							@if($child->columns == 'twelve')<span></span>@endif
 							<div class="{{$child->columns}} columns">
-								<label for="{{$child->slug}}">{{$child->title}}</label>
 								<input type="radio" name="woodpecker{{$q->id}}" value="{{$child->title}}" id="{{$child->slug}}" @if($q->required == 1) required @endif>
+								<label for="{{$child->slug}}">{{$child->title}}</label>
 							</div>
 						@endforeach
 					</div>
@@ -41,8 +41,8 @@
 						<ul>
 							@foreach($q->children() as $child)
 								<li>
-									<label for="{{$child->slug}}">{{$child->title}}</label>
 									<input type="checkbox" name="woodpecker{{$q->id}}[]" value="{{$child->title}}" id="{{$child->slug}}" @if($q->required == 1) required @endif>
+									<label for="{{$child->slug}}">{{$child->title}}</label>
 								</li>
 							@endforeach
 						</ul>
