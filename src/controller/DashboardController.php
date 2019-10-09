@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
 use App\Woodpecker\Template;
 use App\Woodpecker\Type;
@@ -32,7 +31,7 @@ use App\Woodpecker\Html;
 use Image;
 
 use Auth;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Log;
@@ -166,13 +165,13 @@ class DashboardController extends Controller
         $content           = New Content;
       }
       $content->type_id                     = $type;
-      $content->title                       = ucwords(Input::get('title'));
-      $content->keywords                    = Input::get('keywords');
-      $content->metadesc                    = Input::get('metadesc');
-      $content->slug                        = str_slug(Input::get('title'),"-");
-      $content->start_date                  = strtotime(Input::get('start_date'));
-      $content->end_date                    = strtotime(Input::get('end_date'));
-      $template                             = Template::find(Input::get('template'));
+      $content->title                       = ucwords($request->input('title'));
+      $content->keywords                    = $request->input('keywords');
+      $content->metadesc                    = $request->input('metadesc');
+      $content->slug                        = str_slug($request->input('title'),"-");
+      $content->start_date                  = strtotime($request->input('start_date'));
+      $content->end_date                    = strtotime($request->input('end_date'));
+      $template                             = Template::find($request->input('template'));
       if(isset($template)){
         $content->template()->associate($template);
       }
@@ -182,10 +181,10 @@ class DashboardController extends Controller
       foreach($content->type->custom_fields as $custom){
         $field = $content->customFieldContent->where('custom_field_id',$custom->id)->first();
         if(isset($field)){
-          $field->content                  = Input::get('customfield'.$custom->id);
+          $field->content                  = $request->input('customfield'.$custom->id);
         } else {
           $field                           = new CustomFieldContent;
-          $field->content                  = Input::get('customfield'.$custom->id);
+          $field->content                  = $request->input('customfield'.$custom->id);
           $field->content()->associate($content);
           $field->customField()->associate($custom);
         }
@@ -193,16 +192,15 @@ class DashboardController extends Controller
       }
 
 
-      $cats = Input::get('categories');
+      $cats = $request->input('categories');
       if(isset($cats)){
-        foreach(Input::get('categories') as $cat){
+        foreach($request->input('categories') as $cat){
           $category = Category::where('slug',$cat)->first();
           $content->categories()->attach($category);
         }
       }
 
-
-      if(Input::hasFile('featimage'))
+      if($request->hasFile('featimage'))
       {
 
         $feat = $content->media()->where('featured', 1)->first();
@@ -211,33 +209,50 @@ class DashboardController extends Controller
           $feat->save();
           $content->media($feat)->detach();
         }
-        $ext                = Input::file('featimage')->extension();
+        $ext                = $request->file('featimage')->extension();
         if($ext == 'pdf'){
           return 'a featured image cannot be in pdf format.';
         }
-        $load               = Input::file('featimage');
+        $load               = $request->file('featimage');
+        $now = date('Mdi');
 
-        $img = Image::make($load);
-        if($img->filesize() > 2000000){
+        // Save full image
+        $img = Image::make($load)->encode('jpg', 5);
+        if($img->filesize() > 1000000){
+          $img->resize(800,null, function ($constraint) {
+          $constraint->aspectRatio();
+          $constraint->upsize();});
+        }
+        elseif($img->filesize() > 900000){
+          $img->resize(1300,null, function ($constraint) {
+          $constraint->aspectRatio();
+          $constraint->upsize();});
+        }
+        elseif($img->filesize() > 700000){
           $img->resize(1800,null, function ($constraint) {
           $constraint->aspectRatio();
-          $constraint->upsize();})->save('featured/'.$content->slug.'.'.$ext);
+          $constraint->upsize();});
         }
-        else{
-          $img->resize(2500,null, function ($constraint) {
+        elseif($img->filesize() > 500000){
+          $img->resize(2200,null, function ($constraint) {
           $constraint->aspectRatio();
-          $constraint->upsize();})->save('featured/'.$content->slug.'.'.$ext);
+          $constraint->upsize();});
+        }
+        else {
+          return redirect()->back();
         }
 
+        $img->save('featured/'.$content->slug.$now.'.'.$ext);
+        // Save thumbnail
         $img = Image::make($load)->resize(300,null, function ($constraint) {
         $constraint->aspectRatio();
-        $constraint->upsize();})->save('featured/'.$content->slug.'-thumbnail.'.$ext);
+        $constraint->upsize();})->encode('jpg',55)->save('featured/'.$content->slug.$now.'-thumbnail.'.$ext);
 
         $media                 = new Media;
         $media->slug           = $content->slug.'-featured';
         $media->featured       = 1;
-        $media->path           = '/featured/'.$content->slug.'.'.$ext;
-        $media->thumbnail      = '/featured/'.$content->slug.'-thumbnail.'.$ext;
+        $media->path           = '/featured/'.$content->slug.$now.'.'.$ext;
+        $media->thumbnail      = '/featured/'.$content->slug.$now.'-thumbnail.'.$ext;
 
         $media->save();
         if(isset($content->category)){
@@ -252,9 +267,9 @@ class DashboardController extends Controller
       $content->save();
 
       $imagecount = 0;
-      if(Input::hasFile('additionalimages'))
+      if($request->hasFile('additionalimages'))
       {
-      foreach(Input::file('additionalimages') as $image){
+      foreach($request->file('additionalimages') as $image){
         $imagecount++;
         $additional               = $image;
         $ext                      = $image->extension();
@@ -291,16 +306,16 @@ class DashboardController extends Controller
 
 
 
-      $texts             = Input::get('column');
+      $texts             = $request->input('column');
       $count             = 0;
       $ids               = 0;
-      $hasrows           = Input::get('columns');
+      $hasrows           = $request->input('columns');
 
       if(isset($hasrows)){
-      foreach(Input::get('columns') as $thing){
+      foreach($request->input('columns') as $thing){
 
         $columns = array_slice($texts, $count, $thing);
-        $id = array_slice(Input::get('row'), $ids);
+        $id = array_slice($request->input('row'), $ids);
         $ids++;
         $count = $count + $thing;
         if($thing == 1){
@@ -364,16 +379,16 @@ class DashboardController extends Controller
       $count5                         = 0;
       $count6                         = 0;
       $imgcount                       = 0;
-      $input1                         = Input::get('input1');
-      $input2                         = Input::get('input2');
-      $input3                         = Input::get('input3');
-      $input4                         = Input::get('input4');
-      $input5                         = Input::get('input5');
-      $input6                         = Input::get('input6');
-      $components                     = Input::get('component-slug');
+      $input1                         = $request->input('input1');
+      $input2                         = $request->input('input2');
+      $input3                         = $request->input('input3');
+      $input4                         = $request->input('input4');
+      $input5                         = $request->input('input5');
+      $input6                         = $request->input('input6');
+      $components                     = $request->input('component-slug');
       if(isset($components)){
       foreach($components as $slug){
-        $id                           = array_slice(Input::get('component-id'), $count);
+        $id                           = array_slice($request->input('component-id'), $count);
         $old                          = Component::find($id[0]);
 
         if(isset($old)){
@@ -439,17 +454,17 @@ class DashboardController extends Controller
 
 
         if(isset($component->link_target)){
-          $component->outside  = Input::get('link_target'.$component->id);
+          $component->outside  = $request->input('link_target'.$component->id);
           if(!isset($component->outside)){$component->outside = 'off';}
         }
         if(isset($component->category_selection)){
-          $component->category_id  = Input::get('catid'.$component->id);
+          $component->category_id  = $request->input('catid'.$component->id);
         }
         if(isset($component->type_selection)){
-          $component->type_id  = Input::get('typeid'.$component->id);
+          $component->type_id  = $request->input('typeid'.$component->id);
         }
 
-        $image                      = Input::file('component'.$component->id.'-img');
+        $image                      = $request->file('component'.$component->id.'-img');
 
         if(isset($component->reqimg) && isset($image)){
             $load                         = $image;
@@ -487,9 +502,9 @@ class DashboardController extends Controller
         $component->save();
         if($component->slug == 'carousal'){
           $imagecount = 0;
-          if(Input::hasFile('carousalimages'))
+          if($request->hasFile('carousalimages'))
           {
-            foreach(Input::file('carousalimages') as $image){
+            foreach($request->file('carousalimages') as $image){
               $imagecount++;
               $additional               = $image;
               $ext                      = $image->extension();
@@ -518,9 +533,9 @@ class DashboardController extends Controller
           }
         }
         if($component->slug == 'questionair'){
-          $formId   = Input::get('formid'.$component->id);
+          $formId   = $request->input('formid'.$component->id);
           if(!isset($formId)){
-            $formId   = Input::get('formid');
+            $formId   = $request->input('formid');
           }
           $form     = Form::find($formId);
           $component->form()->associate($form);
@@ -540,7 +555,7 @@ class DashboardController extends Controller
 
 
 
-      $order = Input::get('order');
+      $order = $request->input('order');
       $orders = explode(",", $order );
       $count = 1;
       foreach($orders as $order){
@@ -694,8 +709,8 @@ class DashboardController extends Controller
 
     public function typeStore(Request $request)
     {
-      if(Type::where('slug', Input::get('slug'))->first()){
-        $type           = Type::where('slug', Input::get('slug'))->first();
+      if(Type::where('slug', $request->input('slug'))->first()){
+        $type           = Type::where('slug', $request->input('slug'))->first();
         $user = Auth::guard('dashboard')->user();
         if(!$user->canEdit($type->id)){
           abort(403);
@@ -706,34 +721,34 @@ class DashboardController extends Controller
         $type             = New Type;
       }
 
-        $type->title      = Input::get('title');
-        $type->slug       = str_slug(Input::get('title'),"-");
-        $type->categories = Input::get('categories');
-        $type->editor     = Input::get('editor');
-        $type->time     = Input::get('time');
-        $slug             = Input::get('template');
+        $type->title      = $request->input('title');
+        $type->slug       = str_slug($request->input('title'),"-");
+        $type->categories = $request->input('categories');
+        $type->editor     = $request->input('editor');
+        $type->time     = $request->input('time');
+        $slug             = $request->input('template');
         $template         = Template::where('slug',$slug)->first();
         $type->save();
         $type->templates()->attach($template);
 
 
-        $custom_field = Input::get('custom_field');
-        $custom_type = Input::get('custom_type');
-        $custom_id = Input::get('custom_id');
+        $custom_field = $request->input('custom_field');
+        $custom_type = $request->input('custom_type');
+        $custom_id = $request->input('custom_id');
         $count = 0;
 
 
         if(isset($custom_id)){
           $type->custom_fields()->detach();
-          foreach(Input::get('custom_id') as $custom_id){
+          foreach($request->input('custom_id') as $custom_id){
             $custom = CustomField::find($custom_id);
             if(!isset($custom)){
               $custom = new CustomField;
             }
 
-            $input = array_slice(Input::get('custom_field'), $count);
+            $input = array_slice($request->input('custom_field'), $count);
             $custom->name = $input[0];
-            $input = array_slice(Input::get('custom_type'), $count);
+            $input = array_slice($request->input('custom_type'), $count);
             $custom->input = $input[0];
             $custom->save();
             $type->custom_fields()->attach($custom);
@@ -803,18 +818,18 @@ class DashboardController extends Controller
       if(!$user->canEditMenus()){
         abort(403);
       }
-      if(Menu::where('slug', Input::get('slug'))->first()){
-        $menu           = Menu::where('slug', Input::get('slug'))->first();
+      if(Menu::where('slug', $request->input('slug'))->first()){
+        $menu           = Menu::where('slug', $request->input('slug'))->first();
         $menu->templates()->detach();
       }
       else {
         $menu           = New Menu;
       }
 
-        $menu->title    = Input::get('title');
-        $menu->slug     = str_slug(Input::get('title'),"-");
+        $menu->title    = $request->input('title');
+        $menu->slug     = str_slug($request->input('title'),"-");
         $menu->save();
-        foreach(Input::get('templates') as $template){
+        foreach($request->input('templates') as $template){
           $menu->templates()->attach($template);
         }
 
@@ -960,15 +975,15 @@ class DashboardController extends Controller
 
     public function categoryStore(Request $request)
     {
-      if(Category::where('slug', Input::get('slug'))->first()){
-        $category           = Category::where('slug', Input::get('slug'))->first();
+      if(Category::where('slug', $request->input('slug'))->first()){
+        $category           = Category::where('slug', $request->input('slug'))->first();
       }
       else {
         $category           = New Category;
       }
 
-      $category->title    = ucwords(Input::get('title'));
-      $category->slug     = str_slug(Input::get('title'),"-");
+      $category->title    = ucwords($request->input('title'));
+      $category->slug     = str_slug($request->input('title'),"-");
       $category->save();
 
       return redirect()->route('categories');
@@ -1012,12 +1027,12 @@ class DashboardController extends Controller
 
 
       $media               = new Media;
-      $media->slug         = str_slug(Input::get('title'),"-");
+      $media->slug         = str_slug($request->input('title'),"-");
       $media->featured     = 0;
 
-      $load                = Input::file('image');
-      $ext                 = Input::file('image')->extension();
-      if(Input::hasFile('image'))
+      $load                = $request->file('image');
+      $ext                 = $request->file('image')->extension();
+      if($request->hasFile('image'))
       {
         if($ext == 'pdf'){
           Storage::disk('docs')->putFileAs('uploaded-'.date("Y"), $load,$media->slug.'.'.$ext);
@@ -1039,9 +1054,9 @@ class DashboardController extends Controller
       }
       $media->save();
 
-      $cats = Input::get('categories');
+      $cats = $request->input('categories');
       if(isset($cats)){
-        foreach(Input::get('categories') as $cat){
+        foreach($request->input('categories') as $cat){
           $category = Category::where('slug',$cat)->first();
           $media->category()->attach($category);
         }
@@ -1088,21 +1103,21 @@ class DashboardController extends Controller
 
           if($user->isAdmin())
           {
-            $dashboard->name = Input::get('name');
-            $dashboard->email = Input::get('email');
-            $dashboard->admin = Input::get('admin');
-            $dashboard->forms = Input::get('forms');
-            $dashboard->menus = Input::get('menus');
-            $dashboard->confirmed = Input::get('confirmed');
+            $dashboard->name = $request->input('name');
+            $dashboard->email = $request->input('email');
+            $dashboard->admin = $request->input('admin');
+            $dashboard->forms = $request->input('forms');
+            $dashboard->menus = $request->input('menus');
+            $dashboard->confirmed = $request->input('confirmed');
             $dashboard->save();
             foreach($dashboard->permissions as $p)
             {
               $p->delete();
             }
-            $typep = Input::get('typepermissions');
+            $typep = $request->input('typepermissions');
             if(isset($typep))
             {
-              foreach(Input::get('typepermissions') as $permission)
+              foreach($request->input('typepermissions') as $permission)
               {
                 $type = Type::find($permission);
                 $dashboardPermission = new Permission;
@@ -1111,10 +1126,10 @@ class DashboardController extends Controller
                 $dashboardPermission->save();
               }
             }
-            $contentp = Input::get('contentpermissions');
+            $contentp = $request->input('contentpermissions');
             if(isset($contentp))
             {
-              foreach(Input::get('contentpermissions') as $permission)
+              foreach($request->input('contentpermissions') as $permission)
               {
                 $content = Content::find($permission);
                 $dashboardPermission = new Permission;
@@ -1154,17 +1169,17 @@ class DashboardController extends Controller
           if(!$user->canEditForms()){
             abort(403);
           }
-          $old            = Form::where('slug', Input::get('slug'))->first();
+          $old            = Form::where('slug', $request->input('slug'))->first();
           if(isset($old)){
-            $form         = Form::where('slug', Input::get('slug'))->first();
+            $form         = Form::where('slug', $request->input('slug'))->first();
           }
           else {
             $form         = new Form;
           }
-          $form->title    = Input::get('title');
-          $form->slug     = str_slug(Input::get('title'),"-");
-          $form->cta      = Input::get('cta');
-          $form->redirect = Input::get('redirect');
+          $form->title    = $request->input('title');
+          $form->slug     = str_slug($request->input('title'),"-");
+          $form->cta      = $request->input('cta');
+          $form->redirect = $request->input('redirect');
           $form->save();
 
           return redirect()->route('formDetails', ['slug'=>$form->slug]);
@@ -1194,7 +1209,7 @@ class DashboardController extends Controller
             abort(403);
           }
           $form  = Form::where('slug', $slug)->first();
-          $order = Input::get('order');
+          $order = $request->input('order');
           $orders = explode(",", $order );
           $counter = 0;
           foreach($form->questions as $q){
@@ -1211,16 +1226,16 @@ class DashboardController extends Controller
             $counter++;
 
             $question->id         = $q;
-            $question->type       = Input::get('type'.$q);
-            $question->required       = Input::get('required'.$q);
-            $question->title      = Input::get('title'.$q);
+            $question->type       = $request->input('type'.$q);
+            $question->required       = $request->input('required'.$q);
+            $question->title      = $request->input('title'.$q);
             if($question->type == 'section'){
               $question->slug       = $question->id . '-section';
             } else {
               $question->slug       = str_slug($question->title,"-");
             }
 
-            $question->columns    = Input::get('columns'.$q);
+            $question->columns    = $request->input('columns'.$q);
             switch($question->columns) {
               case 'twelve':
                 $column = 12;
@@ -1249,11 +1264,11 @@ class DashboardController extends Controller
                 $kid->parent_id = NULL;
                 $kid->save();
               }
-              $children = Input::get('child'.$question->id);
+              $children = $request->input('child'.$question->id);
               $count = 0;
               // save new radio options
               foreach($children as $child){
-                $id                     = array_slice(Input::get('childid'.$question->id), $count);
+                $id                     = array_slice($request->input('childid'.$question->id), $count);
                 $kid                      = Question::find($id[0]);
                 if(!isset($kid)){
                   $kid                    = new Question;
@@ -1266,7 +1281,7 @@ class DashboardController extends Controller
                 }
                 elseif($question->type == 'radio'){
                   $kid->type                = 'radio';
-                  $columns                = array_slice(Input::get('childcolumns'.$question->id), $count);
+                  $columns                = array_slice($request->input('childcolumns'.$question->id), $count);
                   $kid->columns             = $columns[0];
                 }
                 elseif($question->type == 'checkbox-group'){
@@ -1364,10 +1379,10 @@ class DashboardController extends Controller
 
     public function serviceSubmit()
     {
-      $sender 								= Input::get('name');
-      $senderEmail 						= Input::get('email');
+      $sender 								= $request->input('name');
+      $senderEmail 						= $request->input('email');
       $subject 								= "Jaunt CMS Service Ticket";
-      $problem 								= Input::get('problem');
+      $problem 								= $request->input('problem');
 
       $service = New Ticket;
       $service->name = $sender;

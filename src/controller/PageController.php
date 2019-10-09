@@ -26,7 +26,6 @@ use App\Woodpecker\Html;
 
 
 use Auth;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class PageController extends Controller
@@ -58,7 +57,16 @@ class PageController extends Controller
 
       $menu = $template->menus->first();
 
-      return view('templates.'.$template->slug, compact('page','template','menu'));
+      $url      = url('/get/loop/'. $page->id);
+      $content  = @file_get_contents($url);
+      if($content === FALSE) {
+        $body = Html::where('content_id', $page->id)->isPublished()->first();
+      }
+      else {
+        $body = false;
+      }
+
+      return view('templates.'.$template->slug, compact('page','template','menu','body'));
     }
 
     public function page($slug){
@@ -90,7 +98,14 @@ class PageController extends Controller
 
         $menu = $template->menus->first();
 
-        $body = Html::where('content_id', $page->id)->isPublished()->first();
+        $url      = url('/get/loop/'. $page->id);
+        $content  = @file_get_contents($url);
+        if($content === FALSE) {
+          $body = Html::where('content_id', $page->id)->isPublished()->first();
+        }
+        else {
+          $body = false;
+        }
 
 
         return view('templates.'.$template->slug, compact('page','template','body','menu'));
@@ -134,7 +149,14 @@ class PageController extends Controller
 
         $menu = $template->menus->first();
 
-        $body = Html::where('content_id', $page->id)->where('published',1)->first();
+        $url      = url('/get/loop/'. $page->id);
+        $content  = @file_get_contents($url);
+        if($content === FALSE) {
+          $body = Html::where('content_id', $page->id)->isPublished()->first();
+        }
+        else {
+          $body = false;
+        }
 
         return view('templates.'.$template->slug, compact('page','template', 'body', 'menu'));
     }
@@ -160,7 +182,7 @@ class PageController extends Controller
 
     public function form(Request $request, $id){
 
-      $validate = Validator::make(Input::all(), [
+      $validate = Validator::make(Request::all(), [
       	'g-recaptcha-response' => 'required|captcha'
       ]);
 
@@ -178,7 +200,7 @@ class PageController extends Controller
         foreach($form->questions as $question){
           if($question->type != 'section'){
             $answer = new Answer;
-            $answer->content = Input::get('woodpecker'.$question->id);
+            $answer->content = $request->input('woodpecker'.$question->id);
             $answer->submission()->associate($submission);
             $answer->question()->associate($question);
             $answer->save();
@@ -190,14 +212,11 @@ class PageController extends Controller
 
 
     }
-    public function search() {
+    public function search(Request $request) {
 
-  	  $search        = Input::get('search');
+  	  $search        = $request->input('search');
   	  if(isset($search)){
   	    $results       	= Content::where('title', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->orWhere('metadesc', 'like', '%'.$search.'%')->isPublished()->orderBy('created_at','DESC')->get();
-  	  }
-  	  else{
-  	    $results        = Content::inRandomOrder()->take(6)->get();
   	  }
   		if(count($results)>0){
   			$success=true;
@@ -207,8 +226,9 @@ class PageController extends Controller
         $success        = false;
   		}
       $template = Template::find(1);
+      $menu = $template->menus->first();
 
-  	  return view('templates.results', compact('results','success','template'));
+  	  return view('templates.results', compact('results','success','template','menu'));
 	  }
 
     public function loopContent($id){

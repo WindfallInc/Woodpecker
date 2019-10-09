@@ -5,7 +5,7 @@
   <div class="main-items">
     @foreach($types as $type)
       @if($user->canEditType($type->id))
-      <div class="nav-box">
+      <div class="nav-box mini">
         <a href="/dashboard/{{$type->id}}/all"><p><i class="fa fa-cube" aria-hidden="true"></i>{{str_plural($type->title)}}</p></a>
         <div class="options">
           <a href="/dashboard/{{$type->id}}/create" class="new">&#xf067;</a>
@@ -20,7 +20,7 @@
     @endforeach
     @if($user->canEditForms())
     <a href="/dashboard/forms">
-      <div class="nav-box">
+      <div class="nav-box mini">
         <p><i class="fa fa-industry" aria-hidden="true"></i>Forms</p>
       </div>
     </a>

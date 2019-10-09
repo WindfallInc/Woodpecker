@@ -3925,6 +3925,7 @@ a:hover {
   font-family: inherit;
   font-weight: inherit;
   font-size: inherit;
+  min-height: 20px;
 }
 .admin .transfer .textarea.active {
   display: block;

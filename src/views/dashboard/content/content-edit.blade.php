@@ -54,26 +54,14 @@
         <input type="date" name="end_date" value="{{date('Y-m-d',$content->end_date)}}"></p>
       @endif
       @if($type->categories=='1')
-        <p class="round-button" id="category-select">Select Categories</p>
-        <div class="modal-backdrop" id="category-selection">
-          <div class="x"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
-            <div class="categories">
-              @foreach($categories as $cat)
-                <div class="cat">
-                  <p>{{$cat->title}}</p>
-                  <label class="switch"><input type="checkbox" name="categories[]" value="{{$cat->slug}}" @if($content->categories->contains($cat->id)) checked @endif><span class="slider round"></span></label>
-                </div>
-              @endforeach
-            </div>
-        </div>
-        <p>&nbsp;</p>
+        @include('dashboard.partials.category-select')
       @endif
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
             <p>{{$custom->name}}</p>
             <div class="transfer custom-field-row" id="customfield{{$custom->id}}">
-              <div class="textarea active" contenteditable="true"></div>
-              <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>
+              <div class="textarea active" contenteditable="true"><p>Enter {{$custom->name}}</p></div>
+              <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else <p>Enter {{$custom->name}}</p> @endif</textarea>
             </div>
             <script>
             $(document).ready(function(){

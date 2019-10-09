@@ -15,7 +15,35 @@ function h1() {
                   selection.startContainer.parentNode.remove();
                   selection.deleteContents();
                   selection.insertNode(document.createTextNode(replacementText));
-          } else {
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h1");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h1");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h1");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else {
             var selectedText = selection.extractContents();
             var span = document.createElement("h1");
             span.appendChild(selectedText);
@@ -42,7 +70,35 @@ function h2() {
                   selection.startContainer.parentNode.remove();
                   selection.deleteContents();
                   selection.insertNode(document.createTextNode(replacementText));
-          } else {
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h2");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h2");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h2");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else {
             var selectedText = selection.extractContents();
             var span = document.createElement("h2");
             span.appendChild(selectedText);
@@ -69,7 +125,35 @@ function h3() {
                 selection.startContainer.parentNode.remove();
                 selection.deleteContents();
                 selection.insertNode(document.createTextNode(replacementText));
-        } else {
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h3");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h3");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h3");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else {
           var selectedText = selection.extractContents();
           var span = document.createElement("h3");
           span.appendChild(selectedText);
@@ -96,7 +180,35 @@ function h4() {
                 selection.startContainer.parentNode.remove();
                 selection.deleteContents();
                 selection.insertNode(document.createTextNode(replacementText));
-        } else {
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h4");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h4");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h4");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else {
           var selectedText = selection.extractContents();
           var span = document.createElement("h4");
           span.appendChild(selectedText);
@@ -118,12 +230,22 @@ function left() {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='left'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0){
+              selection.startContainer.parentNode.classList.remove('left');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('right');
+            selection.startContainer.parentNode.classList.add('left');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('centering');
+            selection.startContainer.parentNode.classList.add('left');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('left');
           }
         } else {
           var selectedText = selection.extractContents();
@@ -148,12 +270,22 @@ function center() {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='centering'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0){
+              selection.startContainer.parentNode.classList.remove('centering');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('right');
+            selection.startContainer.parentNode.classList.add('centering');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('left');
+            selection.startContainer.parentNode.classList.add('centering');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('centering');
           }
         } else {
           var selectedText = selection.extractContents();
@@ -178,12 +310,22 @@ function right() {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='right'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0){
+              selection.startContainer.parentNode.classList.remove('right');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('left');
+            selection.startContainer.parentNode.classList.add('right');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('centering');
+            selection.startContainer.parentNode.classList.add('right');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('right');
           }
         } else {
           var selectedText = selection.extractContents();
@@ -208,12 +350,12 @@ function bold() {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='bold'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('bold')>=0){
+              selection.startContainer.parentNode.classList.remove('bold');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('bold');
           }
         } else {
           if (selection.startContainer.parentNode.tagName === 'STRONG' || selection.endContainer.parentNode.tagName === 'STRONG') {
@@ -247,12 +389,12 @@ function italic() {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='italic'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('italic')>=0){
+              selection.startContainer.parentNode.classList.remove('italic');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('italic');
           }
         } else {
           if (selection.startContainer.parentNode.tagName === 'I' || selection.endContainer.parentNode.tagName === 'I') {
