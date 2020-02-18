@@ -281,34 +281,10 @@
 @include('dashboard.partials.contentoptions')
     <script>
     //order functions for saving
-$(document).on('mouseover', '.store', function(){
-      var ids = [];
-
-
-      $('#counter').siblings().each(function () {
-       ids.push($(this).data('id'));
-      });
-      ids.join(',');
-      $('#order').val(ids);
-
-});
-$(document).on('mouseup', '.fa-arrows-v', function(){
-      var ids = [];
-
-
-      $('#counter').siblings().each(function () {
-       ids.push($(this).data('id'));
-      });
-      ids.join(',');
-      $('#order').val(ids);
-
-});
-
-$('#contentsubmission').submit( function(event) {
-        form = this;
+    $(document).on('submit','#contentsubmission',function(event){
+        event.preventDefault();
         $('.message').css('top','0px');
         var ids = [];
-
 
         $('#counter').siblings().each(function () {
          ids.push($(this).data('id'));
@@ -316,12 +292,10 @@ $('#contentsubmission').submit( function(event) {
         ids.join(',');
         $('#order').val(ids);
 
-    event.preventDefault();
-
-    setTimeout( function () {
-        form.submit();
-    }, 500);
-});
+        setTimeout( function () {
+            $('#contentsubmission').submit();
+        }, 500);
+    });
 
     </script>
     @include('dashboard.functions.scrubber')

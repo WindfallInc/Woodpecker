@@ -56,15 +56,7 @@ class PageController extends Controller
       }
 
       $menu = $template->menus->first();
-
-      $url      = url('/get/loop/'. $page->id);
-      $content  = @file_get_contents($url);
-      if($content === FALSE) {
-        $body = Html::where('content_id', $page->id)->isPublished()->first();
-      }
-      else {
-        $body = false;
-      }
+      $body = $page->getBody();
 
       return view('templates.'.$template->slug, compact('page','template','menu','body'));
     }
@@ -75,7 +67,6 @@ class PageController extends Controller
         foreach($routes as $r){
           if($r->uri() == $route){
             $name = $r->getActionName();
-            //return $name;
             if(isset($name)){
               return \App::call('\\'.$name);
             }
@@ -97,16 +88,7 @@ class PageController extends Controller
         }
 
         $menu = $template->menus->first();
-
-        $url      = url('/get/loop/'. $page->id);
-        $content  = @file_get_contents($url);
-        if($content === FALSE) {
-          $body = Html::where('content_id', $page->id)->isPublished()->first();
-        }
-        else {
-          $body = false;
-        }
-
+        $body = $page->getBody();
 
         return view('templates.'.$template->slug, compact('page','template','body','menu'));
     }
@@ -148,15 +130,7 @@ class PageController extends Controller
         }
 
         $menu = $template->menus->first();
-
-        $url      = url('/get/loop/'. $page->id);
-        $content  = @file_get_contents($url);
-        if($content === FALSE) {
-          $body = Html::where('content_id', $page->id)->isPublished()->first();
-        }
-        else {
-          $body = false;
-        }
+        $body = $page->getBody();
 
         return view('templates.'.$template->slug, compact('page','template', 'body', 'menu'));
     }
@@ -218,7 +192,11 @@ class PageController extends Controller
   	  if(isset($search)){
   	    $results       	= Content::where('title', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->orWhere('metadesc', 'like', '%'.$search.'%')->isPublished()->orderBy('created_at','DESC')->get();
   	  }
-  		if(count($results)>0){
+      else
+      {
+        $results        = [];
+      }
+  		if(isset($results) && count($results)>0){
   			$success=true;
   		}
   		else {
@@ -246,9 +224,5 @@ class PageController extends Controller
 
         return view('dashboard.includes.content-loop', compact('page','template'));
     }
-
-
-
-
 
 }

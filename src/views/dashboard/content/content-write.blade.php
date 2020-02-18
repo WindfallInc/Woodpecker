@@ -13,7 +13,7 @@
 <div class="message" style="position:fixed; top:-150px; background-color:#F18F01; left:0px; padding:20px; color:#fff; transition:linear all .2s; width:100vw; text-align:center;">
   <p>LOADING...</p>
 </div>
-  <form action="/dashboard/{{$type->id}}/store" method="POST" enctype="multipart/form-data">
+  <form action="/dashboard/{{$type->id}}/store" method="POST" enctype="multipart/form-data" id="contentsubmission">
     {{ csrf_field() }}
 
     @include('dashboard.partials.images-menu')
@@ -140,15 +140,21 @@
 @include('dashboard.partials.contentoptions')
 <script>
     //order functions for saving
-$(document).on('mouseover', '.store', function(){
-      var ids = [];
+    $(document).on('submit','#contentsubmission',function(event){
+        event.preventDefault();
+        $('.message').css('top','0px');
+        var ids = [];
 
-      $('#counter').siblings().each(function () {
-       ids.push($(this).data('id'));
-      });
-      ids.join(', ');
-      $('#order').val(ids);
-});
+        $('#counter').siblings().each(function () {
+         ids.push($(this).data('id'));
+        });
+        ids.join(',');
+        $('#order').val(ids);
+
+        setTimeout( function () {
+            $('#contentsubmission').submit();
+        }, 500);
+    });
 
 </script>
 @include('dashboard.functions.scrubber')
