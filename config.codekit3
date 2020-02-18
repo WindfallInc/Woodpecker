@@ -124,11 +124,22 @@
 		"oAP": "\/src\/assets\/css\/woodpecker\/admin.css.map",
 		"oF": 0
 		},
-	"\/src\/assets\/css\/woodpecker\/simple-woodpecker.png": {
+	"\/src\/assets\/css\/woodpecker\/logo-w-text.png": {
 		"ft": 32768,
-		"iS": 4546,
+		"iS": 6489,
 		"oA": 0,
-		"oAP": "\/src\/assets\/css\/woodpecker\/simple-woodpecker.png",
+		"oAP": "\/src\/assets\/css\/woodpecker\/logo-w-text.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/src\/assets\/css\/woodpecker\/logo.png": {
+		"ft": 32768,
+		"iS": 15697,
+		"oA": 0,
+		"oAP": "\/src\/assets\/css\/woodpecker\/logo.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
@@ -145,16 +156,15 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"\/src\/assets\/css\/woodpecker\/woodpecker-logo.png": {
-		"ft": 32768,
-		"iS": 32759,
-		"oA": 0,
-		"oAP": "\/src\/assets\/css\/woodpecker\/woodpecker-logo.png",
+	"\/src\/assets\/css\/woodpecker\/woodpecker-logo.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/assets\/css\/woodpecker\/woodpecker-logo.svg",
 		"oF": 0,
-		"oIPL": 0,
 		"opt": 0,
-		"oT": 1,
-		"q": 100
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"\/src\/assets\/docs\/uploaded-2019\/a-freaking-pdf.pdf": {
 		"ft": 8192,
@@ -1232,6 +1242,12 @@
 		"oAP": "\/src\/views\/dashboard\/menus\/menus.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/partials\/category-select.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/partials\/category-select.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/partials\/content-bar.blade.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -1248,6 +1264,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/partials\/images-menu.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/partials\/navigation-old.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/partials\/navigation-old.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/partials\/navigation.blade.php": {

@@ -13,7 +13,7 @@
 <div class="message" style="position:fixed; top:-150px; background-color:#F18F01; left:0px; padding:20px; color:#fff; transition:linear all .2s; width:100vw; text-align:center;">
   <p>LOADING...</p>
 </div>
-  <form action="/dashboard/{{$type->id}}/store" method="POST" enctype="multipart/form-data">
+  <form action="/dashboard/{{$type->id}}/store" method="POST" enctype="multipart/form-data" id="contentsubmission">
     {{ csrf_field() }}
 
     @include('dashboard.partials.images-menu')
@@ -53,27 +53,15 @@
         @endif
 
         @if($type->categories=='1')
-          <p class="round-button" id="category-select">Select Categories</p>
-          <div class="modal-backdrop" id="category-selection">
-            <div class="x"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
-              <div class="categories">
-                @foreach($categories as $cat)
-                  <div class="cat">
-                    <p>{{$cat->title}}</p>
-                    <label class="switch"><input type="checkbox" value="{{$cat->slug}}" name="categories[]"><span class="slider round"></span></label>
-                  </div>
-                @endforeach
-              </div>
-          </div>
-          <p>&nbsp;</p>
+          @include('dashboard.partials.category-select')
         @endif
 
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
             <p>{{$custom->name}}</p>
             <div class="transfer custom-field-row" id="customfield{{$custom->id}}">
-              <div class="textarea active" contenteditable="true">Enter {{$custom->name}}</div>
-              <textarea name="customfield{{$custom->id}}" class="codearea"></textarea>
+              <div class="textarea active" contenteditable="true"><p>Enter {{$custom->name}}</p></div>
+              <textarea name="customfield{{$custom->id}}" class="codearea"><p>Enter {{$custom->name}}</p></textarea>
             </div>
           @elseif($custom->input == 'checkbox')
               <p>{{$custom->name}}
@@ -152,15 +140,21 @@
 @include('dashboard.partials.contentoptions')
 <script>
     //order functions for saving
-$(document).on('mouseover', '.store', function(){
-      var ids = [];
+    $(document).on('submit','#contentsubmission',function(event){
+        event.preventDefault();
+        $('.message').css('top','0px');
+        var ids = [];
 
-      $('#counter').siblings().each(function () {
-       ids.push($(this).data('id'));
-      });
-      ids.join(', ');
-      $('#order').val(ids);
-});
+        $('#counter').siblings().each(function () {
+         ids.push($(this).data('id'));
+        });
+        ids.join(',');
+        $('#order').val(ids);
+
+        setTimeout( function () {
+            $('#contentsubmission').submit();
+        }, 500);
+    });
 
 </script>
 @include('dashboard.functions.scrubber')

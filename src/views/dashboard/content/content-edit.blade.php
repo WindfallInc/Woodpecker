@@ -54,26 +54,14 @@
         <input type="date" name="end_date" value="{{date('Y-m-d',$content->end_date)}}"></p>
       @endif
       @if($type->categories=='1')
-        <p class="round-button" id="category-select">Select Categories</p>
-        <div class="modal-backdrop" id="category-selection">
-          <div class="x"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
-            <div class="categories">
-              @foreach($categories as $cat)
-                <div class="cat">
-                  <p>{{$cat->title}}</p>
-                  <label class="switch"><input type="checkbox" name="categories[]" value="{{$cat->slug}}" @if($content->categories->contains($cat->id)) checked @endif><span class="slider round"></span></label>
-                </div>
-              @endforeach
-            </div>
-        </div>
-        <p>&nbsp;</p>
+        @include('dashboard.partials.category-select')
       @endif
         @foreach($type->custom_fields as $custom)
           @if($custom->input == 'textbox')
             <p>{{$custom->name}}</p>
             <div class="transfer custom-field-row" id="customfield{{$custom->id}}">
-              <div class="textarea active" contenteditable="true"></div>
-              <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else Enter {{$custom->name}} @endif</textarea>
+              <div class="textarea active" contenteditable="true"><p>Enter {{$custom->name}}</p></div>
+              <textarea name="customfield{{$custom->id}}" class="codearea">@if($content->get_the($custom->name)!=''){{$content->get_the($custom->name)}}@else <p>Enter {{$custom->name}}</p> @endif</textarea>
             </div>
             <script>
             $(document).ready(function(){
@@ -293,34 +281,10 @@
 @include('dashboard.partials.contentoptions')
     <script>
     //order functions for saving
-$(document).on('mouseover', '.store', function(){
-      var ids = [];
-
-
-      $('#counter').siblings().each(function () {
-       ids.push($(this).data('id'));
-      });
-      ids.join(',');
-      $('#order').val(ids);
-
-});
-$(document).on('mouseup', '.fa-arrows-v', function(){
-      var ids = [];
-
-
-      $('#counter').siblings().each(function () {
-       ids.push($(this).data('id'));
-      });
-      ids.join(',');
-      $('#order').val(ids);
-
-});
-
-$('#contentsubmission').submit( function(event) {
-        form = this;
+    $(document).on('submit','#contentsubmission',function(event){
+        event.preventDefault();
         $('.message').css('top','0px');
         var ids = [];
-
 
         $('#counter').siblings().each(function () {
          ids.push($(this).data('id'));
@@ -328,12 +292,10 @@ $('#contentsubmission').submit( function(event) {
         ids.join(',');
         $('#order').val(ids);
 
-    event.preventDefault();
-
-    setTimeout( function () {
-        form.submit();
-    }, 500);
-});
+        setTimeout( function () {
+            $('#contentsubmission').submit();
+        }, 500);
+    });
 
     </script>
     @include('dashboard.functions.scrubber')

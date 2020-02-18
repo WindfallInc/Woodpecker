@@ -2436,13 +2436,13 @@ img {
   color: #f9ed32;
 }
 .green {
-  color: #8faa4f;
+  color: #65bb8a;
 }
 .forest {
   color: #7F9B42;
 }
 .light {
-  color: #e2e3e4;
+  color: #efebd5;
 }
 .dark {
   color: #333;
@@ -2481,13 +2481,13 @@ img {
   background: #f9ed32;
 }
 .green-bg {
-  background: #8faa4f;
+  background: #65bb8a;
 }
 .forest-bg {
   background: #7F9B42;
 }
 .light-bg {
-  background: #e2e3e4;
+  background: #efebd5;
 }
 .dark-bg {
   background: #333;
@@ -3009,7 +3009,7 @@ header form input.active {
   overflow: hidden;
 }
 .visionary-members .trapazoid {
-  border-top: 55px solid #8faa4f;
+  border-top: 55px solid #65bb8a;
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
   height: 0;
@@ -3069,7 +3069,7 @@ header form input.active {
   position: absolute;
   top: 0px;
   right: 0px;
-  background-color: #8faa4f;
+  background-color: #65bb8a;
   padding: 5px;
   color: #fff;
   text-align: center;
@@ -3440,7 +3440,7 @@ input.line_under,
   border: none;
   webkit-appearance: none;
   border-radius: 0;
-  border-bottom: 1px solid #e2e3e4;
+  border-bottom: 1px solid #efebd5;
   width: 100%;
   margin-bottom: 30px;
   padding: 10px;
@@ -3505,178 +3505,46 @@ a:hover {
   padding-right: 0px;
 }
 .admin {
-  background-color: #fcfaf7;
+  background-color: #efebd5;
   padding-top: 0px;
   /* Rounded sliders */
 }
 .admin .side-nav {
   position: fixed;
-  background-color: #333;
-  color: #fff;
-  border-right: solid 4px #333;
-  left: -150px;
-  width: 205px;
+  left: 0;
+  background-color: #fff;
+  color: #333;
+  border-right: solid 1px #e1d9b0;
   z-index: 9;
   height: 100vh;
-  overflow-y: visible;
+  width: 50px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   transition: linear all .2s;
 }
 .admin .side-nav .nav-box {
   position: relative;
+  border-bottom: solid 1px #e1d9b0;
+}
+.admin .side-nav .nav-box i {
+  width: 50px;
+}
+.admin .side-nav .nav-box a {
+  display: block;
+  width: 110px;
+}
+.admin .side-nav .nav-box .new {
+  position: absolute;
+  left: 110px;
+  height: 100%;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  width: 200px;
-  margin-left: 0px;
-  background-color: #333;
-  transition: linear all .2s;
-}
-.admin .side-nav .nav-box a,
-.admin .side-nav .nav-box p {
-  color: #fff;
-}
-.admin .side-nav .nav-box a .fa,
-.admin .side-nav .nav-box p .fa {
-  padding-right: 20px;
-  padding-top: 5px;
-  position: absolute;
-  left: 10px;
-}
-.admin .side-nav .nav-box .options {
-  position: absolute;
-  top: 0;
-  left: -300px;
-  opacity: 0;
-  background-color: #1a1a1a;
-  color: #fff;
-  font-family: 'FontAwesome';
-  z-index: -1;
-  width: 250px;
-  height: auto;
-  transition: linear all .2s;
-}
-.admin .side-nav .nav-box .options a {
-  display: block;
-  width: 250px;
-  padding: 12px;
-  text-align: center;
-  color: #fff;
-}
-.admin .side-nav .nav-box .options .subitems {
-  background-color: #4d4d4d;
-  margin-bottom: 0px;
-}
-.admin .side-nav .nav-box .options .subitems a {
-  padding: 0px;
-}
-.admin .side-nav .nav-box:hover {
-  color: #048BA8;
-  box-shadow: 0px 0px 60px -3px rgba(0, 0, 0, 0.33);
-}
-.admin .side-nav .nav-box:hover .options {
-  opacity: 1;
-  left: 100%;
-  font-family: 'FontAwesome';
-  -webkit-animation-name: menuout;
-  -webkit-animation-duration: .3s;
-  animation-name: menuout;
-  animation-duration: .3s;
-  animation-fill-mode: forwards;
-}
-.admin .side-nav .nav-box:hover .options a:hover {
-  background-color: #2d3e4f;
-  transition: linear all .2s;
-}
-.admin .side-nav .main-items {
-  background-color: #4d4d4d;
-  opacity: 0;
-  width: 200px;
-  transition: linear all .2s;
-}
-.admin .side-nav .main-items .nav-box {
-  width: 190px;
-  margin-left: 10px;
-}
-.admin .side-nav .navheader {
-  text-align: center;
-  opacity: 0;
-  background-color: #4d4d4d;
-  color: #fff;
-  font-size: 1.2em;
-  padding: 8px;
-  width: 200px;
-  transition: linear all .2s;
-}
-.admin .side-nav .nav-box.mini {
-  height: 50px;
-}
-.admin .side-nav .secondary-side-nav {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0;
-  left: 0px;
-  margin-top: -100px;
-  z-index: -1;
-  width: 400px;
-  padding: 20px;
-  background-color: #333;
-}
-.admin .side-nav .secondary-side-nav.active {
-  left: 200px;
-  opacity: 1;
-  pointer-events: all;
-  transition: linear all .2s;
-}
-.admin .side-nav .secondary-side-nav.active a:hover {
-  color: #fff;
-}
-.admin .side-nav .expander-arrow {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  display: block;
-  transform: scaleY(2);
-  font-size: 2em;
-  z-index: 99;
-}
-.admin .side-nav img {
-  display: block;
-  background-color: #fff;
-  opacity: 0;
-  width: 200px;
-  transition: linear all .2s;
-}
-.admin nav {
-  overflow-x: scroll;
-  width: 200px;
-  height: 100vh;
-}
-.admin nav::-webkit-scrollbar {
-  width: 0 !important;
-}
-.admin nav {
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
 }
 .admin .side-nav:hover {
-  left: 0px;
-}
-.admin .side-nav:hover img {
-  opacity: 1;
-}
-.admin .side-nav:hover .expander-arrow {
-  display: none;
-}
-.admin .side-nav:hover .main-items {
-  opacity: 1;
-}
-.admin .side-nav:hover .navheader {
-  opacity: 1;
-}
-.admin .side-nav:hover nav {
-  width: 450px;
+  width: 150px;
 }
 .admin .edit {
   padding: 10px;
@@ -3700,7 +3568,7 @@ a:hover {
   margin: auto;
   width: 50%;
   padding: 10px;
-  background-color: #8faa4f;
+  background-color: #65bb8a;
   margin-top: -10px;
   text-align: center;
   color: #fff;
@@ -3752,7 +3620,7 @@ a:hover {
 }
 .admin .create:hover {
   background-color: #fff;
-  color: #8faa4f;
+  color: #65bb8a;
   transition: linear all .2s;
 }
 .admin .store:hover {
@@ -3925,6 +3793,10 @@ a:hover {
   font-family: inherit;
   font-weight: inherit;
   font-size: inherit;
+  min-height: 20px;
+}
+.admin .transfer .textarea .bold {
+  font-weight: 700;
 }
 .admin .transfer .textarea.active {
   display: block;
@@ -4029,7 +3901,7 @@ a:hover {
   display: none;
 }
 .admin #linker input[type="button"] {
-  background-color: #8faa4f;
+  background-color: #65bb8a;
 }
 .admin #linker p {
   display: none;
@@ -4300,7 +4172,7 @@ a:hover {
 }
 .admin .searchbar .fa-check {
   opacity: .2;
-  color: #8faa4f;
+  color: #65bb8a;
 }
 .admin .searchbar .fa-times {
   opacity: .2;
@@ -4328,7 +4200,7 @@ a:hover {
   margin-top: 0px;
 }
 .admin .heading .create:hover {
-  background-color: #72873f;
+  background-color: #49a470;
   color: #fff;
 }
 .admin .heading .store {

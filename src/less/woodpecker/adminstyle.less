@@ -13,170 +13,44 @@ a:hover {
 
 
 .admin{
-  background-color:@gray;
+  background-color:@light;
   padding-top:0px;
   .side-nav{
     position: fixed;
-    background-color: @dark;
-    color:#fff;
-    border-right: solid 4px #333;
-    left: -150px;
-    width:205px;
+    left: 0;
+    background-color: #fff;
+    color:@dark;
+    border-right: solid 1px darken(@light,10%);
     z-index: 9;
     height: 100vh;
-    overflow-y: visible;
+    width:50px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     scroll-behavior: smooth;
     .transition;
     .nav-box {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height:100px;
-      width: 200px;
-      margin-left:0px;
-      background-color:#333;
-      .transition;
-      a,p {
-        color:#fff;
-        .fa {
-          padding-right: 20px;
-          padding-top: 5px;
-          position: absolute;
-          left: 10px;
-        }
+      border-bottom:solid 1px darken(@light,10%);
+      i {
+        width:50px;
       }
-      .options {
+      a {
+        display: block;
+        width:110px;
+      }
+      .new {
         position: absolute;
-        top: 0;
-        left:-300px;
-        opacity: 0;
-        background-color: darken(@dark,10%);
-        color:#fff;
-        font-family: 'FontAwesome';
-        z-index: -1;
-        width:250px;
-        height: auto;
-        .transition;
-        a {
-          display: block;
-          width:250px;
-          padding: 12px;
-          text-align: center;
-          color:#fff;
-        }
-        .subitems {
-          background-color:lighten(@dark, 10%);
-          margin-bottom:0px;
-          a {
-            padding:0px;
-          }
-        }
+        left:110px;
+        height:100%;
+        width:40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-    }
-    .nav-box:hover {
-      color:@lblue;
-      .shadow;
-      .options {
-          opacity: 1;
-          left:100%;
-          font-family: 'FontAwesome';
-          -webkit-animation-name: menuout;
-          -webkit-animation-duration: .3s;
-          animation-name: menuout;
-          animation-duration: .3s;
-          animation-fill-mode: forwards;
-          a:hover {
-            background-color: @dblue;
-            .transition;
-          }
-      }
-    }
-    .main-items{
-      background-color:lighten(@dark,10%);
-      opacity: 0;
-      width:200px;
-      .transition;
-      .nav-box{
-        width:190px;
-        margin-left:10px;
-      }
-    }
-
-    .navheader{
-      text-align: center;
-      opacity: 0;
-      background-color:lighten(@dark,10%);
-      color: #fff;
-      font-size: 1.2em;
-      padding: 8px;
-      width:200px;
-      .transition;
-    }
-    .nav-box.mini {
-      height:50px;
-    }
-    .secondary-side-nav {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0;
-      left: 0px;
-      margin-top: -100px;
-      z-index: -1;
-      width:400px;
-      padding: 20px;
-      background-color: @dark;
-    }
-    .secondary-side-nav.active{
-      left:200px;
-      opacity: 1;
-      pointer-events: all;
-      .transition;
-      a:hover {
-        color:#fff;
-      }
-    }
-    .expander-arrow{
-      position: absolute;
-      top:50%;
-      right:15px;
-      display: block;
-      transform: scaleY(2);
-      font-size: 2em;
-      z-index: 99;
-    }
-    img {
-      display: block;
-      background-color:#fff;
-      opacity: 0;
-      width:200px;
-      .transition;
     }
   }
-  nav {
-    overflow-x: scroll;
-    width:200px;
-    height:100vh;
-  }
-  nav::-webkit-scrollbar { width: 0 !important; }
-  nav {overflow: -moz-scrollbars-none;-ms-overflow-style: none;}
-  .side-nav:hover{
-    left:0px;
-    img {
-      opacity: 1;
-    }
-    .expander-arrow{
-      display: none;
-    }
-    .main-items{
-      opacity: 1;
-    }
-    .navheader {
-      opacity: 1;
-    }
-    nav {
-      width:450px;
-    }
+  .side-nav:hover {
+    width:150px;
   }
   .edit {
     padding:10px;
@@ -417,6 +291,10 @@ a:hover {
         font-family:inherit;
         font-weight:inherit;
         font-size:inherit;
+        min-height: 20px;
+      }
+      .bold {
+        font-weight:700;
       }
     }
     .textarea.active{
