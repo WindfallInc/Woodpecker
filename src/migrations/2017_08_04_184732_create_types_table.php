@@ -18,6 +18,7 @@ class CreateTypesTable extends Migration
             $table->increments('id');
             $table->text('title'); // Page, Post, Event, Etc
             $table->string('slug'); // slug for sorting
+            $table->string('icon',255); // set icon?
             $table->integer('categories')->nullable(); // Allow Categories?
             $table->integer('editor')->nullable(); // Allow editor?
             $table->integer('time')->nullable(); // Time sensitive content? (events, announcements, news, classes, exhibits)
@@ -26,9 +27,11 @@ class CreateTypesTable extends Migration
         });
         DB::table('types')->insert(
         array(
-            'title'    => 'Page',
-            'slug'     => 'page',
-            'editor'     => '1',
+            'title'        => 'Page',
+            'slug'         => 'page',
+            'editor'       => '1',
+            'categories'   => '1',
+            'icon'         => 'fa-files-o',
         )
         );
         /*

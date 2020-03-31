@@ -3491,10 +3491,10 @@ button:hover {
   background: #2d3e4f;
 }
 a {
-  color: #048BA8;
+  color: #65bb8a;
 }
 a:hover {
-  color: #2d3e4f;
+  color: #333;
 }
 .column,
 .columns {
@@ -3505,7 +3505,7 @@ a:hover {
   padding-right: 0px;
 }
 .admin {
-  background-color: #efebd5;
+  background-color: #f7f6eb;
   padding-top: 0px;
   /* Rounded sliders */
 }
@@ -3513,7 +3513,7 @@ a:hover {
   position: fixed;
   left: 0;
   background-color: #fff;
-  color: #333;
+  color: #efebd5;
   border-right: solid 1px #e1d9b0;
   z-index: 9;
   height: 100vh;
@@ -3525,35 +3525,201 @@ a:hover {
 }
 .admin .side-nav .nav-box {
   position: relative;
-  border-bottom: solid 1px #e1d9b0;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .admin .side-nav .nav-box i {
   width: 50px;
+  text-align: center;
+  font-size: 1.5em;
 }
 .admin .side-nav .nav-box a {
+  position: relative;
   display: block;
-  width: 110px;
+  width: 130px;
+  color: #333;
+  overflow: hidden;
 }
 .admin .side-nav .nav-box .new {
   position: absolute;
-  left: 110px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   height: 100%;
-  width: 40px;
-  display: flex;
+  width: 20px;
+  display: none;
   align-items: center;
   justify-content: center;
+}
+.admin .side-nav .nav-box span {
+  position: absolute;
+  left: 50px;
+  font-size: .8em;
+}
+.admin .side-nav .navheader {
+  border-bottom: solid 1px #e1d9b0;
+}
+.admin .side-nav img {
+  width: 50px;
 }
 .admin .side-nav:hover {
   width: 150px;
 }
+.admin .side-nav:hover .new {
+  display: flex;
+}
+.admin .side-nav:hover .new:hover {
+  background-color: #efebd5;
+}
+.admin .dashboard-box {
+  background-color: #fff;
+  border-radius: 8px;
+  border: solid 1px #e1d9b0;
+  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
+.admin .dashboard-box .box-header {
+  border-bottom: solid 1px #e1d9b0;
+}
+.admin .dashboard-box .box-header .new {
+  display: flex;
+  height: 50px;
+  background-color: #65bb8a;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  border-top-right-radius: 8px;
+}
+.admin .dashboard-box .box-header .store {
+  display: flex;
+  height: 50px;
+  background-color: #65bb8a;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  border-top-right-radius: 8px;
+  margin-left: 0px;
+  width: 17.02128%;
+  cursor: pointer;
+}
+.admin .dashboard-box .box-header .preview {
+  display: flex;
+  height: 50px;
+  background-color: #333;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.admin .dashboard-box .dashboard-list {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.admin .dashboard-box .published-sorting {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.admin .dashboard-box .published-sorting .fa-eye {
+  margin: 0px;
+}
+.admin .dashboard-box .published-sorting .fa-check {
+  position: absolute;
+  top: 5px;
+  left: 30px;
+}
+.admin .dashboard-box .published-sorting .fa-times {
+  position: absolute;
+  bottom: 5px;
+  left: 30px;
+}
+.admin .dashboard-box .date-sorting {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.admin .dashboard-box .date-sorting .fa-arrow-up {
+  position: absolute;
+  top: 5px;
+  left: 25px;
+}
+.admin .dashboard-box .date-sorting .fa-arrow-down {
+  position: absolute;
+  bottom: 5px;
+  left: 25px;
+}
+.admin .dashboard-box .name-sorting {
+  position: relative;
+  height: 50px;
+}
+.admin .dashboard-box .name-sorting .fa-sort-alpha-up-alt {
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+.admin .dashboard-box .name-sorting .fa-sort-alpha-down {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+}
+.admin .dashboard-box .editor_zone {
+  min-height: 800px;
+}
+.admin .dashboard-box .editor_zone .expand-tab.active {
+  overflow: visible;
+}
+.admin .-padding {
+  padding: 20px;
+}
+.admin output.fa {
+  font-size: 4.5em;
+  color: #65bb8a;
+}
+.admin #SearchInput {
+  height: 50px;
+  margin: 0px;
+  margin-left: 20px;
+  border: none;
+}
+.admin .deleted {
+  display: block;
+  padding: 20px;
+  color: #e1d9b0;
+}
+.admin .notification {
+  position: fixed;
+  top: -150px;
+  background-color: #c24137;
+  left: 0px;
+  padding: 20px;
+  color: #fff;
+  transition: linear all .2s;
+  width: 100vw;
+  text-align: center;
+}
+.admin .notification.active {
+  top: 0;
+  background-color: #65bb8a;
+}
+.admin .-dbrown {
+  color: #8f8136;
+}
+.admin .-brown {
+  color: #e1d9b0;
+}
 .admin .edit {
   padding: 10px;
   background-color: transparent;
-  border: 1px solid #F18F01;
+  border: 1px solid #65bb8a;
   margin-top: -5px;
   text-align: center;
   text-transform: uppercase;
-  color: #F18F01;
+  color: #65bb8a;
 }
 .admin .delete {
   padding: 10px;
@@ -3562,6 +3728,7 @@ a:hover {
   text-align: center;
   text-transform: uppercase;
   color: #c24137;
+  cursor: pointer;
 }
 .admin .create {
   display: block;
@@ -3573,12 +3740,6 @@ a:hover {
   text-align: center;
   color: #fff;
   border: 1px solid #7F9B42;
-}
-.admin .store {
-  padding: 20px;
-  border: 1px solid #2d3e4f;
-  margin-top: -10px;
-  text-align: center;
 }
 .admin .update {
   padding: 10px;
@@ -3600,8 +3761,8 @@ a:hover {
 }
 .admin .edit:hover {
   padding: 10px;
-  border: 1px solid #F18F01;
-  background-color: #E59E4A;
+  border: 1px solid #65bb8a;
+  background-color: #65bb8a;
   margin-top: -5px;
   text-align: center;
   text-transform: uppercase;
@@ -3621,15 +3782,6 @@ a:hover {
 .admin .create:hover {
   background-color: #fff;
   color: #65bb8a;
-  transition: linear all .2s;
-}
-.admin .store:hover {
-  padding: 20px;
-  border: 1px solid #2d3e4f;
-  background-color: #015289;
-  margin-top: -10px;
-  text-align: center;
-  color: #fff;
   transition: linear all .2s;
 }
 .admin .update:hover {
@@ -3719,17 +3871,18 @@ a:hover {
 }
 .admin .more {
   display: block;
-  color: #2d3e4f;
+  color: #65bb8a;
   font-size: 4em;
   text-align: center;
   margin: auto;
   clear: both;
 }
 .admin .content-bar {
-  border: solid #333 1px;
-  background-color: #e6e6e6;
+  border: solid #efebd5 2px;
+  background-color: #fff;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
+  border-bottom: none;
   display: flex;
   padding-left: 20px;
   justify-content: space-between;
@@ -3779,7 +3932,7 @@ a:hover {
   height: 250px;
   width: 100%;
   background-color: #fff;
-  border: solid 1px #333;
+  border: solid 1px #e1d9b0;
   padding: 10px;
   overflow: scroll;
   font-family: inherit;
@@ -3829,8 +3982,8 @@ a:hover {
   position: absolute;
   right: -23px;
   top: 42%;
-  color: #c24137;
-  background-color: #e6e6e6;
+  color: #333;
+  background-color: #e1d9b0;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 5px;
@@ -3843,7 +3996,7 @@ a:hover {
   margin-right: 20px;
   left: -23px;
   top: 40%;
-  background-color: #e6e6e6;
+  background-color: #e1d9b0;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -4025,6 +4178,7 @@ a:hover {
 }
 .admin .custom_field {
   position: relative;
+  padding-left: 20px;
 }
 .admin .custom_field .remove_field {
   color: red;
@@ -4033,24 +4187,19 @@ a:hover {
   top: 30%;
 }
 .admin .tab {
-  background-color: #e2e2e2;
-  color: #fff;
-  width: 250px;
+  width: 100%;
   float: left;
-  border: solid 2px #333;
+  border-right: solid 2px #e1d9b0;
   padding: 5px;
-  border-top: none;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  line-height: 30px;
+  margin-top: 5px;
   cursor: pointer;
 }
 .admin .tab.active {
-  background-color: #fff;
-  color: #333;
+  color: #65bb8a;
 }
 .admin .tab:hover {
-  background-color: #fff;
-  color: #333;
+  color: #65bb8a;
 }
 .admin .expand-tab {
   height: 0px;
@@ -4189,69 +4338,6 @@ a:hover {
 .admin .searchbar .fa-eye.active {
   opacity: 1;
 }
-.admin .heading {
-  background-color: #333;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  overflow: hidden;
-}
-.admin .heading .create {
-  margin-left: 50.2%;
-  margin-top: 0px;
-}
-.admin .heading .create:hover {
-  background-color: #49a470;
-  color: #fff;
-}
-.admin .heading .store {
-  margin-left: 50.2%;
-  margin-top: 0px;
-  padding: 15px;
-  background-color: #015289;
-}
-.admin .heading .store:hover {
-  background-color: #0170bc;
-  color: #fff;
-  padding: 15px;
-}
-.admin .heading .delete {
-  margin-left: 50.2%;
-  margin-top: 0px;
-  padding: 15px;
-  background-color: #c24137;
-  text-transform: capitalize;
-}
-.admin .heading .delete:hover {
-  background-color: #d1645b;
-  color: #fff;
-  padding: 15px;
-}
-.admin .heading h3 {
-  position: relative;
-  color: #fff;
-  padding-left: 20px;
-}
-.admin .heading h3 .fa-angle-up {
-  position: absolute;
-  top: 0;
-  padding-left: 20px;
-  opacity: .2;
-  transition: linear all .2s;
-}
-.admin .heading h3 .fa-angle-down {
-  position: absolute;
-  bottom: 0;
-  padding-left: 20px;
-  opacity: .2;
-  transition: linear all .2s;
-}
-.admin .heading h3 .fa-angle-down.active,
-.admin .heading h3 .fa-angle-up.active {
-  opacity: 1;
-}
-.admin .heading .nope {
-  padding: 0px;
-}
 .admin #contentoptions {
   position: fixed;
   width: 100vw;
@@ -4261,6 +4347,7 @@ a:hover {
   left: 0px;
   display: none;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
 }
 .admin #contentoptions .x {
   position: absolute;

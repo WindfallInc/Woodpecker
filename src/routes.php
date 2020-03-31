@@ -36,9 +36,9 @@ Route::get('/type/create','App\Http\Controllers\DashboardController@typeCreate')
 // store datatype
 Route::post('/type/store','App\Http\Controllers\DashboardController@typeStore');
 // edit datatype
-Route::get('/type/{slug}/edit','App\Http\Controllers\DashboardController@typeEdit');
+Route::get('/type/{id}/edit','App\Http\Controllers\DashboardController@typeEdit');
 // delete datatype
-Route::get('/type/{slug}/delete','App\Http\Controllers\DashboardController@typeDelete');
+Route::get('/type/{id}/delete','App\Http\Controllers\DashboardController@typeDelete');
 // custom type delete
 Route::post('/customfield/{id}/delete','App\Http\Controllers\DashboardController@typeCustomDelete');
 
@@ -53,11 +53,11 @@ Route::post('/menu/store','App\Http\Controllers\DashboardController@menuStore');
 // View menu with all associated nav items for editing and reorder
 Route::get('/menu/{slug}/details','App\Http\Controllers\DashboardController@menuDetails')->name('menu-details');
 // Store Nav items and rearrange menu
-Route::post('/menu/{slug}/update','App\Http\Controllers\DashboardController@menuUpdate');
+Route::post('/menu/{id}/update','App\Http\Controllers\DashboardController@menuUpdate');
 // Edit Menu
-Route::get('/menu/{slug}/edit','App\Http\Controllers\DashboardController@menuEdit');
+Route::get('/menu/{id}/edit','App\Http\Controllers\DashboardController@menuEdit');
 // Delete Menu
-Route::get('/menu/{slug}/delete','App\Http\Controllers\DashboardController@menuDelete');
+Route::get('/menu/{id}/delete','App\Http\Controllers\DashboardController@menuDelete');
 
 
 
@@ -82,9 +82,9 @@ Route::get('/category/create','App\Http\Controllers\DashboardController@category
 // store category
 Route::post('/category/store','App\Http\Controllers\DashboardController@categoryStore');
 // edit single category
-Route::get('/category/{slug}/edit','App\Http\Controllers\DashboardController@categoryEdit');
+Route::get('/category/{id}/edit','App\Http\Controllers\DashboardController@categoryEdit');
 // delete category
-Route::get('/category/{slug}/delete','App\Http\Controllers\DashboardController@categoryDelete');
+Route::get('/category/{id}/delete','App\Http\Controllers\DashboardController@categoryDelete');
 
 
 

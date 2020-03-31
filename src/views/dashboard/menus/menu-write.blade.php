@@ -5,44 +5,61 @@
 @push('header')
 
 @endpush
-  <form action="/dashboard/menu/store" method="POST">
+  <form action="/dashboard/menu/store" method="POST" id="write_form">
     {{ csrf_field() }}
 
-
-
-    <div class="row heading">
-      <div class="four columns">
-        <h3>New Menu</h3>
-      </div>
-      <div class="four columns">
-      </div>
-      <div class="four columns">
-        <button class="nope"><h3 class="store">Save Menu</h3></button>
-      </div>
-    </div>
-
     <div class="row">
-
-      <div class="four columns">
-        <p>Menu Title
-        <input type="text" name="title" placeholder="Main nav, top nav, sidebar, etc..."></p>
-        <p>&nbsp;</p>
-        @foreach($templates as $template)
-          <p>
-          <input value="{{$template->id}}" name="templates[]" type="checkbox" class="tinycheck">{{$template->title}}</p>
-        @endforeach
+      <div class="ten push_one columns strip">
+        <h1 class="-brown">New Menu</h1>
       </div>
-      <div class="four push_two columns">
-
-
-      </div>
-
     </div>
+    <div class="dashboard-box row">
+
+      <div class="box-header row">
+        <div class="ten columns"></div>
+        <div class="two columns store">
+          <i class="fa fa-sign-in"></i>
+        </div>
+      </div>
+      <div class="dashboard-list">
+        <div class="editor_zone" id="editor_zone">
+          <div class="row -padding">
+            <div class="four columns">
+              <p>Menu Title
+              <input type="text" name="title" placeholder="Main nav, top nav, sidebar, etc..."></p>
+            </div>
+            <div class="four columns">
+              <p>Templates</p>
+              @foreach($templates as $template)
+                <p>
+                <input value="{{$template->id}}" name="templates[]" type="checkbox" class="tinycheck">{{$template->title}}</p>
+              @endforeach
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
 
   </form>
 
   @push('footer')
+    <script>
+      $(document).on('click','.store',function(event){
+          $('.notification').css('top','0px');
+
+          setTimeout( function () {
+              $('.notification').addClass('active');
+          }, 500);
+
+          setTimeout( function () {
+              $('#write_form').submit();
+          }, 1000);
+      });
+    </script>
 
   @endpush
 

@@ -1,34 +1,36 @@
 <div class="side-nav" id="dashboard-nav">
   <a href="/dashboard"><img src="/css/woodpecker/woodpecker-logo.svg"></a>
+  <div class="navheader">&nbsp; <!-- Content --></div>
   @foreach($types as $type)
     @if($user->canEditType($type->id))
     <div class="nav-box">
-      <a href="/dashboard/{{$type->id}}/all"><i class="fa fa-cube" aria-hidden="true"></i><span data="type-{{$type->id}}">{{str_plural($type->title)}}</span></a>
-      <a href="/dashboard/{{$type->id}}/create" class="new">&#xf067;</a>
+      <a href="/dashboard/{{$type->id}}/all"><i class="fa @isset($type->icon){{$type->icon}}@else fa-cube @endif" aria-hidden="true"></i><span data="type-{{$type->id}}">{{Str::plural($type->title)}}</span></a>
+      <a href="/dashboard/{{$type->id}}/create" class="new">+</a>
     </div>
     @endif
   @endforeach
-  <div class="navheader">&nbsp; <!-- data --></div>
   @if($user->canEditForms())
   <div class="nav-box">
     <a href="/dashboard/forms"><i class="fa fa-industry" aria-hidden="true"></i><span>Forms</span></a>
   </div>
   @endif
+  <div class="navheader">&nbsp; <!-- data --></div>
   <div class="nav-box">
     <a href="/dashboard/media"><i class="fa fa-file-image-o" aria-hidden="true"></i><span>Media</span></a>
   </div>
   <div class="nav-box">
     <a href="/dashboard/categories"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i><span>Categories</span></a>
   </div>
-  <div class="navheader">&nbsp; <!-- Administrative --></div>
   @if($user->canEditMenus())
   <div class="nav-box">
     <a href="/dashboard/menus"><i class="fa fa-bars" aria-hidden="true"></i><span>Menus</span></a>
   </div>
   @endif
+  @if($user->isAdmin())
   <div class="nav-box">
-    <a href="/dashboard/types"><i class="fa fa-cubes" aria-hidden="true"></i><span>Datatypes</span></a>
+    <a href="/dashboard/types"><i class="fa fa-cubes" aria-hidden="true"></i><span>Content Types</span></a>
   </div>
+  @endif
   @if($user->isAdmin())
   <div class="nav-box">
     <a href="/dashboard/users"><i class="fa fa-users" aria-hidden="true"></i><span>Users</span></a>
