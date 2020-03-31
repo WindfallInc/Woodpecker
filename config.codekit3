@@ -9,6 +9,12 @@
 	],
 "creatorBuild": "25849",
 "files": {
+	"\/.gitignore_global": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.gitignore_global",
+		"oF": 0
+		},
 	"\/composer.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -124,11 +130,22 @@
 		"oAP": "\/src\/assets\/css\/woodpecker\/admin.css.map",
 		"oF": 0
 		},
-	"\/src\/assets\/css\/woodpecker\/simple-woodpecker.png": {
+	"\/src\/assets\/css\/woodpecker\/logo-w-text.png": {
 		"ft": 32768,
-		"iS": 4546,
+		"iS": 6489,
 		"oA": 0,
-		"oAP": "\/src\/assets\/css\/woodpecker\/simple-woodpecker.png",
+		"oAP": "\/src\/assets\/css\/woodpecker\/logo-w-text.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/src\/assets\/css\/woodpecker\/logo.png": {
+		"ft": 32768,
+		"iS": 15697,
+		"oA": 0,
+		"oAP": "\/src\/assets\/css\/woodpecker\/logo.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
@@ -145,16 +162,15 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"\/src\/assets\/css\/woodpecker\/woodpecker-logo.png": {
-		"ft": 32768,
-		"iS": 32759,
-		"oA": 0,
-		"oAP": "\/src\/assets\/css\/woodpecker\/woodpecker-logo.png",
+	"\/src\/assets\/css\/woodpecker\/woodpecker-logo.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/assets\/css\/woodpecker\/woodpecker-logo.svg",
 		"oF": 0,
-		"oIPL": 0,
 		"opt": 0,
-		"oT": 1,
-		"q": 100
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"\/src\/assets\/docs\/uploaded-2019\/a-freaking-pdf.pdf": {
 		"ft": 8192,
@@ -899,6 +915,24 @@
 		"oAP": "\/src\/views\/components\/youtube-video.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/all\/box-row.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/all\/box-row.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/all\/component-call.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/all\/component-call.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/all\/dashboard-box.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/all\/dashboard-box.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/auth\/login.blade.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -921,12 +955,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/auth\/register.blade.php",
-		"oF": 0
-		},
-	"\/src\/views\/dashboard\/categories\/categories.blade.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/views\/dashboard\/categories\/categories.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/categories\/category-edit.blade.php": {
@@ -1011,12 +1039,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/components\/preview-youtube-video.blade.php",
-		"oF": 0
-		},
-	"\/src\/views\/dashboard\/content\/all.blade.php": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/src\/views\/dashboard\/content\/all.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/content\/content-edit.blade.php": {
@@ -1109,6 +1131,12 @@
 		"oAP": "\/src\/views\/dashboard\/functions\/content-bar.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/functions\/date-sorting.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/date-sorting.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/functions\/draggable.blade.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -1133,6 +1161,18 @@
 		"oAP": "\/src\/views\/dashboard\/functions\/meta.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/functions\/name-search.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/name-search.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/functions\/name-sorting.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/name-sorting.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/functions\/prevent.blade.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -1143,6 +1183,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/functions\/scrubber.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/functions\/status-sorting.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/functions\/status-sorting.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/functions\/toggle-view.blade.php": {
@@ -1235,10 +1281,22 @@
 		"oAP": "\/src\/views\/dashboard\/menus\/menu-write.blade.php",
 		"oF": 0
 		},
-	"\/src\/views\/dashboard\/menus\/menus.blade.php": {
+	"\/src\/views\/dashboard\/partials\/advanced-editing.blade.php": {
 		"ft": 8192,
 		"oA": 2,
-		"oAP": "\/src\/views\/dashboard\/menus\/menus.blade.php",
+		"oAP": "\/src\/views\/dashboard\/partials\/advanced-editing.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/partials\/basic-editing.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/partials\/basic-editing.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/partials\/category-select.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/partials\/category-select.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/partials\/content-bar.blade.php": {
@@ -1259,10 +1317,22 @@
 		"oAP": "\/src\/views\/dashboard\/partials\/images-menu.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/partials\/navigation-old.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/partials\/navigation-old.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/partials\/navigation.blade.php": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/src\/views\/dashboard\/partials\/navigation.blade.php",
+		"oF": 0
+		},
+	"\/src\/views\/dashboard\/partials\/new-content.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/partials\/new-content.blade.php",
 		"oF": 0
 		},
 	"\/src\/views\/dashboard\/partials\/row-edit.blade.php": {

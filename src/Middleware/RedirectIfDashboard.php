@@ -18,7 +18,7 @@ class RedirectIfDashboard
 	public function handle($request, Closure $next, $guard = 'dashboard')
 	{
 	    if (Auth::guard($guard)->check()) {
-	        return redirect('dashboard/home');
+	        return redirect('dashboard');
 	    }
 
 	    return $next($request);

@@ -6,7 +6,7 @@
 
 function h1() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
       var selection = window.getSelection().getRangeAt(0);
       if(selection){
           if (selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1') {
@@ -15,7 +15,35 @@ function h1() {
                   selection.startContainer.parentNode.remove();
                   selection.deleteContents();
                   selection.insertNode(document.createTextNode(replacementText));
-          } else {
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h1");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h1");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h1");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else {
             var selectedText = selection.extractContents();
             var span = document.createElement("h1");
             span.appendChild(selectedText);
@@ -33,7 +61,7 @@ function h1() {
 
 function h2() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
       var selection = window.getSelection().getRangeAt(0);
       if(selection){
           if (selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2') {
@@ -42,7 +70,35 @@ function h2() {
                   selection.startContainer.parentNode.remove();
                   selection.deleteContents();
                   selection.insertNode(document.createTextNode(replacementText));
-          } else {
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h2");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h2");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else if(selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4')
+          {
+            var replacementText = selection.startContainer.parentNode.innerHTML;
+                selection.startContainer.parentNode.remove();
+                selection.deleteContents();
+            var span = document.createElement("h2");
+                span.innerHTML=replacementText;
+                selection.insertNode(span);
+          }
+          else {
             var selectedText = selection.extractContents();
             var span = document.createElement("h2");
             span.appendChild(selectedText);
@@ -60,7 +116,7 @@ function h2() {
 
 function h3() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3') {
@@ -69,7 +125,35 @@ function h3() {
                 selection.startContainer.parentNode.remove();
                 selection.deleteContents();
                 selection.insertNode(document.createTextNode(replacementText));
-        } else {
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h3");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h3");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h3");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else {
           var selectedText = selection.extractContents();
           var span = document.createElement("h3");
           span.appendChild(selectedText);
@@ -87,7 +171,7 @@ function h3() {
 
 function h4() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4') {
@@ -96,7 +180,35 @@ function h4() {
                 selection.startContainer.parentNode.remove();
                 selection.deleteContents();
                 selection.insertNode(document.createTextNode(replacementText));
-        } else {
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h4");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h4");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else if(selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3')
+        {
+          var replacementText = selection.startContainer.parentNode.innerHTML;
+              selection.startContainer.parentNode.remove();
+              selection.deleteContents();
+          var span = document.createElement("h4");
+              span.innerHTML=replacementText;
+              selection.insertNode(span);
+        }
+        else {
           var selectedText = selection.extractContents();
           var span = document.createElement("h4");
           span.appendChild(selectedText);
@@ -114,16 +226,26 @@ function h4() {
 
 function left() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='left'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0){
+              selection.startContainer.parentNode.classList.remove('left');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('right');
+            selection.startContainer.parentNode.classList.add('left');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('centering');
+            selection.startContainer.parentNode.classList.add('left');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('left');
           }
         } else {
           var selectedText = selection.extractContents();
@@ -144,29 +266,40 @@ function left() {
 
 function center() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
-    var selection = window.getSelection().getRangeAt(0);
-    if(selection){
-        if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='centering'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
-          }
-        } else {
-          var selectedText = selection.extractContents();
-          var span = document.createElement("span");
-          span.className = "centering";
-          span.appendChild(selectedText);
-          selection.insertNode(span);
-         }
-    } else { return false; }
-  }
-  else {
-    alert("Select text within a row");
-  }
+    console.log('true');
+    if ($("[contenteditable]").hasClass("cursor-save")) {
+      var selection = window.getSelection().getRangeAt(0);
+      if(selection){
+          if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
+            if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0){
+                selection.startContainer.parentNode.classList.remove('centering');
+            }
+            else if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0)
+            {
+              selection.startContainer.parentNode.classList.remove('right');
+              selection.startContainer.parentNode.classList.add('centering');
+            }
+            else if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0)
+            {
+              selection.startContainer.parentNode.classList.remove('left');
+              selection.startContainer.parentNode.classList.add('centering');
+            }
+            else
+            {
+              selection.startContainer.parentNode.classList.add('centering');
+            }
+          } else {
+            var selectedText = selection.extractContents();
+            var span = document.createElement("span");
+            span.className = "centering";
+            span.appendChild(selectedText);
+            selection.insertNode(span);
+           }
+      } else { return false; }
+    }
+    else {
+      alert("Select text within a row");
+    }
   }
 }
 
@@ -174,16 +307,26 @@ function center() {
 
 function right() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='right'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0){
+              selection.startContainer.parentNode.classList.remove('right');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('left');
+            selection.startContainer.parentNode.classList.add('right');
+          }
+          else if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0)
+          {
+            selection.startContainer.parentNode.classList.remove('centering');
+            selection.startContainer.parentNode.classList.add('right');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('right');
           }
         } else {
           var selectedText = selection.extractContents();
@@ -204,16 +347,16 @@ function right() {
 
 function bold() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='bold'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('bold')>=0){
+              selection.startContainer.parentNode.classList.remove('bold');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('bold');
           }
         } else {
           if (selection.startContainer.parentNode.tagName === 'STRONG' || selection.endContainer.parentNode.tagName === 'STRONG') {
@@ -243,16 +386,16 @@ function bold() {
 
 function italic() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className ==='italic'){
-
-            var replacementText = selection.startContainer.parentNode.innerHTML;
-                selection.startContainer.parentNode.remove();
-                selection.deleteContents();
-                selection.insertNode(document.createTextNode(replacementText));
+          if(selection.startContainer.parentNode.className.split(' ').indexOf('italic')>=0){
+              selection.startContainer.parentNode.classList.remove('italic');
+          }
+          else
+          {
+            selection.startContainer.parentNode.classList.add('italic');
           }
         } else {
           if (selection.startContainer.parentNode.tagName === 'I' || selection.endContainer.parentNode.tagName === 'I') {
@@ -285,7 +428,7 @@ function lister() {
     var htmlend   = "</li></ul>";
     var sel, range;
     if (window.getSelection) {
-      if ($("[contenteditable]").is(":focus")) {
+      if ($("[contenteditable]").hasClass("cursor-save")) {
         // IE9 and non-IE
         sel = window.getSelection();
         if (sel.getRangeAt && sel.rangeCount) {
@@ -418,7 +561,7 @@ $(document).on('keypress', '.textarea', function(e){
 $(document).on('mousedown', '.media-img', function(){
 
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
           var span = $(this).clone();
@@ -447,9 +590,12 @@ $(document).on('mousedown', '.media-img', function(){
 });
 
 $(document).on('mousedown', '.textarea', function(){
-  $('.cursor-save').removeClass('cursor-save');
   $(this).addClass('cursor-save');
 });
+$('.textarea').on('blur', function(){
+  $(this).removeClass('cursor-save');
+});
+
 
 // End custom formatting options
 </script>

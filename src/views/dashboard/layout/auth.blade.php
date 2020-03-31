@@ -61,7 +61,7 @@
 <body class="admin">
 
     <header>
-      <img src="/css/woodpecker/woodpecker-logo.png">
+      <img src="/css/woodpecker/woodpecker-logo.svg">
   		<h3 class="secondary-font">Login</h3>
   	</header>
 

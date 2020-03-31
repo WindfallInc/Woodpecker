@@ -133,4 +133,18 @@ class Content extends Model
   {
         return $query->where('published', 1);
   }
+
+	public function getBody()
+  {
+				$url      = url('/get/loop/'. $this->id);
+				$content  = @file_get_contents($url);
+				if($content === FALSE) {
+					return $body = Html::where('content_id', $this->id)->isPublished()->first();
+				}
+				else {
+					return $body = false;
+				}
+  }
+
+
 }
