@@ -40,6 +40,7 @@ class WoodpeckerServiceProvider extends ServiceProvider
        __DIR__.'/migrations' => base_path('database/migrations'),
        __DIR__.'/Middleware' => base_path('app/Http/Middleware'),
        __DIR__.'/Notifications' => base_path('app/Notifications'),
+       __DIR__.'/assets/js' => base_path('public/assets/js'),
     ],'update');
         $router->aliasMiddleware('dashboard', \App\Http\Middleware\RedirectIfNotDashboard::class);
         $router->aliasMiddleware('dashboard.guest', \App\Http\Middleware\RedirectIfDashboard::class);
