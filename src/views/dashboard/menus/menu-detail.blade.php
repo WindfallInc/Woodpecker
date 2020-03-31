@@ -318,7 +318,7 @@ $(document).on('click', '.store', function(e){
     });
     $.ajax({
         type: 'POST',
-        url:'/dashboard/menu/{{$menu->slug}}/update',
+        url:'/dashboard/menu/{{$menu->id}}/update',
         dataType:"json",
         data: {out},
         success: function(response){

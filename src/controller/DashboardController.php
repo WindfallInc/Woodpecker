@@ -95,15 +95,15 @@ class DashboardController extends Controller
           $contents = Content::where('type_id',$type)->orderByDesc('updated_at')->get();
           $type = Type::find($type);
 
-          return view('dashboard.content.all',compact('contents','type'));
+          return view('dashboard.all.component-call',compact('contents','type'));
     }
 
     public function deleted($type)
     {
           $contents = Content::where('type_id',$type)->whereNotNull('deleted_at')->orderByDesc('updated_at')->withTrashed()->get();
           $type = Type::find($type);
-
-          return view('dashboard.content.deleted',compact('contents','type'));
+          $deleted = true;
+          return view('dashboard.all.component-call',compact('contents','type','deleted'));
     }
 
     public function contentCreate($type)
@@ -691,8 +691,12 @@ class DashboardController extends Controller
 
     public function types()
     {
-          $types   = Type::all();
-          return view('dashboard.types.types', compact($types));
+          $contents   = Type::all();
+          $type = new Type;
+          $type->title = 'Type';
+          $type->slug = 'type';
+          $type->id = 0;
+          return view('dashboard.all.component-call', compact('contents','type'));
     }
 
     public function typeCreate()
@@ -765,9 +769,9 @@ class DashboardController extends Controller
       return redirect()->route('contents', ['type'=>$type]);
     }
 
-    public function typeEdit($slug)
+    public function typeEdit($id)
     {
-          $type = Type::where('slug',$slug)->first();
+          $type = Type::find($id);
           $templates = Template::all();
           $lastcustom = CustomField::orderBy('id', 'DESC')->first();
           if(isset($lastcustom)){
@@ -782,9 +786,9 @@ class DashboardController extends Controller
           return view('dashboard.types.type-edit',compact('type','templates','lastcustom'));
     }
 
-    public function typeDelete($slug)
+    public function typeDelete($id)
     {
-          $type    = Type::where('slug',$slug)->first();
+          $type    = Type::find($id);
           $type->delete();
 
           return redirect()->route('types');
@@ -802,8 +806,12 @@ class DashboardController extends Controller
 
     public function menus()
     {
-          $menus   = Menu::all();
-          return view('dashboard.menus.menus', compact('menus'));
+          $contents   = Menu::all();
+          $type = new Type;
+          $type->title = 'Menu';
+          $type->slug = 'menu';
+          $type->id = 0;
+          return view('dashboard.all.component-call', compact('contents','type'));
     }
 
     public function menuCreate()
@@ -837,25 +845,25 @@ class DashboardController extends Controller
       return redirect()->route('menu-details', ['slug'=>$menu->slug]);
     }
 
-    public function menuEdit($slug)
+    public function menuEdit($id)
     {
-          $menu = Menu::where('slug',$slug)->first();
+          $menu = Menu::find($id);
           $templates = Template::all();
 
           return view('dashboard.menus.menu-edit',compact('menu','templates'));
     }
 
-    public function menuDelete($slug)
+    public function menuDelete($id)
     {
-          $delete    = Menu::where('slug',$slug)->first();
+          $delete    = Menu::find($id);
           $delete->delete();
 
           return redirect()->route('menus');
     }
 
-    public function menuDetails($slug)
+    public function menuDetails($id)
     {
-          $menu = Menu::where('slug', $slug)->first();
+          $menu = Menu::find($id);
           $latest = Nav::orderBy('id', 'DESC')->first();
           if(isset($latest)){
             $newid = $latest->id;
@@ -963,8 +971,12 @@ class DashboardController extends Controller
 
     public function categories()
     {
-          $categories   = Category::all();
-          return view('dashboard.categories.categories', compact('categories'));
+          $contents   = Category::all();
+          $type = new Type;
+          $type->title = 'Category';
+          $type->slug = 'category';
+          $type->id = 0;
+          return view('dashboard.all.component-call', compact('contents','type'));
     }
 
     public function categoryCreate()
@@ -989,16 +1001,16 @@ class DashboardController extends Controller
       return redirect()->route('categories');
     }
 
-    public function categoryEdit($slug)
+    public function categoryEdit($id)
     {
-          $category = category::where('slug',$slug)->first();
+          $category = Category::find($id);
 
           return view('dashboard.categories.category-edit',compact('category'));
     }
 
-    public function categoryDelete($slug)
+    public function categoryDelete($id)
     {
-          $delete    = category::where('slug',$slug)->first();
+          $delete    = Category::find($id);
           $delete->delete();
 
           return redirect()->route('categories');
@@ -1163,7 +1175,7 @@ class DashboardController extends Controller
     {
           return view('dashboard.forms.form-write');
     }
-    public function formStore()
+    public function formStore(Request $request)
     {
           $user = Auth::guard('dashboard')->user();
           if(!$user->canEditForms()){
@@ -1202,7 +1214,7 @@ class DashboardController extends Controller
           }
           return view('dashboard.forms.form-detail',compact('form','lastQuestion'));
     }
-    public function formUpdate($slug)
+    public function formUpdate(Request $request, $slug)
     {
           $user = Auth::guard('dashboard')->user();
           if(!$user->canEditForms()){
@@ -1377,7 +1389,7 @@ class DashboardController extends Controller
           return view('dashboard.help');
     }
 
-    public function serviceSubmit()
+    public function serviceSubmit(Request $request)
     {
       $sender 								= $request->input('name');
       $senderEmail 						= $request->input('email');

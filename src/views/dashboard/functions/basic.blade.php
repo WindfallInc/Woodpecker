@@ -6,7 +6,7 @@
 
 function h1() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
       var selection = window.getSelection().getRangeAt(0);
       if(selection){
           if (selection.startContainer.parentNode.tagName === 'H1' || selection.endContainer.parentNode.tagName === 'H1') {
@@ -61,7 +61,7 @@ function h1() {
 
 function h2() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
       var selection = window.getSelection().getRangeAt(0);
       if(selection){
           if (selection.startContainer.parentNode.tagName === 'H2' || selection.endContainer.parentNode.tagName === 'H2') {
@@ -116,7 +116,7 @@ function h2() {
 
 function h3() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'H3' || selection.endContainer.parentNode.tagName === 'H3') {
@@ -171,7 +171,7 @@ function h3() {
 
 function h4() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'H4' || selection.endContainer.parentNode.tagName === 'H4') {
@@ -226,7 +226,7 @@ function h4() {
 
 function left() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
@@ -266,39 +266,40 @@ function left() {
 
 function center() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
-    var selection = window.getSelection().getRangeAt(0);
-    if(selection){
-        if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
-          if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0){
-              selection.startContainer.parentNode.classList.remove('centering');
-          }
-          else if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0)
-          {
-            selection.startContainer.parentNode.classList.remove('right');
-            selection.startContainer.parentNode.classList.add('centering');
-          }
-          else if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0)
-          {
-            selection.startContainer.parentNode.classList.remove('left');
-            selection.startContainer.parentNode.classList.add('centering');
-          }
-          else
-          {
-            selection.startContainer.parentNode.classList.add('centering');
-          }
-        } else {
-          var selectedText = selection.extractContents();
-          var span = document.createElement("span");
-          span.className = "centering";
-          span.appendChild(selectedText);
-          selection.insertNode(span);
-         }
-    } else { return false; }
-  }
-  else {
-    alert("Select text within a row");
-  }
+    console.log('true');
+    if ($("[contenteditable]").hasClass("cursor-save")) {
+      var selection = window.getSelection().getRangeAt(0);
+      if(selection){
+          if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
+            if(selection.startContainer.parentNode.className.split(' ').indexOf('centering')>=0){
+                selection.startContainer.parentNode.classList.remove('centering');
+            }
+            else if(selection.startContainer.parentNode.className.split(' ').indexOf('right')>=0)
+            {
+              selection.startContainer.parentNode.classList.remove('right');
+              selection.startContainer.parentNode.classList.add('centering');
+            }
+            else if(selection.startContainer.parentNode.className.split(' ').indexOf('left')>=0)
+            {
+              selection.startContainer.parentNode.classList.remove('left');
+              selection.startContainer.parentNode.classList.add('centering');
+            }
+            else
+            {
+              selection.startContainer.parentNode.classList.add('centering');
+            }
+          } else {
+            var selectedText = selection.extractContents();
+            var span = document.createElement("span");
+            span.className = "centering";
+            span.appendChild(selectedText);
+            selection.insertNode(span);
+           }
+      } else { return false; }
+    }
+    else {
+      alert("Select text within a row");
+    }
   }
 }
 
@@ -306,7 +307,7 @@ function center() {
 
 function right() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
@@ -346,7 +347,7 @@ function right() {
 
 function bold() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
@@ -385,7 +386,7 @@ function bold() {
 
 function italic() {
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
         if (selection.startContainer.parentNode.tagName === 'SPAN' || selection.endContainer.parentNode.tagName === 'SPAN') {
@@ -427,7 +428,7 @@ function lister() {
     var htmlend   = "</li></ul>";
     var sel, range;
     if (window.getSelection) {
-      if ($("[contenteditable]").is(":focus")) {
+      if ($("[contenteditable]").hasClass("cursor-save")) {
         // IE9 and non-IE
         sel = window.getSelection();
         if (sel.getRangeAt && sel.rangeCount) {
@@ -560,7 +561,7 @@ $(document).on('keypress', '.textarea', function(e){
 $(document).on('mousedown', '.media-img', function(){
 
   if (window.getSelection) {
-    if ($("[contenteditable]").is(":focus")) {
+    if ($("[contenteditable]").hasClass("cursor-save")) {
     var selection = window.getSelection().getRangeAt(0);
     if(selection){
           var span = $(this).clone();
@@ -589,9 +590,12 @@ $(document).on('mousedown', '.media-img', function(){
 });
 
 $(document).on('mousedown', '.textarea', function(){
-  $('.cursor-save').removeClass('cursor-save');
   $(this).addClass('cursor-save');
 });
+$('.textarea').on('blur', function(){
+  $(this).removeClass('cursor-save');
+});
+
 
 // End custom formatting options
 </script>
