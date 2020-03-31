@@ -5,7 +5,7 @@
       $( "#sortable" ).disableSelection();
   } );
 
-  $(document.body).on("mouseover",'.content-bar', function() {
+  $(document.body).on("mousedown",'.content-bar', function() {
     if ($('#sortable').hasClass('ui-sortable')){
       $( "#sortable" ).sortable("destroy");
       $( "#sortable" ).unbind();

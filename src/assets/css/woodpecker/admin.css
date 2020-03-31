@@ -4446,7 +4446,7 @@ a:hover {
   flex-wrap: wrap;
   overflow: scroll;
   margin: auto;
-  background-color: #eee;
+  background-color: #fff;
   padding: 50px;
   -webkit-animation-name: expandin;
   -webkit-animation-duration: .6s;
