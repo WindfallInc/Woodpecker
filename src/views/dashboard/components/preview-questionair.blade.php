@@ -1,1 +1,1 @@
-<div class="questionair"><h3 class="centering">@if(isset($component->form)){{$component->form->title}} Form </h3><p><a href="/form/{{$component->form->slug}}/edit">Edit this form</a></p>@else <h3 class="centering">Choose a Form</h3> @endif</div>
+<div class="questionair"><h3 class="centering">@if(isset($component->form)){{$component->form->title}} Form </h3><p><a href="/form/{{$component->form->id}}/edit">Edit this form</a></p>@else <h3 class="centering">Choose a Form</h3> @endif</div>

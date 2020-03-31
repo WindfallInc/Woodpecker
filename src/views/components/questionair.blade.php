@@ -3,7 +3,7 @@
 	@php $form = $component->form; $closed = true; $count = 0; @endphp
 	@if(isset($form))
 
-	<h3>{{$form->title}}</h3>
+	<h3>{!!$form->title!!}</h3>
 	<form action="/form/{{$form->id}}" method="post" id="{{$form->id}}">
 		@csrf
 		@foreach($form->questions->sortBy('order') as $q)
@@ -20,7 +20,7 @@
 			@endif
 
 			<div class="{{$q->columns}} columns">
-				<label for="{{$q->slug}}" class="{{$q->type}}-label">{{$q->title}}</label>
+				<label for="{{$q->slug}}" class="{{$q->type}}-label">{!!$q->title!!}</label>
 				@if($q->type=='text-area')
 					<br>
 					<textarea name="woodpecker{{$q->id}}" id="" cols="30" rows="10" @if($q->required == 1) required @endif class="woodpecker-textarea"></textarea>
@@ -81,3 +81,11 @@
 	@endif
 
 </div>
+
+
+<script>
+	$('.checkbox-group-label').on('click', function(){
+		$(this).siblings('.woodpecker-checkbox-group').toggleClass('active');
+		$(this).toggleClass('active');
+	});
+</script>

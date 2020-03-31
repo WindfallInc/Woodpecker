@@ -6,7 +6,22 @@
   @else
     <img src="/assets/component/carousal-component.jpg" alt="">
   @endif
-    <a @isset($component->content1)href="{{$component->content1}}" @if($component->outside == 'on')target="_blank" onclick="trackOutboundLink('{{$component->content1}}'); return false;" @endif @endisset><div><img src="@if(isset($component->image)){{$component->image}}@else/additional/placeholder.jpg @endif"><div class="caption">View More<i class="fa fa-angle-right" aria-hidden="true"></i></div></div></a>
+  @if($component->template == 1)
+
+  @elseif(isset($component->content1))
+    <a href="{{$component->content1}}" @if($component->outside == 'on')target="_blank"@endif>
+  @endif
+  <div>
+    <img src="@if(isset($component->image)){{$component->image}}@else/additional/placeholder.jpg @endif">
+    @isset($component->content1)
+      <div class="caption">View More<i class="fa fa-angle-right" aria-hidden="true"></i></div>
+    @endisset
+  </div>
+  @if($component->template == 1)
+
+  @elseif(isset($component->content1))
+    </a>
+  @endisset
 </div>
 
 <link rel="stylesheet" type="text/css" href="/slick/slick.css">
@@ -15,5 +30,7 @@
 <script>
 $('.carousal').slick({
   dots: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
 });
 </script>

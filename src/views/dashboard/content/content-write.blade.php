@@ -34,7 +34,7 @@
         </div>
 
 
-        <div class="one columns push_four preview">
+        <div class="one columns push_four preview-submit">
           <i class="fa fa-lock"></i>
         </div>
 
@@ -77,7 +77,7 @@
             $('#contentsubmission').submit();
         }, 1000);
     });
-    $(document).on('click','.preview',function(event){
+    $(document).on('click','.preview-submit',function(event){
         $('.notification').css('top','0px');
         var ids = [];
 
