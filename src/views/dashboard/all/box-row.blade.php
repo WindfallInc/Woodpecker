@@ -22,18 +22,18 @@
     </div>
     <div class="two push_one columns">
       @isset($content->type)
-        <a href="/dashboard/{{$type->id}}/{{$content->id}}/edit" class="edit-link"><p class="edit">Edit</p></a>
+        <a href="/dashboard/{{$type->id}}/{{$content->id}}/edit" class="edit-link"><p class="edit"><i class="far fa-edit"></i></p></a>
       @else
-        <a href="/dashboard/{{$type->slug}}/{{$content->id}}/edit" class="edit-link"><p class="edit">Edit</p></a>
+        <a href="/dashboard/{{$type->slug}}/{{$content->id}}/edit" class="edit-link"><p class="edit"><i class="far fa-edit"></i></p></a>
       @endif
     </div>
     <div class="two columns">
       @isset($deleted)
       @else
         @isset($content->type)
-          <p class="delete" data-id="{{$content->id}}">Delete</p>
+          <p class="delete" data-id="{{$content->id}}"><i class="far fa-trash-alt"></i></p>
         @else
-          <a href="/dashboard/{{$type->slug}}/{{$content->id}}/delete"><p class="delete">Delete</p></a>
+          <a href="/dashboard/{{$type->slug}}/{{$content->id}}/delete"><p class="delete"><i class="far fa-trash-alt"></i></p></a>
         @endif
       @endisset
     </div>

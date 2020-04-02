@@ -1047,6 +1047,12 @@
 		"oAP": "\/src\/views\/dashboard\/content\/content-edit.blade.php",
 		"oF": 0
 		},
+	"\/src\/views\/dashboard\/content\/content-restore.blade.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/views\/dashboard\/content\/content-restore.blade.php",
+		"oF": 0
+		},
 	"\/src\/views\/dashboard\/content\/content-write.blade.php": {
 		"ft": 8192,
 		"oA": 2,

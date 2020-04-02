@@ -5,7 +5,7 @@
 @push('header')
 
 @endpush
-  <form action="/dashboard/media/store" method="POST" id="write_form">
+  <form action="/dashboard/media/store" method="POST" id="write_form" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     <div class="row">

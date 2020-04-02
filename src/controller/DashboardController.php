@@ -217,29 +217,26 @@ class DashboardController extends Controller
         $now = date('Mdi');
 
         // Save full image
-        $img = Image::make($load)->encode('jpg', 5);
-        if($img->filesize() > 1000000){
+        $img = Image::make($load)->encode('jpg', 55);
+        if($img->filesize() > 3000000){
           $img->resize(800,null, function ($constraint) {
           $constraint->aspectRatio();
           $constraint->upsize();});
         }
-        elseif($img->filesize() > 900000){
+        elseif($img->filesize() > 2000000){
           $img->resize(1300,null, function ($constraint) {
           $constraint->aspectRatio();
           $constraint->upsize();});
         }
-        elseif($img->filesize() > 700000){
+        elseif($img->filesize() > 1300000){
           $img->resize(1800,null, function ($constraint) {
           $constraint->aspectRatio();
           $constraint->upsize();});
         }
-        elseif($img->filesize() > 500000){
+        else{
           $img->resize(2200,null, function ($constraint) {
           $constraint->aspectRatio();
           $constraint->upsize();});
-        }
-        else {
-          return redirect()->back();
         }
 
         $img->save('featured/'.$content->slug.$now.'.'.$ext);
@@ -1042,10 +1039,11 @@ class DashboardController extends Controller
       $media->slug         = str_slug($request->input('title'),"-");
       $media->featured     = 0;
 
-      $load                = $request->file('image');
-      $ext                 = $request->file('image')->extension();
+
       if($request->hasFile('image'))
       {
+        $load                = $request->file('image');
+        $ext                 = $request->file('image')->extension();
         if($ext == 'pdf'){
           Storage::disk('docs')->putFileAs('uploaded-'.date("Y"), $load,$media->slug.'.'.$ext);
           $media->path = '/docs/'.'uploaded-'.date("Y").'/'.$media->slug.'.'.$ext;
@@ -1063,8 +1061,12 @@ class DashboardController extends Controller
           $media->path = '/additional/'.$media->slug.'.'.$ext;
           $media->thumbnail = '/additional/'.$media->slug.'-thumbnail.'.$ext;
         }
+        $media->save();
       }
-      $media->save();
+      else {
+        return redirect()->back()->with('error', 'Error: No file detected!');
+      }
+
 
       $cats = $request->input('categories');
       if(isset($cats)){

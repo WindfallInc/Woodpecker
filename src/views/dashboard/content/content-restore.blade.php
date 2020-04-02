@@ -20,7 +20,7 @@
 
     <div class="row">
       <div class="ten push_one columns strip">
-        <h1 class="-brown">{{$content->title}}</h1>
+        <h1 class="-brown"><i class="fas fa-history"></i> &nbsp; Restoring {{$content->title}}</h1>
       </div>
     </div>
     <div class="dashboard-box row">
@@ -34,17 +34,7 @@
           <div class="tab" data-expand="advanced">Advanced</div>
         </div>
 
-        <!--
-        <a class="one column push_three" href="/dashboard/{{$type->id}}/restore/{{$content->id}}">
-          <i class="fas fa-history"></i>
-        </a>
-        -->
-
-        <div class="one columns push_four preview">
-          <i class="fa fa-lock"></i>
-        </div>
-
-        <div class="two columns store">
+        <div class="two push_five columns store">
           <i class="fa fa-sign-in"></i>
         </div>
       </div>
@@ -81,6 +71,9 @@
     });
     */
     $(document).on('click','.store',function(event){
+      var proceed = confirm("Are you sure you would like to overwrite the latest version of this {{strtolower($type->title)}}?");
+      if (proceed == true)
+      {
         $('.notification').css('top','0px');
         var ids = [];
 
@@ -97,25 +90,7 @@
         setTimeout( function () {
             $('#contentsubmission').submit();
         }, 1000);
-    });
-    $(document).on('click','.preview',function(event){
-        $('.notification').css('top','0px');
-        var ids = [];
-
-        $('#counter').siblings().each(function () {
-         ids.push($(this).data('id'));
-        });
-        ids.join(',');
-        $('#order').val(ids);
-        $('#contentsubmission').attr('action', '/dashboard/{{$type->id}}/store/{{$content->id}}/draft');
-
-        setTimeout( function () {
-            $('.notification').addClass('active');
-        }, 500);
-
-        setTimeout( function () {
-            $('#contentsubmission').submit();
-        }, 1000);
+      }
     });
 
     </script>
