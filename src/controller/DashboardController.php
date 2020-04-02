@@ -1198,14 +1198,14 @@ class DashboardController extends Controller
 
           return redirect()->route('formDetails', ['slug'=>$form->slug]);
     }
-    public function formEdit($slug)
+    public function formEdit($id)
     {
-          $form           = Form::where('slug',$slug)->first();
+          $form           = Form::find($id);
           return view('dashboard.forms.form-edit',compact('form'));
     }
-    public function formDetails($slug)
+    public function formDetails($id)
     {
-          $form = Form::where('slug', $slug)->first();
+          $form = Form::find($id);
 
           $lastQuestion = Question::orderBy('id', 'DESC')->first();
           if(isset($lastQuestion)){
@@ -1216,20 +1216,24 @@ class DashboardController extends Controller
           }
           return view('dashboard.forms.form-detail',compact('form','lastQuestion'));
     }
-    public function formUpdate(Request $request, $slug)
+    public function formUpdate(Request $request, $id)
     {
           $user = Auth::guard('dashboard')->user();
           if(!$user->canEditForms()){
             abort(403);
           }
-          $form  = Form::where('slug', $slug)->first();
+          $form  = Form::find($id);
           $order = $request->input('order');
           $orders = explode(",", $order );
           $counter = 0;
-          foreach($form->questions as $q){
-            $q->form()->dissociate($form);
-            $q->save();
+          if(isset($form->questions))
+          {
+            foreach($form->questions as $q){
+              $q->form()->dissociate($form);
+              $q->save();
+            }
           }
+
 
 
           foreach($orders as $q){
@@ -1312,16 +1316,16 @@ class DashboardController extends Controller
           }
           return redirect()->route('forms');
     }
-    public function formDelete($slug)
+    public function formDelete($id)
     {
-          $form = Form::where('slug', $slug)->first();
+          $form = Form::find($id);
           $form->delete();
 
           return redirect()->route('forms');
     }
-    public function formSubmissions($slug)
+    public function formSubmissions($id)
     {
-          $form          = Form::where('slug', $slug)->first();
+          $form          = Form::find($id);
           $questions     = $form->questions;
           $submissions   = $form->submissions;
 

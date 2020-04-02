@@ -6,210 +6,215 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 @endpush
 
+<form action="/dashboard/form/{{$form->id}}/update" method="POST" id="question-form">
+  {{ csrf_field() }}
 
-<div class="message" style="position:fixed; top:-150px; background-color:#F18F01; left:0px; padding:20px; color:#fff; transition:linear all .2s; width:100vw; text-align:center;">
-  <p>LOADING...</p>
-</div>
+  <div class="row">
+    <div class="ten push_one columns strip">
+      <h1 class="-brown">{{$form->title}}</h1>
+    </div>
+  </div>
+  <div class="dashboard-box row">
 
+    <div class="box-header row">
+      <div class="ten columns">
 
-    <div class="row heading">
-      <div class="four columns">
-        <h3>{{$form->title}}</h3>
       </div>
-      <div class="four columns">
-      </div>
-      <div class="four columns">
-        <button class="nope"><h3 class="store">Save Form</h3></button>
+
+      <div class="two columns store">
+        <i class="fa fa-sign-in"></i>
       </div>
     </div>
+    <div class="dashboard-list">
+      <div class="editor_zone" id="editor_zone">
+        <div class="row">
+          <div class="six push_one columns">
 
-    <div class="row">
-      <div class="six columns">
-        <form action="/dashboard/form/{{$form->slug}}/update" method="POST" id="question-form">
-          {{ csrf_field() }}
-          <div class="form-creator" id="sortable">
-              <div id="counter"><input type="hidden" value="" name="order" id="order"></div>
-          @if(count($form->questions)>0)
-            @foreach($form->questions->sortBy('order') as $q)
-              @if($q->type == 'radio')
-                <div class="question row" data-id="{{$q->id}}">
-                  <div class="four columns question-input">
-                    <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
-                  </div>
-                  <div class="eight columns question-input">
-                    <input type="hidden" name="columns{{$q->id}}" value="twelve">
-                    <input type="hidden" name="type{{$q->id}}" value="radio">
-                    <div class="radiochildren">
-                      @foreach($q->children() as $child)
-                      <div class="row">
-                        <div class="six columns">
-                          <label for="child{{$q->id}}">Option {{$loop->iteration}}</label>
-                          <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
-                          <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
-                        </div>
-                        <div class="six columns">
-                          <label for="childcolumns{{$q->id}}">Size</label>
-                          <select name="childcolumns{{$q->id}}[]">
-                            <option value="twelve" @if($child->columns == 'twelve')selected @endif>Full Row</option>
-                            <option value="six" @if($child->columns == 'six')selected @endif>Half Row</option>
-                            <option value="four" @if($child->columns == 'four')selected @endif>Third Row</option>
-                            <option value="three" @if($child->columns == 'three')selected @endif>Fourth Row</option>
-                          </select>
-                        </div>
-                        <div class="remove_option">Remove</div>
+              <div class="form-creator" id="sortable">
+                  <div id="counter"><input type="hidden" value="" name="order" id="order"></div>
+              @if(count($form->questions)>0)
+                @foreach($form->questions->sortBy('order') as $q)
+                  @if($q->type == 'radio')
+                    <div class="question row" data-id="{{$q->id}}">
+                      <div class="four columns question-input">
+                        <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
                       </div>
-                      @endforeach
-                    </div>
-                    <div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
-                  </div>
-                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
-                  <div class="outside-link">
-                    <div class="required">
-                      Required &nbsp;
-                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on" @if($q->required == 1)checked @endif><span class="slider round"></span></label>
-                    </div>
-                  </div>
-                  <i class="fa fa-arrows-v" aria-hidden="true"></i></div>
-              @elseif($q->type == 'select')
-                <div class="question row" data-id="{{$q->id}}">
-                  <div class="four columns question-input">
-                    <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
-                  </div>
-                  <div class="eight columns question-input">
-                    <input type="hidden" name="columns{{$q->id}}" value="twelve">
-                    <input type="hidden" name="type{{$q->id}}" value="select">
-                    <div class="selectchildren">
-                      @foreach($q->children() as $child)
-                      <div class="row">
-                        <div class="twelve columns">
-                          <label for="child{{$q->id}}">Option {{$loop->iteration}}</label>
-                          <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
-                          <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
+                      <div class="eight columns question-input">
+                        <input type="hidden" name="columns{{$q->id}}" value="twelve">
+                        <input type="hidden" name="type{{$q->id}}" value="radio">
+                        <div class="radiochildren">
+                          @foreach($q->children() as $child)
+                          <div class="row">
+                            <div class="six columns">
+                              <label for="child{{$q->id}}">Option {{$loop->iteration}}</label>
+                              <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
+                              <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
+                            </div>
+                            <div class="six columns">
+                              <label for="childcolumns{{$q->id}}">Size</label>
+                              <select name="childcolumns{{$q->id}}[]">
+                                <option value="twelve" @if($child->columns == 'twelve')selected @endif>Full Row</option>
+                                <option value="six" @if($child->columns == 'six')selected @endif>Half Row</option>
+                                <option value="four" @if($child->columns == 'four')selected @endif>Third Row</option>
+                                <option value="three" @if($child->columns == 'three')selected @endif>Fourth Row</option>
+                              </select>
+                            </div>
+                            <div class="remove_option">Remove</div>
+                          </div>
+                          @endforeach
                         </div>
-                        <div class="remove_option">Remove</div>
+                        <div class="addchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
                       </div>
-                      @endforeach
-                    </div>
-                    <div class="addselectchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
-                  </div>
-                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
-                  <div class="outside-link">
-                    <div class="required">
-                      Required &nbsp;
-                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on"@if($q->required == 1)checked @endif><span class="slider round"></span></label>
-                    </div>
-                  </div>
-                  <i class="fa fa-arrows-v" aria-hidden="true"></i>
-                </div>
-              @elseif($q->type == 'checkbox-group')
-                <div class="question row" data-id="{{$q->id}}">
-                  <div class="four columns question-input">
-                    <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
-                  </div>
-                  <div class="eight columns question-input">
-                    <input type="hidden" name="columns{{$q->id}}" value="twelve">
-                    <input type="hidden" name="type{{$q->id}}" value="checkbox-group">
-                    <div class="radiochildren">
-                      @foreach($q->children() as $child)
-                      <div class="row">
-                        <div class="six columns">
-                          <label for="child{{$q->id}}">Option {{$loop->iteration}}</label>
-                          <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
-                          <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
+                      <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
+                      <div class="outside-link">
+                        <div class="required">
+                          Required &nbsp;
+                          <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on" @if($q->required == 1)checked @endif><span class="slider round"></span></label>
                         </div>
-                        <div class="remove_option">Remove</div>
                       </div>
-                      @endforeach
+                      <i class="fa fa-arrows-v" aria-hidden="true"></i></div>
+                  @elseif($q->type == 'select')
+                    <div class="question row" data-id="{{$q->id}}">
+                      <div class="four columns question-input">
+                        <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
+                      </div>
+                      <div class="eight columns question-input">
+                        <input type="hidden" name="columns{{$q->id}}" value="twelve">
+                        <input type="hidden" name="type{{$q->id}}" value="select">
+                        <div class="selectchildren">
+                          @foreach($q->children() as $child)
+                          <div class="row">
+                            <div class="twelve columns">
+                              <label for="child{{$q->id}}">Option {{$loop->iteration}}</label>
+                              <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
+                              <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
+                            </div>
+                            <div class="remove_option">Remove</div>
+                          </div>
+                          @endforeach
+                        </div>
+                        <div class="addselectchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
+                      </div>
+                      <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
+                      <div class="outside-link">
+                        <div class="required">
+                          Required &nbsp;
+                          <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on"@if($q->required == 1)checked @endif><span class="slider round"></span></label>
+                        </div>
+                      </div>
+                      <i class="fa fa-arrows-v" aria-hidden="true"></i>
                     </div>
-                    <div class="addcheckboxchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
-                  </div>
-                  <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
-                  <div class="outside-link">
-                    <div class="required">
-                      Required &nbsp;
-                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on" @if($q->required == 1)checked @endif><span class="slider round"></span></label>
+                  @elseif($q->type == 'checkbox-group')
+                    <div class="question row" data-id="{{$q->id}}">
+                      <div class="four columns question-input">
+                        <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
+                      </div>
+                      <div class="eight columns question-input">
+                        <input type="hidden" name="columns{{$q->id}}" value="twelve">
+                        <input type="hidden" name="type{{$q->id}}" value="checkbox-group">
+                        <div class="radiochildren">
+                          @foreach($q->children() as $child)
+                          <div class="row">
+                            <div class="six columns">
+                              <label for="child{{$q->id}}">Option {{$loop->iteration}}</label>
+                              <input type="text" name="child{{$q->id}}[]" value="{{$child->title}}">
+                              <input type="hidden" name="childid{{$q->id}}[]" value="{{$child->id}}">
+                            </div>
+                            <div class="remove_option">Remove</div>
+                          </div>
+                          @endforeach
+                        </div>
+                        <div class="addcheckboxchild fa fa-plus-circle" aria-hidden="true" data-id="{{$q->id}}"></div>
+                      </div>
+                      <div class="remove_field">Delete Question<div class="warning">Warning: Removing this field may result in a loss of data to any prexsiting form submissions.</div></div>
+                      <div class="outside-link">
+                        <div class="required">
+                          Required &nbsp;
+                          <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="on" @if($q->required == 1)checked @endif><span class="slider round"></span></label>
+                        </div>
+                      </div>
+                      <i class="fa fa-arrows-v" aria-hidden="true"></i></div>
+                  @else
+                    <div class="question row" data-id="{{$q->id}}">
+                      <div class="four columns question-input">
+                        <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
+                      </div>
+                      <div class="four columns question-input">
+                        <select name="columns{{$q->id}}">
+                          <option value="twelve" @if($q->columns == 'twelve')selected @endif>Full Row</option>
+                          <option value="six" @if($q->columns == 'six')selected @endif>Half Row</option>
+                          <option value="four"@if($q->columns == 'four')selected @endif>Third Row</option>
+                          <option value="three"@if($q->columns == 'three')selected @endif>Fourth Row</option>
+                        </select>
+                      </div>
+                      <div class="four columns question-input">
+                        <select id="type" name="type{{$q->id}}">
+                          <option value="{{$q->type}}" selected>{{ucfirst($q->type)}}</option>
+                          <option value="text">Text</option>
+                          <option value="number">Number</option>
+                          <option value="email">Email</option>
+                          <option value="text-area">Paragraph</option>
+                          <option value="date">Date</option>
+                          <option value="checkbox">Checkbox</option>
+                          <option value="Radio">Radio</option>
+                        </select>
+                      </div>
+                      <div class="remove_field">
+                        Delete Question
+                        <div class="warning">
+                          Warning: Removing this field may result in a loss of data to any prexsiting form submissions.
+                        </div>
+                      </div>
+                      <div class="outside-link">
+                        <div class="required">
+                          Required &nbsp;
+                          <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="1"@if($q->required == 1)checked @endif><span class="slider round"></span></label>
+                        </div>
+                      </div>
+                      <i class="fa fa-arrows-v" aria-hidden="true"></i>
                     </div>
-                  </div>
-                  <i class="fa fa-arrows-v" aria-hidden="true"></i></div>
-              @else
-                <div class="question row" data-id="{{$q->id}}">
-                  <div class="four columns question-input">
-                    <input type="text" name="title{{$q->id}}" value="{{$q->title}}">
-                  </div>
-                  <div class="four columns question-input">
-                    <select name="columns{{$q->id}}">
-                      <option value="twelve" @if($q->columns == 'twelve')selected @endif>Full Row</option>
-                      <option value="six" @if($q->columns == 'six')selected @endif>Half Row</option>
-                      <option value="four"@if($q->columns == 'four')selected @endif>Third Row</option>
-                      <option value="three"@if($q->columns == 'three')selected @endif>Fourth Row</option>
-                    </select>
-                  </div>
-                  <div class="four columns question-input">
-                    <select id="type" name="type{{$q->id}}">
-                      <option value="{{$q->type}}" selected>{{ucfirst($q->type)}}</option>
-                      <option value="text">Text</option>
-                      <option value="number">Number</option>
-                      <option value="email">Email</option>
-                      <option value="text-area">Paragraph</option>
-                      <option value="date">Date</option>
-                      <option value="checkbox">Checkbox</option>
-                      <option value="Radio">Radio</option>
-                    </select>
-                  </div>
-                  <div class="remove_field">
-                    Delete Question
-                    <div class="warning">
-                      Warning: Removing this field may result in a loss of data to any prexsiting form submissions.
-                    </div>
-                  </div>
-                  <div class="outside-link">
-                    <div class="required">
-                      Required &nbsp;
-                      <label class="switch"><input type="checkbox" name="required{{$q->id}}" id="target" value="1"@if($q->required == 1)checked @endif><span class="slider round"></span></label>
-                    </div>
-                  </div>
-                  <i class="fa fa-arrows-v" aria-hidden="true"></i>
-                </div>
+                  @endif
+
+                @endforeach
               @endif
+              </div>
+            </form>
 
-            @endforeach
-          @endif
           </div>
-        </form>
+          <div class="five columns">
+            <h3>New Form Question</h3>
+            <p><input type="text" name="title" placeholder="Title - What are you asking about?" id="title" required></p>
+            <p>
+              <select id="columns">
+                <option value="twelve">Full Row</option>
+                <option value="six">Half Row</option>
+                <option value="four">Third Row</option>
+                <option value="three">Fourth Row</option>
+              </select>
+            </p>
+            <p>
+              <select id="question">
+                <option value="text">Text</option>
+                <option value="number">Number</option>
+                <option value="email">Email</option>
+                <option value="text-area">Paragraph</option>
+                <option value="date">Date</option>
+                <option value="checkbox">Checkbox</option>
+                <option value="checkbox-group">Checkbox Group</option>
+                <option value="radio">Radio</option>
+                <option value="select">Select Box</option>
+                <option value="section">Section Text</option>
+              </select>
+            </p>
+            <p class="create add_question">ADD QUESTION</p>
+          </div>
 
+        </div>
       </div>
-      <div class="six columns">
-        <h3>New Form Question</h3>
-        <p><input type="text" name="title" placeholder="Title - What are you asking about?" id="title" required></p>
-        <p>
-          <select id="columns">
-            <option value="twelve">Full Row</option>
-            <option value="six">Half Row</option>
-            <option value="four">Third Row</option>
-            <option value="three">Fourth Row</option>
-          </select>
-        </p>
-        <p>
-          <select id="question">
-            <option value="text">Text</option>
-            <option value="number">Number</option>
-            <option value="email">Email</option>
-            <option value="text-area">Paragraph</option>
-            <option value="date">Date</option>
-            <option value="checkbox">Checkbox</option>
-            <option value="checkbox-group">Checkbox Group</option>
-            <option value="radio">Radio</option>
-            <option value="select">Select Box</option>
-            <option value="section">Section Text</option>
-          </select>
-        </p>
-        <p class="create add_question">ADD QUESTION</p>
-      </div>
-
     </div>
+  </div>
+</form>
 
-
-  </form>
 
   @push('footer')
     <script>
@@ -334,41 +339,21 @@
       $(childwrapper).append('<div class="selectchildren"><div class="row"><div class="twelve columns"><label for="child'+parent+'">Option</label><input type="text" name="child'+parent+'[]" placeholder="button value"><input type="hidden" name="childid'+parent+'[]" value="'+id+'"></div></div>');
     });
 
-
-
-    $(document).on('mousedown', '.store', function(){
-          var ids = [];
-
-
-          $('#counter').siblings().each(function () {
-           ids.push($(this).data('id'));
-          });
-          ids.join(',');
-          $('#order').val(ids);
-
-    });
-
-    $('#contentsubmission').submit( function(event) {
-            form = this;
-            $('.message').css('top','0px');
-            var ids = [];
-
-
-            $('#counter').siblings().each(function () {
-             ids.push($(this).data('id'));
-            });
-            ids.join(',');
-            $('#order').val(ids);
-
-        event.preventDefault();
-
-        setTimeout( function () {
-            form.submit();
-        }, 3000);
-    });
-
     $(document).on('click', '.store', function(){
-      $('#question-form').submit();
+      $('.notification').css('top','0px');
+      var ids = [];
+
+
+      $('#counter').siblings().each(function () {
+       ids.push($(this).data('id'));
+      });
+      ids.join(',');
+      $('#order').val(ids);
+
+      setTimeout( function () {
+          $('.notification').addClass('active');
+          $('#question-form').submit();
+      }, 2000);
     });
     </script>
 

@@ -112,17 +112,17 @@ Route::get('/form/create','App\Http\Controllers\DashboardController@formCreate')
 // Store Form
 Route::post('/form/store','App\Http\Controllers\DashboardController@formStore');
 // View Form with all associated question items for editing and reorder
-Route::get('/form/{slug}/details','App\Http\Controllers\DashboardController@formDetails')->name('formDetails');
+Route::get('/form/{id}/details','App\Http\Controllers\DashboardController@formDetails')->name('formDetails');
 // Store Form items and rearrange Form
-Route::post('/form/{slug}/update','App\Http\Controllers\DashboardController@formUpdate');
+Route::post('/form/{id}/update','App\Http\Controllers\DashboardController@formUpdate');
 // Edit Form
-Route::get('/form/{slug}/edit','App\Http\Controllers\DashboardController@formEdit');
+Route::get('/form/{id}/edit','App\Http\Controllers\DashboardController@formEdit');
 // Delete Form
-Route::get('/form/{slug}/delete','App\Http\Controllers\DashboardController@formDelete');
+Route::get('/form/{id}/delete','App\Http\Controllers\DashboardController@formDelete');
 // View Submission
-Route::get('/form/{slug}/submissions','App\Http\Controllers\DashboardController@formSubmissions')->name('submissions');
+Route::get('/form/{id}/submissions','App\Http\Controllers\DashboardController@formSubmissions')->name('submissions');
 // Delete Submission
-Route::get('/form/{slug}/massdelete','App\Http\Controllers\DashboardController@submissionMassDelete')->name('submissionsMassDelete');
+Route::get('/form/{id}/massdelete','App\Http\Controllers\DashboardController@submissionMassDelete')->name('submissionsMassDelete');
 // Export Form Submissions
 Route::get('/export/form/{id}','App\Http\Controllers\DashboardController@export')->name('export');
 // Delete Form Submissions

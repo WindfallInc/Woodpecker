@@ -38,13 +38,13 @@
               <p><name>{{$form->title}}</name></p>
             </div>
             <div class="three columns">
-              <a href="/dashboard/form/{{$form->slug}}/submissions"><p class="update">{{$form->submissions->count()}} Submissions</p></a>
+              <a href="/dashboard/form/{{$form->id}}/submissions"><p class="update">{{$form->submissions->count()}} Submissions</p></a>
             </div>
             <div class="two push_one columns">
-              <a href="/dashboard/form/{{$form->slug}}/edit"><p class="edit">Edit</p></a>
+              <a href="/dashboard/form/{{$form->id}}/edit"><p class="edit">Edit</p></a>
             </div>
             <div class="two columns">
-              <a href="/dashboard/form/{{$form->slug}}/delete"><p class="delete">Delete</p></a>
+              <a href="/dashboard/form/{{$form->id}}/delete"><p class="delete">Delete</p></a>
             </div>
           </div>
           @endforeach

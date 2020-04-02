@@ -20,7 +20,7 @@ $(document).ready(function() {
       $('#contentoptions').removeClass('active');
   });
 
-  $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+  $(document).on("click",".remove_field", function(e){ //user click on remove text
       $(this).parent('div').remove();
   });
 
