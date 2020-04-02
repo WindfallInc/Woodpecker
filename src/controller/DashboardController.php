@@ -872,9 +872,9 @@ class DashboardController extends Controller
 
           return view('dashboard.menus.menu-detail', compact('menu','newid'));
     }
-    public function menuUpdate(Request $request, $slug)
+    public function menuUpdate(Request $request, $id)
     {
-      $menu = Menu::where('slug', $slug)->first();
+      $menu = Menu::find($id);
       foreach($menu->navs as $nav){
         $nav->delete();
       }

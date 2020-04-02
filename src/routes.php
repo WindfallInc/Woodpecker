@@ -51,7 +51,7 @@ Route::get('/menu/create','App\Http\Controllers\DashboardController@menuCreate')
 // Store Menu
 Route::post('/menu/store','App\Http\Controllers\DashboardController@menuStore');
 // View menu with all associated nav items for editing and reorder
-Route::get('/menu/{slug}/details','App\Http\Controllers\DashboardController@menuDetails')->name('menu-details');
+Route::get('/menu/{id}/details','App\Http\Controllers\DashboardController@menuDetails')->name('menu-details');
 // Store Nav items and rearrange menu
 Route::post('/menu/{id}/update','App\Http\Controllers\DashboardController@menuUpdate');
 // Edit Menu

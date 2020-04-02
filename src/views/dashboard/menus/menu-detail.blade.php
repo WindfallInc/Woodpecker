@@ -108,137 +108,134 @@
   @endpush
 
 
+    <div class="row">
+      <div class="ten push_one columns strip">
+        <h1 class="-brown">{{$menu->title}}</h1>
+      </div>
+    </div>
+    <div class="dashboard-box row">
+
+      <div class="box-header row">
+        <div class="ten columns">
+
+        </div>
+
+        <div class="two columns store">
+          <i class="fa fa-sign-in"></i>
+        </div>
+      </div>
+      <div class="dashboard-list">
+        <div class="editor_zone" id="editor_zone">
+          <div class="row">
+            <div class="six push_one columns">
+            <ol class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded navs_wrap" id="menu">
+
+              @if(count($menu->parents())>0)
+                @foreach($menu->parents() as $nav)
+                  <li class="mjs-nestedSortable-branch mjs-nestedSortable-expanded" id="menuItem_{{$nav->id}}">
+                    <div class="menuDiv">
+                      @if(count($nav->children())>0)
+                      <span title="Click to show/hide children" class="disclose ui-icon ui-icon-minusthick">
+                      <span></span>
+                      </span>
+                      @endif
+                      <span title="Click to show/hide item editor" data-id="{{$nav->id}}" class="expandEditor ui-icon ui-icon-triangle-1-n">
+                      <span></span>
+                      </span>
+                      <span>
+                      <span data-id="{{$nav->id}}" class="itemTitle">{{$nav->title}}</span>
+                      <span title="Click to delete item." data-id="{{$nav->id}}" class="deleteMenu ui-icon ui-icon-closethick">
+                      <span></span>
+                      </span>
+                      </span>
+                      <div id="menuEdit{{$nav->id}}" class="menuEdit hidden" style="display:none;">
+                        <p>Leads to: <span class="url">{{$nav->url}}</span></p>
+                        <p>Target: <span class="target">{{$nav->target}}</span></p>
+                      </div>
+                    </div>
+                    @if(count($nav->children())>0)
+                      <ol class="children">
+                    @foreach($nav->children() as $child)
+
+                        <li class="mjs-nestedSortable-branch mjs-nestedSortable-expanded" id="menuItem_{{$child->id}}" data-foo="baz">
+                        <div class="menuDiv">
+                          @if(count($child->children())>0)
+                          <span title="Click to show/hide children" class="disclose ui-icon ui-icon-minusthick">
+                          <span></span>
+                          </span>
+                          @endif
+                          <span title="Click to show/hide item editor" data-id="{{$child->id}}" class="expandEditor ui-icon ui-icon-triangle-1-n">
+                          <span></span>
+                          </span>
+                          <span>
+                          <span data-id="{{$child->id}}" class="itemTitle">{{$child->title}}</span>
+                          <span title="Click to delete item." data-id="{{$child->id}}" class="deleteMenu ui-icon ui-icon-closethick">
+                          <span></span>
+                          </span>
+                          </span>
+                          <div id="menuEdit{{$child->id}}" class="menuEdit hidden" style="display:none;">
+                            <p>Leads to: <span class="url">{{$child->url}}</span></p>
+                            <p>Target: <span class="target">{{$child->target}}</span></p>
+                          </div>
+                        </div>
+                        @if(count($child->children())>0)
+                          <ol class="children">
+                        @foreach($child->children() as $subchild)
+
+                            <li class="mjs-nestedSortable-leaf" id="menuItem_{{$subchild->id}}">
+                            <div class="menuDiv">
+                              <span title="Click to show/hide item editor" data-id="{{$subchild->id}}" class="expandEditor ui-icon ui-icon-triangle-1-n">
+                              <span></span>
+                              </span>
+                              <span>
+                              <span data-id="{{$subchild->id}}" class="itemTitle">{{$subchild->title}}</span>
+                              <span title="Click to delete item." data-id="{{$subchild->id}}" class="deleteMenu ui-icon ui-icon-closethick">
+                              <span></span>
+                              </span>
+                              </span>
+                              <div id="menuEdit{{$subchild->id}}" class="menuEdit hidden" style="display:none;">
+                                <p>Leads to: <span class="url">{{$subchild->url}}</span></p>
+                                <p>Target: <span class="target">{{$subchild->target}}</span></p>
+                              </div>
+                            </div>
+                            </li>
+                        @endforeach
+                          </ol>
+                        @endif
+                      </li>
+                    @endforeach
+                      </ol>
+                  @endif
+                </li>
+                @endforeach
+              @endif
+
+            </ol>
 
 
-    <div id="success" style="
-    opacity:0;
-    position: fixed;
-    top: 20px;
-    left:0px;
-    width: 100vw;
-    background-color: #2d3e4f;
-    transition:linear all .2s;
-    color: #fff;
-    font-size: 2em;
-    padding: 20px;
-    text-align: center;
-    pointer-events:none;">Saved</div>
-    <div class="row heading">
-      <div class="four columns">
-        <h3>{{$menu->title}}</h3>
-      </div>
-      <div class="four columns">
-      </div>
-      <div class="four columns">
-        <button class="nope"><h3 class="store">Save Menu</h3></button>
+
+
+            </div>
+            <div class="five columns">
+              <h3>New Nav Item</h3>
+              <p><input type="text" name="title" placeholder="Title" id="title" required></p>
+              <p><input type="text" name="url" list="urls" placeholder="url" id="url" required></p>
+              <datalist id="urls">
+                @foreach($types as $type)
+                  @foreach($type->contents as $content)
+                    <option value="/{{$content->slug}}">
+                  @endforeach
+                @endforeach
+              </datalist>
+              <p>Outside Link<input type="checkbox" name="title" value='_blank' id="type"><span class="mini">Checking this option will make this item open in another tab</span></p>
+              <p class="create add_nav">ADD ITEM</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-<div class="row">
-  <div class="six columns">
-  <ol class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded navs_wrap" id="menu">
 
-    @if(count($menu->parents())>0)
-      @foreach($menu->parents() as $nav)
-        <li class="mjs-nestedSortable-branch mjs-nestedSortable-expanded" id="menuItem_{{$nav->id}}">
-          <div class="menuDiv">
-            @if(count($nav->children())>0)
-            <span title="Click to show/hide children" class="disclose ui-icon ui-icon-minusthick">
-            <span></span>
-            </span>
-            @endif
-            <span title="Click to show/hide item editor" data-id="{{$nav->id}}" class="expandEditor ui-icon ui-icon-triangle-1-n">
-            <span></span>
-            </span>
-            <span>
-            <span data-id="{{$nav->id}}" class="itemTitle">{{$nav->title}}</span>
-            <span title="Click to delete item." data-id="{{$nav->id}}" class="deleteMenu ui-icon ui-icon-closethick">
-            <span></span>
-            </span>
-            </span>
-            <div id="menuEdit{{$nav->id}}" class="menuEdit hidden" style="display:none;">
-              <p>Leads to: <span class="url">{{$nav->url}}</span></p>
-              <p>Target: <span class="target">{{$nav->target}}</span></p>
-            </div>
-          </div>
-          @if(count($nav->children())>0)
-            <ol class="children">
-          @foreach($nav->children() as $child)
-
-              <li class="mjs-nestedSortable-branch mjs-nestedSortable-expanded" id="menuItem_{{$child->id}}" data-foo="baz">
-              <div class="menuDiv">
-                @if(count($child->children())>0)
-                <span title="Click to show/hide children" class="disclose ui-icon ui-icon-minusthick">
-                <span></span>
-                </span>
-                @endif
-                <span title="Click to show/hide item editor" data-id="{{$child->id}}" class="expandEditor ui-icon ui-icon-triangle-1-n">
-                <span></span>
-                </span>
-                <span>
-                <span data-id="{{$child->id}}" class="itemTitle">{{$child->title}}</span>
-                <span title="Click to delete item." data-id="{{$child->id}}" class="deleteMenu ui-icon ui-icon-closethick">
-                <span></span>
-                </span>
-                </span>
-                <div id="menuEdit{{$child->id}}" class="menuEdit hidden" style="display:none;">
-                  <p>Leads to: <span class="url">{{$child->url}}</span></p>
-                  <p>Target: <span class="target">{{$child->target}}</span></p>
-                </div>
-              </div>
-              @if(count($child->children())>0)
-                <ol class="children">
-              @foreach($child->children() as $subchild)
-
-                  <li class="mjs-nestedSortable-leaf" id="menuItem_{{$subchild->id}}">
-                  <div class="menuDiv">
-                    <span title="Click to show/hide item editor" data-id="{{$subchild->id}}" class="expandEditor ui-icon ui-icon-triangle-1-n">
-                    <span></span>
-                    </span>
-                    <span>
-                    <span data-id="{{$subchild->id}}" class="itemTitle">{{$subchild->title}}</span>
-                    <span title="Click to delete item." data-id="{{$subchild->id}}" class="deleteMenu ui-icon ui-icon-closethick">
-                    <span></span>
-                    </span>
-                    </span>
-                    <div id="menuEdit{{$subchild->id}}" class="menuEdit hidden" style="display:none;">
-                      <p>Leads to: <span class="url">{{$subchild->url}}</span></p>
-                      <p>Target: <span class="target">{{$subchild->target}}</span></p>
-                    </div>
-                  </div>
-                  </li>
-              @endforeach
-                </ol>
-              @endif
-            </li>
-          @endforeach
-            </ol>
-        @endif
-      </li>
-      @endforeach
-    @endif
-
-  </ol>
-
-
-
-
-  </div>
-  <div class="six columns">
-    <h3>New Nav Item</h3>
-    <p><input type="text" name="title" placeholder="Title" id="title" required></p>
-    <p><input type="text" name="url" list="urls" placeholder="url" id="url" required></p>
-    <datalist id="urls">
-      @foreach($types as $type)
-        @foreach($type->contents as $content)
-          <option value="/{{$content->slug}}">
-        @endforeach
-      @endforeach
-    </datalist>
-    <p>Outside Link<input type="checkbox" name="title" value='_blank' id="type"><span class="mini">Checking this option will make this item open in another tab</span></p>
-    <p class="create add_nav">ADD ITEM</p>
-  </div>
-</div>
 {{--</form>--}}
 
 
@@ -281,6 +278,8 @@
       </script>
       <script>
 $(document).on('click', '.store', function(e){
+
+    $('.notification').css('top', 0);
 
 
     var out = [];
@@ -329,11 +328,14 @@ $(document).on('click', '.store', function(e){
     });
 
     setTimeout(function(){
-      $('#success').css('opacity', 1);
+      $('.notification').addClass('active');
     }, 2000);
     setTimeout(function(){
-      $('#success').css('opacity', 0);
+      $('.notification').text('Saved');
     }, 6000);
+    setTimeout(function(){
+      $('.notification').css('top','-150px');
+    }, 9000);
 
 
 });
