@@ -38,6 +38,9 @@
               <input type="text" name="cta" placeholder="Submit, Send, Signup, Join, Etc..." value="{{$form->cta}}"></p>
               <p>Form Redirect
               <input type="text" name="redirect" placeholder="/thank-you,/home, Etc..." value="{{$form->redirect}}"></p>
+              <p>Email Notifications (seperate multiple emails with ',')
+                <input type="text" name="notifications" placeholder="email@address.com" value="{{$form->notifications}}">
+              </p>
             </div>
             <div class="four push_two columns">
               <a href="/dashboard/form/{{$form->id}}/details"><h3 class="edit">Edit Items</h3></a>

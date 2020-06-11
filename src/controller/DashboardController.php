@@ -138,9 +138,16 @@ class DashboardController extends Controller
           return view('dashboard.content.content-write', compact('type','last','lastComponent','lastImage'));
     }
 
-    public function contentStore(Request $request, $type, $id, $draft = NULL)
+    public function contentStore(Request $request, $type, $id, $draft = false)
     {
-      $content = Content::find($id);
+
+      if($id=='draft')
+      {
+        $draft = true;
+      }
+      else {
+        $content = Content::find($id);
+      }
 
       $user = Auth::guard('dashboard')->user();
 
@@ -626,7 +633,7 @@ class DashboardController extends Controller
       }
 
 
-      if(isset($draft)){
+      if($draft){
         $content->published = 0;
         $content->save();
         return redirect()->route('preview', ['slug'=>$content->slug]);
@@ -1183,17 +1190,18 @@ class DashboardController extends Controller
           if(!$user->canEditForms()){
             abort(403);
           }
-          $old            = Form::where('slug', $request->input('slug'))->first();
+          $old                 = Form::where('slug', $request->input('slug'))->first();
           if(isset($old)){
-            $form         = Form::where('slug', $request->input('slug'))->first();
+            $form              = Form::where('slug', $request->input('slug'))->first();
           }
           else {
-            $form         = new Form;
+            $form              = new Form;
           }
-          $form->title    = $request->input('title');
-          $form->slug     = str_slug($request->input('title'),"-");
-          $form->cta      = $request->input('cta');
-          $form->redirect = $request->input('redirect');
+          $form->title         = $request->input('title');
+          $form->slug          = str_slug($request->input('title'),"-");
+          $form->cta           = $request->input('cta');
+          $form->redirect      = $request->input('redirect');
+          $form->notifications = $request->input('notifications');
           $form->save();
 
           return redirect()->route('formDetails', ['slug'=>$form->slug]);

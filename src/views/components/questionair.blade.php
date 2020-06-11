@@ -4,7 +4,7 @@
 	@if(isset($form))
 
 	<h3>{!!$form->title!!}</h3>
-	<form action="/form/{{$form->id}}" method="post" id="{{$form->id}}">
+	<form action="/form/{{$form->id}}" method="post" id="woodpecker-form{{$form->id}}">
 		@csrf
 		@foreach($form->questions->sortBy('order') as $q)
 			@php $count = $count + $q->columnInt; @endphp
@@ -69,6 +69,21 @@
 					<div class="twelve columns">
 						{!! NoCaptcha::renderJs() !!}
 						{!! NoCaptcha::displaySubmit($form->id, $form->cta) !!}
+						<script>
+						function onSubmit{{$form->id}}()
+						{
+							if($("#woodpecker-form{{$form->id}}")[0].checkValidity())
+							{
+								$("#woodpecker-form{{$form->id}}").submit();
+							}
+							else
+							{
+								alert('Please finish filling out the form before submitting.');
+								$("<style type='text/css'> input:invalid {background-color: #CD5C5C;} </style>").appendTo("head");
+							}
+						}
+						</script>
+
 					</div>
 				</div>
 			@endif

@@ -20,6 +20,7 @@ class CreateFormsTable extends Migration
             $table->string('slug',255); // slug for sorting
             $table->string('cta',255)->nullable(); // cta for submit buttons
             $table->string('redirect',255)->nullable(); // cta for submit buttons
+            $table->longText('notifications')->nullable(); // cta for submit buttons
             $table->timestamps();
             $table->softDeletes();
         });

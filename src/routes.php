@@ -167,7 +167,7 @@ Route::get('/{type}/deleted','App\Http\Controllers\DashboardController@deleted')
 
 
 
-Route::get('/{slug}','App\Http\Controllers\PageController@preview')->name('preview');
+Route::get('/preview/{slug}','App\Http\Controllers\PageController@preview')->name('preview');
 
 
 /* WINDFALL ADMIN ONLY ROUTES */

@@ -73,7 +73,7 @@ class PageController extends Controller
           }
         }
 
-        $page 	 = Content::where('slug',$slug)->where('type_id', 1)->isPublished()->first();
+        $page 	 = Content::where('slug',$slug)->where('type_id', 1)->where('published', '1')->first();
 
         if(!isset($page))
         {
@@ -112,7 +112,7 @@ class PageController extends Controller
         $type    = Type::where('slug',$type)->first();
         if(isset($type))
         {
-          $page 	 = Content::where('slug',$slug)->where('type_id',$type->id)->isPublished()->with(['rows', 'components'])->first();
+          $page 	 = Content::where('slug',$slug)->where('type_id',$type->id)->where('published', '1')->with(['rows', 'components'])->first();
         }
         else
         {
@@ -156,8 +156,8 @@ class PageController extends Controller
 
     public function form(Request $request, $id){
 
-      $validate = Validator::make(Request::all(), [
-      	'g-recaptcha-response' => 'required|captcha'
+      $validatedData = $request->validate([
+        'g-recaptcha-response' => 'required|captcha'
       ]);
 
 
@@ -172,14 +172,42 @@ class PageController extends Controller
         $submission->save();
 
         foreach($form->questions as $question){
-          if($question->type != 'section'){
-            $answer = new Answer;
-            $answer->content = $request->input('woodpecker'.$question->id);
-            $answer->submission()->associate($submission);
-            $answer->question()->associate($question);
-            $answer->save();
+          $data = $request->input('woodpecker'.$question->id);
+          if(isset($data))
+          {
+            if($question->type == 'checkbox-group')
+            {
+              $answer = new Answer;
+              $answer->content = implode(", ",$request->input('woodpecker'.$question->id));
+              $answer->submission()->associate($submission);
+              $answer->question()->associate($question);
+              $answer->save();
+            }
+            elseif($question->type != 'section'){
+                $answer = new Answer;
+                $answer->content = $request->input('woodpecker'.$question->id);
+                $answer->submission()->associate($submission);
+                $answer->question()->associate($question);
+                $answer->save();
+            }
+          }
+
+        }
+
+        $notifications = explode(',', str_replace(' ','',$form->notifications));
+        if(isset($notifications))
+        {
+          foreach($notifications as $sendto)
+          {
+            $msg = "<html><head><title>New Submission</title></head><body><p style='text-align:center;'>A new submission has been recieved for the ".$form->title." Form.</p></body></html>";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= 'From: <woodpecker@missoulaartmuseum.org/>' . "\r\n";
+
+            mail($sendto,'New '.$form->title.' Submission',$msg,$headers);
           }
         }
+
 
 
         return redirect($form->redirect);
