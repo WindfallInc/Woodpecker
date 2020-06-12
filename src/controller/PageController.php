@@ -202,7 +202,7 @@ class PageController extends Controller
             $msg = "<html><head><title>New Submission</title></head><body><p style='text-align:center;'>A new submission has been recieved for the ".$form->title." Form.</p></body></html>";
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= 'From: <woodpecker@missoulaartmuseum.org/>' . "\r\n";
+            $headers .= 'From: <woodpecker@windfallstudio.com/>' . "\r\n";
 
             mail($sendto,'New '.$form->title.' Submission',$msg,$headers);
           }

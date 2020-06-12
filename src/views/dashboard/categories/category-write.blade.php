@@ -5,7 +5,7 @@
 @push('header')
 
 @endpush
-  <form action="/dashboard/category/store" method="POST" id="write_form">
+  <form action="/dashboard/category/store" method="POST" id="category_form">
     {{ csrf_field() }}
 
     <div class="row">
@@ -52,7 +52,7 @@
           }, 500);
 
           setTimeout( function () {
-              $('#write_form').submit();
+              $('#category_form').submit();
           }, 1000);
       });
     </script>

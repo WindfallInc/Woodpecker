@@ -149,6 +149,11 @@ class DashboardController extends Controller
         $content = Content::find($id);
       }
 
+      if($draft!= false)
+      {
+        $draft = true;
+      }
+
       $user = Auth::guard('dashboard')->user();
 
       if(isset($content)){

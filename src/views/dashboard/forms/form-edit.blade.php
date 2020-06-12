@@ -5,7 +5,7 @@
 @push('header')
 
 @endpush
-  <form action="/dashboard/form/store" method="POST">
+  <form action="/dashboard/form/store" method="POST" id="edit_form">
     {{ csrf_field() }}
 
 
@@ -32,7 +32,7 @@
               <p>Form Title
               <input type="text" name="title" value="{{$form->title}}"></p>
               <p>Form slug
-              <input type="text" readonly name="slug" value="{{$form->id}}"></p>
+              <input type="text" readonly name="slug" value="{{$form->slug}}"></p>
               <p class="mini">Note that all slugs update automatically with their corresponding titles</p>
               <p>Form CTA
               <input type="text" name="cta" placeholder="Submit, Send, Signup, Join, Etc..." value="{{$form->cta}}"></p>
@@ -66,7 +66,19 @@
   </form>
 
   @push('footer')
+    <script>
+      $(document).on('click','.store',function(event){
+          $('.notification').css('top','0px');
 
+          setTimeout( function () {
+              $('.notification').addClass('active');
+          }, 500);
+
+          setTimeout( function () {
+              $('#edit_form').submit();
+          }, 1000);
+      });
+    </script>
   @endpush
 
 @endsection

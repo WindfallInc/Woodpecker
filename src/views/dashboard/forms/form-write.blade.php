@@ -34,6 +34,8 @@
             <div class="four columns">
               <p>Form Redirect
               <input type="text" name="redirect" placeholder="/thank-you,/home, Etc..."></p>
+              <p>Notifications (seperate multiple emails with ',')
+              <input type="text" name="notifications" placeholder="email@address.com"></p>
             </div>
 
           </div>

@@ -5,8 +5,7 @@
   @push('header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
   @endpush
-  <form action="/dashboard/type/store" method="POST">
-    {{ csrf_field() }}
+
 
     <div class="row">
       <div class="ten push_one columns strip">
@@ -50,7 +49,6 @@
 
 
 
-  </form>
 
   @push('footer')
     <script>

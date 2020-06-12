@@ -45,6 +45,15 @@ class Content extends Model
 				return '/featured/default.jpg';
 
 	}
+	public function thumbnail() {
+        $featured = $this->images()->where('featured', 1)->first();
+				if(isset($featured)){
+					$img = $featured->thumbnail;
+					return $img;
+				}
+				return '/featured/default.jpg';
+
+	}
 	public function excerpt() {
 		$row = $this->rows->first();
 		if(!isset($row))

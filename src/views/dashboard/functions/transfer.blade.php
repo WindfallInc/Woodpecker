@@ -49,6 +49,22 @@
           });
     });
 
+    $(document).on('mousedown', '.preview-submit', function(){
+
+
+          $.each($('.transfer'), function() {
+            var code = $(this).children(".codearea");
+            var text = $(this).children(".textarea");
+            if($(text).hasClass("active")){
+              $(code).val($(text).html().replace(/<div/g, '<p').replace(/\/div/g, '/p'));
+            }
+            else{
+              $(text).html($(code).val());
+            }
+            $(code).val($(code).val().replace(/src="data:[^>\n]*/g, 'src="data:placeholder"'));
+          });
+    });
+
     $( document ).ready(function() {
       setTimeout(transfer, 200);
     });
