@@ -1209,7 +1209,7 @@ class DashboardController extends Controller
           $form->notifications = $request->input('notifications');
           $form->save();
 
-          return redirect()->route('formDetails', ['slug'=>$form->slug]);
+          return redirect()->route('formDetails', ['id'=>$form->id]);
     }
     public function formEdit($id)
     {
