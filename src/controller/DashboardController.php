@@ -1401,6 +1401,53 @@ class DashboardController extends Controller
           return response()->streamDownload($callback, $filename, $headers);
     }
 
+    public function settings()
+    {
+          $contents   = Setting::all();
+          $type = new Setting;
+          $type->title = 'Setting';
+          $type->slug = 'setting';
+          $type->id = 0;
+          return view('dashboard.all.component-call', compact('contents','type'));
+    }
+
+    public function settingCreate()
+    {
+
+          return view('dashboard.settings.setting-write');
+    }
+
+    public function categoryStore(Request $request)
+    {
+      if(Setting::where('name', $request->input('name'))->first()){
+        $setting           = Setting::where('name', $request->input('name'))->first();
+      }
+      else {
+        $setting           = New Setting;
+      }
+
+      $setting->name       = ucwords($request->input('name'));
+      $setting->content    = $request->input('content');
+      $setting->save();
+
+      return redirect()->route('settings');
+    }
+
+    public function settingEdit($id)
+    {
+          $setting = Setting::find($id);
+
+          return view('dashboard.settings.setting-edit',compact('setting'));
+    }
+
+    public function settingDelete($id)
+    {
+          $delete    = Setting::find($id);
+          $delete->delete();
+
+          return redirect()->route('settings');
+    }
+
 
 
     public function serviceHelp()

@@ -75,7 +75,7 @@ Route::get('/component/{slug}/delete','App\Http\Controllers\DashboardController@
 
 
 
-//view categories - IE pages type, posts type, etc
+//view categories
 Route::get('/categories','App\Http\Controllers\DashboardController@categories')->name('categories');
 // create new category
 Route::get('/category/create','App\Http\Controllers\DashboardController@categoryCreate');
@@ -85,6 +85,17 @@ Route::post('/category/store','App\Http\Controllers\DashboardController@category
 Route::get('/category/{id}/edit','App\Http\Controllers\DashboardController@categoryEdit');
 // delete category
 Route::get('/category/{id}/delete','App\Http\Controllers\DashboardController@categoryDelete');
+
+//view settings - individual for each site
+Route::get('/settings','App\Http\Controllers\DashboardController@settings')->name('settings');
+// create new category
+Route::get('/setting/create','App\Http\Controllers\DashboardController@settingCreate');
+// store category
+Route::post('/setting/store','App\Http\Controllers\DashboardController@settingStore');
+// edit single category
+Route::get('/setting/{id}/edit','App\Http\Controllers\DashboardController@settingEdit');
+// delete category
+Route::get('/setting/{id}/delete','App\Http\Controllers\DashboardController@settingDelete');
 
 
 

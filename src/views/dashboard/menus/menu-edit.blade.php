@@ -5,7 +5,7 @@
 @push('header')
 
 @endpush
-  <form action="/dashboard/menu/store" method="POST">
+  <form action="/dashboard/menu/store" method="POST" id="menu_form">
     {{ csrf_field() }}
 
 
@@ -63,7 +63,19 @@
   </form>
 
   @push('footer')
+    <script>
+      $(document).on('click','.store',function(event){
+          $('.notification').css('top','0px');
 
+          setTimeout( function () {
+              $('.notification').addClass('active');
+          }, 500);
+
+          setTimeout( function () {
+              $('#menu_form').submit();
+          }, 1000);
+      });
+    </script>
   @endpush
 
 @endsection

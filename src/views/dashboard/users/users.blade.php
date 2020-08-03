@@ -13,7 +13,7 @@
         <div class="two columns push_one name-sorting">
           <i class="fas fa-sort-alpha-down" id="reversealphBnt"></i>
           <i class="fas fa-sort-alpha-up-alt" id="alphBnt"></i>
-          <input type="text" placeholder="Search Forms..." id="SearchInput" onkeyup="searchFunction()">
+          <input type="text" placeholder="Search Users..." id="SearchInput" onkeyup="searchFunction()">
         </div>
 
         <div class="two columns">
@@ -29,7 +29,7 @@
           <h3>Menus</h3>
         </div>
 
-        
+
       </div>
       <div class="dashboard-list">
         <div class="list_zone" id="list_zone">
@@ -43,7 +43,7 @@
           @foreach($dashboards as $dashboard)
             <div class="row content-item">
               <div class="two push_one columns">
-                <p>{{$dashboard->name}}</p>
+                <p><name>{{$dashboard->name}}</name></p>
               </div>
               <div class="two columns">
                 <p>
