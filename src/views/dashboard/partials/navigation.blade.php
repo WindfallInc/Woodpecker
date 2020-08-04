@@ -36,6 +36,11 @@
     <a href="/dashboard/users"><i class="fa fa-users" aria-hidden="true"></i><span>Users</span></a>
   </div>
   @endif
+  @if($user->isAdmin())
+  <div class="nav-box">
+    <a href="/dashboard/settings"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a>
+  </div>
+  @endif
   <div class="nav-box">
     <a href="{{ url('/dashboard/logout') }}"
     onclick="event.preventDefault();

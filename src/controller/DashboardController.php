@@ -28,6 +28,7 @@ use App\Woodpecker\Dashboard;
 use App\Woodpecker\Permission;
 use App\Woodpecker\Ticket;
 use App\Woodpecker\Html;
+use App\Woodpecker\Setting;
 use Image;
 
 use Auth;
@@ -1417,7 +1418,7 @@ class DashboardController extends Controller
           return view('dashboard.settings.setting-write');
     }
 
-    public function categoryStore(Request $request)
+    public function settingStore(Request $request)
     {
       if(Setting::where('name', $request->input('name'))->first()){
         $setting           = Setting::where('name', $request->input('name'))->first();
