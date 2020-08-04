@@ -20,7 +20,20 @@ class CreateSettingsTable extends Migration
             $table->text('content');
             $table->timestamps();
         });
+        DB::table('settings')->insert(
+        array(
+            'name'        => 'Site Url',
+            'content'     => 'https://yoursite.com',
+        )
+        );
+        DB::table('settings')->insert(
+        array(
+            'name'        => 'Notifications',
+            'content'     => 'false',
+        )
+        );
     }
+
 
     /**
      * Reverse the migrations.
