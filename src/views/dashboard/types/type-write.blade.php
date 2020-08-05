@@ -29,12 +29,9 @@
                 <p>Datatype Title
                 <input type="text" name="title" placeholder="page, post, event, etc" required></p>
                 <p>&nbsp;</p>
-                <p>Enable Categories
-                <input type="checkbox" name="categories" value='1'></p>
-                <p>Enable Advanced Content Editor
-                <input type="checkbox" name="editor" value='1'></p>
-                <p>Time Sensitive Content
-                <input type="checkbox" name="time" value='1'></p>
+                <p><label class="switch"><input type="checkbox"  name="categories" value='1'><span class="slider round"></span></label>&nbsp;Enable Categories</p>
+                <p><label class="switch"><input type="checkbox" name="editor" value='1'><span class="slider round"></span></label>&nbsp;Enable Advanced Content Editor</p>
+                <p><label class="switch"><input type="checkbox" name="time" value='1'><span class="slider round"></span></label>&nbsp;Time Sensitive Content</p>
               </div>
               <div class="four push_two columns">
                 <p class="select-box">Default Template

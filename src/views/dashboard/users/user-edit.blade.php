@@ -29,15 +29,10 @@
               <input type="text" name="name" value="{{$dashboard->name}}"></p>
               <p>Email
               <input type="text" name="email" value="{{$dashboard->email}}"></p>
-              <p>Administrator
-              <label class="switch"><input type="checkbox" name="admin" value='1' @if($dashboard->admin=='1')checked @endif><span class="slider round"></span></label>
-              <p>This user can edit forms
-              <label class="switch"><input type="checkbox" name="forms" value='1' @if($dashboard->forms=='1')checked @endif><span class="slider round"></span></label>
-              </p>
-              <p>This user can edit menus
-              <label class="switch"><input type="checkbox" name="menus" value='1' @if($dashboard->menus=='1')checked @endif><span class="slider round"></span></label></p>
-              <p>This user has been approved
-              <label class="switch"><input type="checkbox" name="confirmed" value='1' @if($dashboard->confirmed=='1')checked @endif><span class="slider round"></span></label></p>
+              <p><label class="switch"><input type="checkbox" name="admin" value='1' @if($dashboard->admin=='1')checked @endif><span class="slider round"></span></label>&nbsp;Administrator</p>
+              <p><label class="switch"><input type="checkbox" name="forms" value='1' @if($dashboard->forms=='1')checked @endif><span class="slider round"></span></label>&nbsp;This user can edit forms</p>
+              <p><label class="switch"><input type="checkbox" name="menus" value='1' @if($dashboard->menus=='1')checked @endif><span class="slider round"></span></label>&nbsp;This user can edit menus</p>
+              <p><label class="switch"><input type="checkbox" name="confirmed" value='1' @if($dashboard->confirmed=='1')checked @endif><span class="slider round"></span></label>&nbsp;This user has been approved</p>
             </div>
 
           </div>
@@ -52,8 +47,8 @@
             <div class="six columns">
               <h3>Content Types</h3>
               @foreach ($types as $type)
-                <p>{{$type->title}}
-                <label class="switch"><input type="checkbox" name="typepermissions[]" value='{{$type->id}}' @if($dashboard->canEditType($type->id))checked @endif @if($dashboard->isAdmin())checked @endif)><span class="slider round"></span></label></p>
+                <p><label class="switch"><input type="checkbox" name="typepermissions[]" value='{{$type->id}}' @if($dashboard->canEditType($type->id))checked @endif @if($dashboard->isAdmin())checked @endif)><span class="slider round"></span></label>
+                  &nbsp;{{$type->title}}</p>
               @endforeach
             </div>
           </div>

@@ -18,6 +18,8 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('name',255);
             $table->text('content');
+            $table->text('content2');
+            $table->text('content3');
             $table->timestamps();
         });
         DB::table('settings')->insert(

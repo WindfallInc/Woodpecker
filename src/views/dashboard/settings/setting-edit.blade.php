@@ -29,6 +29,10 @@
               <input type="text" name="name" value="{{$setting->name}}"></p>
               <p>Setting Content
               <input type="text" name="content" value="{{$setting->content}}"></p>
+              <p>
+              <input type="text" name="content2" value="{{$setting->content2}}"></p>
+              <p>
+              <input type="text" name="content3" value="{{$setting->content3}}"></p>
             </div>
           </div>
         </div>

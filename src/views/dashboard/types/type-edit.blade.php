@@ -30,12 +30,9 @@
               <p>Datatype slug
               <input type="text" readonly name="slug" value="{{$type->slug}}"></p>
               <p class="mini">Note that all slugs update automatically with their corresponding titles</p>
-              <p>Enable Categories
-              <input type="checkbox" name="categories" value='1' @if($type->categories=='1')checked @endif></p>
-              <p>Enable Advanced Content Editor
-              <input type="checkbox" name="editor" value='1' @if($type->editor=='1')checked @endif></p>
-              <p>Time Sensitive Content
-              <input type="checkbox" name="time" value='1' @if($type->time=='1')checked @endif></p>
+              <p><label class="switch"><input type="checkbox" name="categories" value='1' @if($type->categories=='1')checked @endif><span class="slider round"></span></label>&nbsp;Enable Categories</p>
+              <p><label class="switch"><input type="checkbox" name="editor" value='1' @if($type->editor=='1')checked @endif><span class="slider round"></span></label>&nbsp;Enable Advanced Content Editor</p>
+              <p><label class="switch"><input type="checkbox" name="time" value='1' @if($type->time=='1')checked @endif><span class="slider round"></span></label>&nbsp;Time Sensitive Content</p>
             </div>
             <div class="four push_two columns">
               <p class="select-box">Default Template

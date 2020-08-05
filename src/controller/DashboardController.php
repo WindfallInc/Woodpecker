@@ -60,6 +60,7 @@ class DashboardController extends Controller
             $this->categories      = Category::all();
             $this->components      = Component::all();
             $this->templates       = Template::all();
+            $this->custom_items    = Setting::where('name','Custom Menu Item')->get();
 
             view()->share('user', $this->user);
             view()->share('types', $this->types);
@@ -67,6 +68,7 @@ class DashboardController extends Controller
             view()->share('categories', $this->categories);
             view()->share('components', $this->components);
             view()->share('templates', $this->templates);
+            view()->share('custom_items', $this->custom_menu);
 
             return $next($request);
         });
@@ -1429,6 +1431,8 @@ class DashboardController extends Controller
 
       $setting->name       = ucwords($request->input('name'));
       $setting->content    = $request->input('content');
+      $setting->content2    = $request->input('content2');
+      $setting->content3    = $request->input('content3');
       $setting->save();
 
       return redirect()->route('settings');

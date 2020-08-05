@@ -27,6 +27,15 @@
   </div>
   @endif
   @if($user->isAdmin())
+    @isset($custom_items)
+      @foreach($custom_items as $custom)
+        <div class="nav-box">
+          <a href="{{$custom->content3}}"><i class="{{$custom->content2}}" aria-hidden="true"></i><span>{{$custom->content}}</span></a>
+        </div>
+      @endforeach
+    @endisset
+  @endif
+  @if($user->isAdmin())
   <div class="nav-box">
     <a href="/dashboard/types"><i class="fa fa-cubes" aria-hidden="true"></i><span>Content Types</span></a>
   </div>
