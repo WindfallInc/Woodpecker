@@ -32,7 +32,7 @@
               <p>Templates</p>
               @foreach($templates as $template)
                 <p>
-                <input value="{{$template->id}}" name="templates[]" type="checkbox" class="tinycheck">{{$template->title}}</p>
+                <label class="switch"><input value="{{$template->id}}" name="templates[]" type="checkbox" class="tinycheck"><span class="slider round"></span></label>{{$template->title}}</p>
               @endforeach
             </div>
 

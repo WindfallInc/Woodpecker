@@ -42,6 +42,8 @@
   @isset($deleted)
     <a href="/dashboard/{{$type_id}}/all" class="deleted">View {{str_plural($content_type)}}</a>
   @else
-  <a href="/dashboard/{{$type_id}}/deleted" class="deleted">View Deleted {{str_plural($content_type)}}</a>
+    @if($type_id != '0')
+      <a href="/dashboard/{{$type_id}}/deleted" class="deleted">View Deleted {{str_plural($content_type)}}</a>
+    @endif
   @endif
 </div>

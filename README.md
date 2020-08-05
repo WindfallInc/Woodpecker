@@ -34,7 +34,7 @@ Optional Helper functions to include in composer.json:
 ```shell
 "autoload": {
 "files": [
-            "app/Http/Controllers/jaunt-helpers.php"
+            "app/Http/Controllers/woodpecker-helpers.php"
         ],
 ```
 
@@ -120,7 +120,7 @@ Route::get('/anything', 'WebsiteController@index')->name('anything');
 ## Updating
 After your composer update, to finalize your upgrade
 ``` shell
-php artisan vendor:publish --tag=update --force
+php artisan vendor:publish --tag=woodpeckerupdate --force
 ```
 
 ## Supports

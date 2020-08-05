@@ -26,7 +26,7 @@
           <div class="row -padding">
             <div class="four columns">
               <p>Setting Type
-              <input type="text" name="name"> </p>
+              <input type="text" name="title"> </p>
               <p>Setting Content
               <input type="text" name="content"> </p>
               <p>

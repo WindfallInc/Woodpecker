@@ -37,13 +37,13 @@
 
           </div>
 
-          <div class="row">
+          <div class="row -padding">
             <div class="eight columns">
               <p>To limit a user so that they can only edit specific content, you can change the options below.</p>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row -padding">
             <div class="six columns">
               <h3>Content Types</h3>
               @foreach ($types as $type)

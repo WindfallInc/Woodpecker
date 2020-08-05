@@ -26,7 +26,7 @@
           <div class="row -padding">
             <div class="four columns">
               <p>Setting Type
-              <input type="text" name="name" value="{{$setting->name}}"></p>
+              <input type="text" name="title" value="{{$setting->name}}"></p>
               <p>Setting Content
               <input type="text" name="content" value="{{$setting->content}}"></p>
               <p>

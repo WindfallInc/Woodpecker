@@ -93,6 +93,10 @@ $(document).on('click', '.delete', function(e){
 
     $(this).parents('.content-item').remove();
   }
+  else
+  {
+    e.preventDefault();
+  }
 });
 </script>
 @endpush

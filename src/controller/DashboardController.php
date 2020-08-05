@@ -60,7 +60,7 @@ class DashboardController extends Controller
             $this->categories      = Category::all();
             $this->components      = Component::all();
             $this->templates       = Template::all();
-            $this->custom_items    = Setting::where('name','Custom Menu Item')->get();
+            $this->custom_items    = Setting::where('title','Custom Menu Item')->get();
 
             view()->share('user', $this->user);
             view()->share('types', $this->types);
@@ -68,7 +68,7 @@ class DashboardController extends Controller
             view()->share('categories', $this->categories);
             view()->share('components', $this->components);
             view()->share('templates', $this->templates);
-            view()->share('custom_items', $this->custom_menu);
+            view()->share('custom_items', $this->custom_items);
 
             return $next($request);
         });
@@ -849,12 +849,17 @@ class DashboardController extends Controller
         $menu->title    = $request->input('title');
         $menu->slug     = str_slug($request->input('title'),"-");
         $menu->save();
-        foreach($request->input('templates') as $template){
-          $menu->templates()->attach($template);
+        $templates = $request->input('templates');
+        if(isset($templates))
+        {
+          foreach($request->input('templates') as $template){
+            $menu->templates()->attach($template);
+          }
         }
 
 
-      return redirect()->route('menu-details', ['slug'=>$menu->slug]);
+
+      return redirect()->route('menu-details', ['id'=>$menu->id]);
     }
 
     public function menuEdit($id)
@@ -1134,10 +1139,42 @@ class DashboardController extends Controller
           {
             $dashboard->name = $request->input('name');
             $dashboard->email = $request->input('email');
-            $dashboard->admin = $request->input('admin');
-            $dashboard->forms = $request->input('forms');
-            $dashboard->menus = $request->input('menus');
-            $dashboard->confirmed = $request->input('confirmed');
+            $admin = $request->input('admin');
+            if($admin)
+            {
+              $dashboard->admin = $admin;
+            }
+            else
+            {
+              $dashboard->admin = 0;
+            }
+            $forms = $request->input('forms');
+            if($forms)
+            {
+              $dashboard->forms = $forms;
+            }
+            else
+            {
+              $dashboard->forms = 0;
+            }
+            $menus = $request->input('menus');
+            if($menus)
+            {
+              $dashboard->menus = $menus;
+            }
+            else
+            {
+              $dashboard->menus = 0;
+            }
+            $confirmed = $request->input('confirmed');
+            if($confirmed)
+            {
+              $dashboard->confirmed = $confirmed;
+            }
+            else
+            {
+              $dashboard->confirmed = 0;
+            }
             $dashboard->save();
             foreach($dashboard->permissions as $p)
             {
@@ -1153,19 +1190,6 @@ class DashboardController extends Controller
                 $dashboardPermission->type()->associate($type);
                 $dashboardPermission->user()->associate($dashboard);
                 $dashboardPermission->save();
-              }
-            }
-            $contentp = $request->input('contentpermissions');
-            if(isset($contentp))
-            {
-              foreach($request->input('contentpermissions') as $permission)
-              {
-                $content = Content::find($permission);
-                $dashboardPermission = new Permission;
-                $dashboardPermission->content()->associate($content);
-                $dashboardPermission->user()->associate($dashboard);
-                $dashboardPermission->save();
-
               }
             }
           }
@@ -1422,14 +1446,14 @@ class DashboardController extends Controller
 
     public function settingStore(Request $request)
     {
-      if(Setting::where('name', $request->input('name'))->first()){
-        $setting           = Setting::where('name', $request->input('name'))->first();
+      if(Setting::where('title', $request->input('title'))->first()){
+        $setting           = Setting::where('title', $request->input('title'))->first();
       }
       else {
         $setting           = New Setting;
       }
 
-      $setting->name       = ucwords($request->input('name'));
+      $setting->title       = ucwords($request->input('title'));
       $setting->content    = $request->input('content');
       $setting->content2    = $request->input('content2');
       $setting->content3    = $request->input('content3');
